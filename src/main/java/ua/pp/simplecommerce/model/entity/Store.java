@@ -18,10 +18,121 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 /**
+ * Describes the entity named 'store'
+ * Contains global properties of the store like Name, Email, Description, etc.
  *
- * Created by volodya on 09.02.2015.
+ * Created by Vladimir Kamenskiy on 09.02.2015.
  */
 
 @Entity
-public class Store {
+@Table(name = "store")
+public class Store implements Serializable {
+
+    private static final long serialVersionUID = -8864727880624389907L;
+
+    private Long store_id;
+    private String name;
+    private String url;
+    private String description;
+    private String about;
+    private String address;
+    private String phone1;
+    private String phone2;
+    private String fax;
+    private Long language_id;
+
+    public Store(){}
+
+    @Id
+    @Column(name = "store_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    public Long getStore_id() {
+        return store_id;
+    }
+
+    public void setStore_id(Long store_id) {
+        this.store_id = store_id;
+    }
+
+    @Column(name = "name", unique = true, nullable = false, length = 45)
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Column(name = "url", unique = true, nullable = false, length = 45)
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    @Column(name = "description", unique = true, nullable = false, length = 255)
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Column(name = "about", unique = true, nullable = false, length = 1024)
+    public String getAbout() {
+        return about;
+    }
+
+    public void setAbout(String about) {
+        this.about = about;
+    }
+
+    @Column(name = "address", unique = true, nullable = false, length = 255)
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    @Column(name = "phone1", unique = true, nullable = false, length = 16)
+    public String getPhone1() {
+        return phone1;
+    }
+
+    public void setPhone1(String phone1) {
+        this.phone1 = phone1;
+    }
+
+    @Column(name = "phone2", unique = true, nullable = false, length = 16)
+    public String getPhone2() {
+        return phone2;
+    }
+
+    public void setPhone2(String phone2) {
+        this.phone2 = phone2;
+    }
+
+    @Column(name = "fax", unique = true, nullable = false, length = 16)
+    public String getFax() {
+        return fax;
+    }
+
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
+
+    @Column(name = "language_id")
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    public Long getLanguage_id() {
+        return language_id;
+    }
+
+    public void setLanguage_id(Long language_id) {
+        this.language_id = language_id;
+    }
 }
