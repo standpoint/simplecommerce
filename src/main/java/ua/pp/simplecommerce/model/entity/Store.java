@@ -25,34 +25,32 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name = "store")
 public class Store {
 
-    private Long store_id;
+    private Long storeId;
     private String name;
     private String url;
     private String description;
     private String about;
-    private String address;
+    private Address address;
     private String phone1;
     private String phone2;
     private String fax;
-    private Long language_id;
+    private Language languageId;
 
     public Store(){}
 
-    @Id
+    @Id @GeneratedValue
     @Column(name = "store_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    public Long getStore_id() {
-        return store_id;
+    public Long getStoreId() {
+        return storeId;
     }
 
-    public void setStore_id(Long store_id) {
-        this.store_id = store_id;
+    public void setStoreId(Long storeId) {
+        this.storeId = storeId;
     }
 
-    @Column(name = "name", unique = true, nullable = false, length = 45)
+    @Column(unique = true, nullable = false, length = 45)
     public String getName() {
         return name;
     }
@@ -61,7 +59,7 @@ public class Store {
         this.name = name;
     }
 
-    @Column(name = "url", unique = true, nullable = false, length = 45)
+    @Column(unique = true, nullable = false, length = 45)
     public String getUrl() {
         return url;
     }
@@ -70,7 +68,7 @@ public class Store {
         this.url = url;
     }
 
-    @Column(name = "description", unique = true, nullable = false, length = 255)
+    @Column(unique = true, nullable = false, length = 255)
     public String getDescription() {
         return description;
     }
@@ -79,7 +77,7 @@ public class Store {
         this.description = description;
     }
 
-    @Column(name = "about", unique = true, nullable = false, length = 1024)
+    @Column(unique = true, nullable = false, length = 1024)
     public String getAbout() {
         return about;
     }
@@ -88,16 +86,17 @@ public class Store {
         this.about = about;
     }
 
-    @Column(name = "address", unique = true, nullable = false, length = 255)
-    public String getAddress() {
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "address_store_fk", nullable = false)
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
     }
 
-    @Column(name = "phone1", unique = true, nullable = false, length = 16)
+    @Column(unique = true, nullable = false, length = 16)
     public String getPhone1() {
         return phone1;
     }
@@ -106,7 +105,7 @@ public class Store {
         this.phone1 = phone1;
     }
 
-    @Column(name = "phone2", unique = true, nullable = false, length = 16)
+    @Column(unique = true, nullable = false, length = 16)
     public String getPhone2() {
         return phone2;
     }
@@ -115,7 +114,7 @@ public class Store {
         this.phone2 = phone2;
     }
 
-    @Column(name = "fax", unique = true, nullable = false, length = 16)
+    @Column(unique = true, nullable = false, length = 16)
     public String getFax() {
         return fax;
     }
@@ -124,13 +123,13 @@ public class Store {
         this.fax = fax;
     }
 
-    @Column(name = "language_id")
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    public Long getLanguage_id() {
-        return language_id;
+    @JoinColumn(name = "language_store_fk", nullable = false)
+    public Language getLanguageId() {
+        return languageId;
     }
 
-    public void setLanguage_id(Long language_id) {
-        this.language_id = language_id;
+    public void setLanguageId(Language languageId) {
+        this.languageId = languageId;
     }
 }

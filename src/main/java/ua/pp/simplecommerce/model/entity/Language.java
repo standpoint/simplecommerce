@@ -15,6 +15,7 @@
 package ua.pp.simplecommerce.model.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -25,32 +26,30 @@ import java.io.Serializable;
  */
 
 @Entity
-@Table(name = "language")
 public class Language {
 
-    private Long language_id;
+    private Long languageId;
     private String name;
     private String code;
     private String locale;
     private byte[] image;
     private String directory;
     private String filename;
-    private String status;
+    private boolean status;
 
     public Language(){}
 
-    @Id
+    @Id @GeneratedValue
     @Column(name = "language_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
-
-    public Long getLanguage_id() {
-        return language_id;
+    public Long getLanguageId() {
+        return languageId;
     }
 
-    public void setLanguage_id(Long language_id) {
-        this.language_id = language_id;
+    public void setLanguageId(Long languageId) {
+        this.languageId = languageId;
     }
 
+    @Column(nullable = false, length = 20)
     public String getName() {
         return name;
     }
@@ -59,6 +58,7 @@ public class Language {
         this.name = name;
     }
 
+    @Column(nullable = false, length = 3)
     public String getCode() {
         return code;
     }
@@ -67,6 +67,7 @@ public class Language {
         this.code = code;
     }
 
+    @Column(nullable = false, length = 5)
     public String getLocale() {
         return locale;
     }
@@ -83,6 +84,7 @@ public class Language {
         this.image = image;
     }
 
+    @Column(nullable = false, length = 255)
     public String getDirectory() {
         return directory;
     }
@@ -91,6 +93,7 @@ public class Language {
         this.directory = directory;
     }
 
+    @Column(nullable = false, length = 255)
     public String getFilename() {
         return filename;
     }
@@ -99,11 +102,11 @@ public class Language {
         this.filename = filename;
     }
 
-    public String getStatus() {
+    public boolean getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(boolean status) {
         this.status = status;
     }
 }
