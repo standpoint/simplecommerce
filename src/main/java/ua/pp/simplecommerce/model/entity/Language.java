@@ -26,9 +26,7 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "language")
-public class Language implements Serializable {
-
-    private static final long serialVersionUID = 7619931821923119320L;
+public class Language {
 
     private Long language_id;
     private String name;
@@ -39,5 +37,73 @@ public class Language implements Serializable {
     private String filename;
     private String status;
 
+    public Language(){}
 
+    @Id
+    @Column(name = "language_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+
+    public Long getLanguage_id() {
+        return language_id;
+    }
+
+    public void setLanguage_id(Long language_id) {
+        this.language_id = language_id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getLocale() {
+        return locale;
+    }
+
+    public void setLocale(String locale) {
+        this.locale = locale;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    public String getDirectory() {
+        return directory;
+    }
+
+    public void setDirectory(String directory) {
+        this.directory = directory;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

@@ -26,9 +26,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "store")
-public class Store implements Serializable {
-
-    private static final long serialVersionUID = -8864727880624389907L;
+public class Store {
 
     private Long store_id;
     private String name;
