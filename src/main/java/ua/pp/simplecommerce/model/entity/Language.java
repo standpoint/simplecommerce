@@ -31,12 +31,10 @@ public class Language {
     private String name;
     private String code;
     private String locale;
-    private byte[] image;
+    private Image image;
     private String directory;
     private String filename;
     private boolean status;
-
-    public Language(){}
 
     @Id @GeneratedValue
     @Column(name = "language_id")
@@ -75,11 +73,13 @@ public class Language {
         this.locale = locale;
     }
 
-    public byte[] getImage() {
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "language_image_fk", nullable = false)
+    public Image getImage() {
         return image;
     }
 
-    public void setImage(byte[] image) {
+    public void setImage(Image image) {
         this.image = image;
     }
 

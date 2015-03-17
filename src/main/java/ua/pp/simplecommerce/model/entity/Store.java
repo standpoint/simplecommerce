@@ -37,8 +37,6 @@ public class Store {
     private String fax;
     private Language languageId;
 
-    public Store(){}
-
     @Id @GeneratedValue
     @Column(name = "store_id")
     public Long getStoreId() {
