@@ -28,7 +28,7 @@
         </element>
       </element>
       <element id="directory" name="META-INF">
-        <element id="file-copy" path="D:\Dropbox\IntelliJIDEA\ecommerce\target/MANIFEST.MF" />
+        <element id="file-copy" path="D:\MyProjects\simplecommerce\target/MANIFEST.MF" />
       </element>
       <element id="javaee-facet-resources" facet="ecommerce/web/Web" />
     </root>
