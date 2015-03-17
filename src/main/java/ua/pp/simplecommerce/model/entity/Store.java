@@ -18,8 +18,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 /**
- * Describes the entity named 'store'
- * Contains global properties of the store like Name, Email, Description, etc.
+ * Entity 'Store' contains global properties of the store like Name, Email, Description, etc.
  *
  * Created by Vladimir Kamenskiy on 09.02.2015.
  */
@@ -87,7 +86,7 @@ public class Store {
     }
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "address_store_fk", nullable = false)
+    @JoinColumn(name = "store_fk", nullable = false)
     public Address getAddress() {
         return address;
     }

@@ -19,8 +19,7 @@ import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
- * Describes the entity named 'language'
- * Contains attributes of the store language, such as language name, code, locale, path, etc
+ * Entity 'Language' contains attributes of the language, such as language name, code, locale, path, etc
  *
  * Created by Vladimir Kamenskiy on 11.02.2015.
  */

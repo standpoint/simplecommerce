@@ -16,8 +16,11 @@
 package ua.pp.simplecommerce.model.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
+ * Entity 'City' contains names of the cities
+ *
  * Created by Vladimir Kamenskiy on 16.03.2015.
  */
 @Entity
@@ -25,6 +28,7 @@ public class City {
 
     private Long cityId;
     private String city;
+    private List<Address> addresses;
 
     @Id @GeneratedValue
     @Column(name = "city_id")
@@ -43,5 +47,15 @@ public class City {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "city_fk")
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
     }
 }

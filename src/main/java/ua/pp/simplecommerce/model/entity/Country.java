@@ -16,8 +16,11 @@
 package ua.pp.simplecommerce.model.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
+ * Entity 'Country' contains names of the countries
+ *
  * Created by Vladimir Kamenskiy on 16.03.2015.
  */
 @Entity
@@ -25,6 +28,7 @@ public class Country {
 
     private Long countryId;
     private String country;
+    private List<Address> addresses;
 
     @Id @GeneratedValue
     @Column(name = "country_id")
@@ -43,5 +47,15 @@ public class Country {
 
     public void setCountry(String country) {
         this.country = country;
+    }
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "country_fk")
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
     }
 }

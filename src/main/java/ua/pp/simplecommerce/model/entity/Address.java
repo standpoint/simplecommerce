@@ -19,6 +19,9 @@ import javax.persistence.*;
 import java.util.List;
 
 /**
+ * Entity 'Address' contains address info. Foreign keys (country_fk,  city_fk and store_fk) are defined
+ * at the same entities: Country, City, Store
+ *
  * Created by Vladimir Kamenskiy on 16.03.2015.
  */
 @Entity
@@ -26,9 +29,7 @@ public class Address {
 
     private Long addressId;
     private String address;
-    private List<City> cities;
     private int postcode;
-    private List<Country> countries;
 
     @Id
     @Column(name = "address_id")
@@ -49,16 +50,6 @@ public class Address {
         this.address = address;
     }
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "city_address_fk")
-    public List<City> getCities() {
-        return cities;
-    }
-
-    public void setCities(List<City> cities) {
-        this.cities = cities;
-    }
-
     @Column(nullable = false)
     public int getPostcode() {
         return postcode;
@@ -66,15 +57,5 @@ public class Address {
 
     public void setPostcode(int postcode) {
         this.postcode = postcode;
-    }
-
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "country_address_fk")
-    public List<Country> getCountries() {
-        return countries;
-    }
-
-    public void setCountries(List<Country> countries) {
-        this.countries = countries;
     }
 }
