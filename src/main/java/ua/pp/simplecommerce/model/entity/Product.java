@@ -144,14 +144,3 @@ public class Product {
     }
 }
 
-/**
- * Status of the products presence at the store warehouse
- *
- * Created by Vladimir Kamenskiy on 18.03.2015.
- */
-enum StockStatus {
-    IN_STOCK,
-    OUT_OF_STOCK,
-    EXPECTED,
-    LIMITED_STOCK
-}
