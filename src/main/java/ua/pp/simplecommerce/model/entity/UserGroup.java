@@ -16,7 +16,6 @@
 package ua.pp.simplecommerce.model.entity;
 
 import javax.persistence.*;
-import java.util.List;
 
 /**
  * Entity ''UserGroup' has info about users' groups, such as group name and permission
@@ -31,6 +30,25 @@ public class UserGroup {
     private Long groupId;
     private String name;
     private Role role;
+
+    /**
+     * For JPA uses only
+     */
+    public UserGroup() {
+    }
+
+    /**
+     * Creates the UserGroup instance with required fields
+     *
+     * @param groupId   unique id-number of the UserGroup
+     * @param name      name of the UserGroup
+     * @param role      the UserGroup role for access, such as Administrator, Demo, Employee, Employer
+     */
+    public UserGroup(Long groupId, String name, Role role) {
+        this.groupId = groupId;
+        this.name = name;
+        this.role = role;
+    }
 
     @Id @GeneratedValue
     @Column(name = "group_id")

@@ -38,6 +38,38 @@ public class User {
     private boolean isActive;
     private Calendar dateAdded;
 
+    /**
+     * For JPA uses only
+     */
+    public User() {
+    }
+
+    /**
+     * Creates the User instance with required fields
+     *
+     * @param userId        unique id-number of the User
+     * @param userGroups    User Group
+     * @param username      nic-name of the User
+     * @param password      user' password
+     * @param firstName     user' first name
+     * @param lastName      user' surname
+     * @param email         user' email address
+     * @param isActive      the status of the User. Must be active(true) or inactive(false)
+     * @param dateAdded     date and time of adding the User in the database
+     */
+    public User(Long userId, List<UserGroup> userGroups, String username, String password, String firstName,
+                String lastName, String email, boolean isActive, Calendar dateAdded) {
+        this.userId = userId;
+        this.userGroups = userGroups;
+        this.username = username;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.isActive = isActive;
+        this.dateAdded = dateAdded;
+    }
+
     @Id @GeneratedValue
     @Column(name = "user_id")
     public Long getUserId() {

@@ -37,6 +37,40 @@ public class Store {
     private String fax;
     private Language languageId;
 
+    /**
+     * For JPA uses only
+     */
+    public Store() {
+    }
+
+    /**
+     * Creates the Store instance with required fields
+     *
+     * @param storeId       unique id-number of the Store
+     * @param name          name of the Store
+     * @param url           url-link to the Store in the network
+     * @param description   short description (means a definition) of the Store (up to 255 characters)
+     * @param about         comprehensive description of the Store (up to 2000 characters)
+     * @param address       complete address of the Store
+     * @param phone1        the first phone number of the Store
+     * @param phone2        the second phone number of the Store
+     * @param fax           fax number of the Store
+     * @param languageId    id-number of the Store language
+     */
+    public Store(Long storeId, String name, String url, String description, String about, Address address,
+                 String phone1, String phone2, String fax, Language languageId) {
+        this.storeId = storeId;
+        this.name = name;
+        this.url = url;
+        this.description = description;
+        this.about = about;
+        this.address = address;
+        this.phone1 = phone1;
+        this.phone2 = phone2;
+        this.fax = fax;
+        this.languageId = languageId;
+    }
+
     @Id @GeneratedValue
     @Column(name = "store_id")
     public Long getStoreId() {
@@ -74,7 +108,7 @@ public class Store {
         this.description = description;
     }
 
-    @Column(unique = true, nullable = false, length = 1024)
+    @Column(unique = true, nullable = false, length = 2000)
     public String getAbout() {
         return about;
     }
