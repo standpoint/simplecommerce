@@ -15,8 +15,48 @@
 
 package ua.pp.simplecommerce.model.entity;
 
+import javax.persistence.*;
+import java.util.List;
+
 /**
+ * Entity ''UserGroup' has info about users' groups, such as group name and permission
+ *
  * Created by Vladimir Kamenskiy on 20.03.2015.
  */
+
+@Entity
+@Table(name = "user_group")
 public class UserGroup {
+
+    private Long groupId;
+    private String name;
+    private Role role;
+
+    @Id @GeneratedValue
+    @Column(name = "group_id")
+    public Long getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
+    }
+
+    @Column(nullable = false, unique = true, length = 45)
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Enumerated(value = EnumType.STRING)
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
 }
