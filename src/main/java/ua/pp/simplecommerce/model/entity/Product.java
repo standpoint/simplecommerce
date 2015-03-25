@@ -51,7 +51,7 @@ public class Product {
     }
 
     @ManyToMany(mappedBy = "products")
-    @Column(nullable = false)
+    @JoinColumn(name = "product_category_fk", nullable = false)
     public List<Category> getCategories() {
         return categories;
     }

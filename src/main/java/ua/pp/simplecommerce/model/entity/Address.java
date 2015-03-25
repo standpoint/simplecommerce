@@ -16,6 +16,7 @@
 package ua.pp.simplecommerce.model.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -31,7 +32,8 @@ public class Address {
     private String address;
     private int postcode;
 
-    @Id
+    @Id @GeneratedValue
+    @NotNull
     @Column(name = "address_id")
     public Long getAddressId() {
         return addressId;

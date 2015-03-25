@@ -142,7 +142,7 @@ public class Customer {
     }
 
     @OneToMany
-    @Column(name = "customer_transaction_fk")
+    @JoinColumn(name = "customer_transaction_fk")
     public List<CustomerTransaction> getCustomerTransactions() {
         return customerTransactions;
     }
