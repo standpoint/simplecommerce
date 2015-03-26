@@ -25,7 +25,7 @@ import java.math.BigDecimal;
  */
 
 @Entity
-@Table(name = "order_line")
+@Table(name = "ORDER_LINE")
 public class OrderLine {
 
     private Long orderLineId;
@@ -44,7 +44,7 @@ public class OrderLine {
     }
 
     @Id @GeneratedValue
-    @Column(name = "order_line_id", nullable = false)
+    @Column(name = "ORDER_LINE_ID", nullable = false)
     public Long getOrderLineId() {
         return orderLineId;
     }
@@ -54,7 +54,7 @@ public class OrderLine {
     }
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "order_line_product_fk", nullable = false)
+    @JoinColumn(name = "ORDER_LINE_PRODUCT_FK", nullable = false)
     public Product getProduct() {
         return product;
     }

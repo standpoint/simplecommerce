@@ -25,7 +25,7 @@ import java.util.Calendar;
  */
 
 @Entity
-@Table(name = "order_history")
+@Table(name = "ORDER_HISTORY")
 public class OrderHistory {
 
     private Long orderHistoryId;
@@ -42,7 +42,7 @@ public class OrderHistory {
     }
 
     @Id @GeneratedValue
-    @Column(name = "order_history_id")
+    @Column(name = "ORDER_HISTORY_ID")
     public Long getOrderHistoryId() {
         return orderHistoryId;
     }
@@ -60,7 +60,7 @@ public class OrderHistory {
         this.content = content;
     }
 
-    @Column(name = "date_added", nullable = false)
+    @Column(name = "DATE_ADDED", nullable = false)
     @Temporal(value = TemporalType.TIMESTAMP)
     public Calendar getDataAdded() {
         return dataAdded;

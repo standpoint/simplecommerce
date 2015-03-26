@@ -24,7 +24,7 @@ import javax.persistence.*;
  */
 
 @Entity
-@Table(name = "user_group")
+@Table(name = "USER_GROUP")
 public class UserGroup {
 
     private Long groupId;
@@ -51,7 +51,7 @@ public class UserGroup {
     }
 
     @Id @GeneratedValue
-    @Column(name = "group_id")
+    @Column(name = "GROUP_ID")
     public Long getGroupId() {
         return groupId;
     }

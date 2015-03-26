@@ -14,7 +14,6 @@
  */
 package ua.pp.simplecommerce.model.entity;
 
-import java.io.Serializable;
 import javax.persistence.*;
 
 /**
@@ -72,7 +71,7 @@ public class Store {
     }
 
     @Id @GeneratedValue
-    @Column(name = "store_id")
+    @Column(name = "STORE_ID")
     public Long getStoreId() {
         return storeId;
     }
@@ -81,7 +80,7 @@ public class Store {
         this.storeId = storeId;
     }
 
-    @Column(unique = true, nullable = false, length = 45)
+    @Column(nullable = false, length = 45)
     public String getName() {
         return name;
     }
@@ -90,7 +89,7 @@ public class Store {
         this.name = name;
     }
 
-    @Column(unique = true, nullable = false, length = 45)
+    @Column(nullable = false, length = 45)
     public String getUrl() {
         return url;
     }
@@ -99,7 +98,7 @@ public class Store {
         this.url = url;
     }
 
-    @Column(unique = true, nullable = false, length = 255)
+    @Column(nullable = false, length = 255)
     public String getDescription() {
         return description;
     }
@@ -108,7 +107,7 @@ public class Store {
         this.description = description;
     }
 
-    @Column(unique = true, nullable = false, length = 2000)
+    @Column(nullable = false, length = 2000)
     public String getAbout() {
         return about;
     }
@@ -118,7 +117,7 @@ public class Store {
     }
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "store_fk", nullable = false)
+    @JoinColumn(name = "STORE_FK", nullable = false)
     public Address getAddress() {
         return address;
     }
@@ -127,7 +126,7 @@ public class Store {
         this.address = address;
     }
 
-    @Column(unique = true, nullable = false, length = 16)
+    @Column(nullable = false, length = 16)
     public String getPhone1() {
         return phone1;
     }
@@ -136,7 +135,7 @@ public class Store {
         this.phone1 = phone1;
     }
 
-    @Column(unique = true, nullable = false, length = 16)
+    @Column(nullable = false, length = 16)
     public String getPhone2() {
         return phone2;
     }
@@ -145,7 +144,7 @@ public class Store {
         this.phone2 = phone2;
     }
 
-    @Column(unique = true, nullable = false, length = 16)
+    @Column(nullable = false, length = 16)
     public String getFax() {
         return fax;
     }
@@ -155,7 +154,7 @@ public class Store {
     }
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "language_store_fk", nullable = false)
+    @JoinColumn(name = "LANGUAGE_STORE_FK", nullable = false)
     public Language getLanguageId() {
         return languageId;
     }

@@ -31,7 +31,7 @@ public class City {
     private List<Address> addresses;
 
     @Id @GeneratedValue
-    @Column(name = "city_id")
+    @Column(name = "CITY_ID")
     public Long getCityId() {
         return cityId;
     }
@@ -50,7 +50,7 @@ public class City {
     }
 
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "city_fk")
+    @JoinColumn(name = "CITY_FK")
     public List<Address> getAddresses() {
         return addresses;
     }

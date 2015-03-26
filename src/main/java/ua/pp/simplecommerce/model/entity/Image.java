@@ -30,7 +30,7 @@ public class Image {
     private byte[] content;
 
     @Id @GeneratedValue
-    @Column(name = "image_id")
+    @Column(name = "IMAGE_ID")
     public Long getImageId() {
         return imageId;
     }

@@ -26,6 +26,7 @@ import java.util.List;
  */
 
 @Entity
+@Table(name = "ORDERS")
 public class Order {
 
     private Long orderId;
@@ -58,7 +59,7 @@ public class Order {
     }
 
     @Id @GeneratedValue
-    @Column(name = "order_id")
+    @Column(name = "ORDER_ID")
     public Long getOrderId() {
         return orderId;
     }
@@ -68,7 +69,7 @@ public class Order {
     }
 
     @OneToMany
-    @JoinColumn(name = "order_lines_fk", nullable = false)
+    @JoinColumn(name = "ORDER_LINES_FK", nullable = false)
     public List<OrderLine> getOrderLines() {
         return orderLines;
     }
@@ -77,7 +78,7 @@ public class Order {
         this.orderLines = orderLines;
     }
 
-    @Column(name = "invoice_number", nullable = false)
+    @Column(name = "INVOICE_NUMBER", nullable = false)
     public String getInvoiceNumber() {
         return invoiceNumber;
     }
@@ -87,7 +88,7 @@ public class Order {
     }
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_bill_to_address_fk", nullable = false)
+    @JoinColumn(name = "ORDER_BILL_TO_ADDRESS_FK", nullable = false)
     public Address getBillTo() {
         return billTo;
     }
@@ -97,7 +98,7 @@ public class Order {
     }
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_ship_to_address_fk", nullable = false)
+    @JoinColumn(name = "ORDER_SHIP_TO_ADDRESS_FK", nullable = false)
     public Address getShipTo() {
         return shipTo;
     }
@@ -107,6 +108,7 @@ public class Order {
     }
 
     @Enumerated(value = EnumType.STRING)
+    @Column(name = "SHIPPING_METHOD")
     public ShippingMethod getShippingMethod() {
         return shippingMethod;
     }
@@ -134,6 +136,7 @@ public class Order {
     }
 
     @Enumerated(value = EnumType.STRING)
+    @Column(name = "ORDER_STATUS")
     public OrderStatus getOrderStatus() {
         return orderStatus;
     }
@@ -143,7 +146,7 @@ public class Order {
     }
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "order_history_fk", nullable = false)
+    @JoinColumn(name = "ORDER_HISTORY_FK", nullable = false)
     public List<OrderHistory> getOrderHistoryList() {
         return orderHistoryList;
     }

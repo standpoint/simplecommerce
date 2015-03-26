@@ -31,7 +31,7 @@ public class Manufacturer {
     private Image imageId;
 
     @Id @GeneratedValue
-    @Column(name = "manufacturer_id")
+    @Column(name = "MANUFACTURER_ID")
     public Long getManufacturerId() {
         return manufacturerId;
     }
@@ -50,7 +50,7 @@ public class Manufacturer {
     }
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "manufacturer_image_fk")
+    @JoinColumn(name = "MANUFACTURER_IMAGE_FK")
     public Image getImageId() {
         return imageId;
     }

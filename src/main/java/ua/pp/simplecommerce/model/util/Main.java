@@ -15,13 +15,18 @@
 
 package ua.pp.simplecommerce.model.util;
 
+import com.mysql.jdbc.JDBC4DatabaseMetaData;
+
 import javax.persistence.Persistence;
+import java.sql.JDBCType;
+import java.util.*;
 
 /**
  * Created by Vladimir Kamenskiy on 25.03.2015.
  */
 public class Main {
     public static void main(String[] args) {
+
         Persistence.generateSchema("ecommercePU", null);
     }
 }

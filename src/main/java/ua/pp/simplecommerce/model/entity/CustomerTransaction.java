@@ -27,7 +27,7 @@ import java.util.Calendar;
  */
 
 @Entity
-@Table(name = "customer_transaction")
+@Table(name = "CUSTOMER_TRANSACTION")
 public class CustomerTransaction {
 
     private Long customerTransactionId;
@@ -49,7 +49,7 @@ public class CustomerTransaction {
     }
 
     @Id @GeneratedValue
-    @Column(name = "customer_transaction_id")
+    @Column(name = "CUSTOMER_TRANSACTION_ID")
     public Long getCustomerTransactionId() {
         return customerTransactionId;
     }
@@ -59,7 +59,7 @@ public class CustomerTransaction {
     }
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customer_transaction_order_fk", nullable = false)
+    @JoinColumn(name = "CUSTOMER_TRANSACTION_ORDER_FK", nullable = false)
     public Order getOrder() {
         return order;
     }
@@ -86,7 +86,7 @@ public class CustomerTransaction {
         this.amount = amount;
     }
 
-    @Column(name = "date_added")
+    @Column(name = "DATE_ADDED")
     @Temporal(value = TemporalType.TIMESTAMP)
     public Calendar getDateAdded() {
         return dateAdded;

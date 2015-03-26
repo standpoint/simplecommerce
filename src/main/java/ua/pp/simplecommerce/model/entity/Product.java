@@ -41,7 +41,7 @@ public class Product {
     private List<Image> images;
 
     @Id @GeneratedValue
-    @Column(name = "product_id")
+    @Column(name = "PRODUCT_ID")
     public Long getProductId() {
         return productId;
     }
@@ -51,7 +51,6 @@ public class Product {
     }
 
     @ManyToMany(mappedBy = "products")
-    @JoinColumn(name = "product_category_fk", nullable = false)
     public List<Category> getCategories() {
         return categories;
     }
@@ -105,6 +104,7 @@ public class Product {
     }
 
     @Enumerated(value = EnumType.STRING)
+    @Column(name = "STOCK_STATUS")
     public StockStatus getStockStatus() {
         return stockStatus;
     }
@@ -114,7 +114,7 @@ public class Product {
     }
 
     @OneToOne(optional = false)
-    @JoinColumn(name = "product_manufacturer_fk")
+    @JoinColumn(name = "PRODUCT_MANUFACTURER_FK")
     public Manufacturer getManufacturerId() {
         return manufacturerId;
     }
@@ -124,7 +124,7 @@ public class Product {
     }
 
     @OneToOne(optional = false)
-    @JoinColumn(name = "product_language_fk", nullable = false)
+    @JoinColumn(name = "PRODUCT_LANGUAGE_FK", nullable = false)
     public Language getLanguageId() {
         return languageId;
     }
@@ -133,8 +133,8 @@ public class Product {
         this.languageId = languageId;
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_image_fk")
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PRODUCT_IMAGE_FK")
     public List<Image> getImages() {
         return images;
     }

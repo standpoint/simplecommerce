@@ -60,7 +60,7 @@ public class Customer {
     }
 
     @Id @GeneratedValue
-    @Column(name = "customer_id", nullable = false)
+    @Column(name = "CUSTOMER_ID", nullable = false)
     public Long getCustomerId() {
         return customerId;
     }
@@ -87,7 +87,7 @@ public class Customer {
         this.password = password;
     }
 
-    @Column(name = "first_name", nullable = false)
+    @Column(name = "FIRST_NAME", nullable = false)
     public String getFirstName() {
         return firstName;
     }
@@ -96,7 +96,7 @@ public class Customer {
         this.firstName = firstName;
     }
 
-    @Column(name = "second_name", nullable = false)
+    @Column(name = "SECOND_NAME", nullable = false)
     public String getSecondName() {
         return secondName;
     }
@@ -132,7 +132,7 @@ public class Customer {
     }
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "customer_address_fk", nullable = false)
+    @JoinColumn(name = "CUSTOMER_ADDRESS_FK", nullable = false)
     public Address getAddress() {
         return address;
     }
@@ -142,7 +142,7 @@ public class Customer {
     }
 
     @OneToMany
-    @JoinColumn(name = "customer_transaction_fk")
+    @JoinColumn(name = "CUSTOMER_TRANSACTION_FK")
     public List<CustomerTransaction> getCustomerTransactions() {
         return customerTransactions;
     }
@@ -151,7 +151,7 @@ public class Customer {
         this.customerTransactions = customerTransactions;
     }
 
-    @Column(name = "date_added", nullable = false)
+    @Column(name = "DATE_ADDED", nullable = false)
     @Temporal(value = TemporalType.TIMESTAMP)
     public Calendar getDateAdded() {
         return dateAdded;

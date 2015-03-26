@@ -16,7 +16,6 @@ package ua.pp.simplecommerce.model.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 
 /**
  * Entity 'Language' contains attributes of the language, such as language name, code, locale, path, etc
@@ -37,7 +36,7 @@ public class Language {
     private boolean status;
 
     @Id @GeneratedValue
-    @Column(name = "language_id")
+    @Column(name = "LANGUAGE_ID")
     public Long getLanguageId() {
         return languageId;
     }
@@ -74,7 +73,7 @@ public class Language {
     }
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "language_image_fk", nullable = false)
+    @JoinColumn(name = "LANGUAGE_IMAGE_FK", nullable = false)
     public Image getImage() {
         return image;
     }

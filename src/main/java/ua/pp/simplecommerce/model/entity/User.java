@@ -71,7 +71,7 @@ public class User {
     }
 
     @Id @GeneratedValue
-    @Column(name = "user_id")
+    @Column(name = "USER_ID")
     public Long getUserId() {
         return userId;
     }
@@ -81,7 +81,7 @@ public class User {
     }
 
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_group_fk", nullable = false)
+    @JoinColumn(name = "USER_GROUP_FK", nullable = false)
     public List<UserGroup> getUserGroups() {
         return userGroups;
     }
@@ -141,7 +141,7 @@ public class User {
         this.isActive = isActive;
     }
 
-    @Column(name = "date_added")
+    @Column(name = "DATE_ADDED")
     @Temporal(TemporalType.TIMESTAMP)
     public Calendar getDateAdded() {
         return dateAdded;

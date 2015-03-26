@@ -31,7 +31,7 @@ public class Country {
     private List<Address> addresses;
 
     @Id @GeneratedValue
-    @Column(name = "country_id")
+    @Column(name = "COUNTRY_ID")
     public Long getCountryId() {
         return countryId;
     }
@@ -50,7 +50,7 @@ public class Country {
     }
 
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "country_fk")
+    @JoinColumn(name = "COUNTRY_FK")
     public List<Address> getAddresses() {
         return addresses;
     }

@@ -35,7 +35,7 @@ public class Category {
     private List<Product> products;
 
     @Id @GeneratedValue
-    @Column(name = "category_id")
+    @Column(name = "CATEGORY_ID")
     public Long getCategoryId() {
         return categoryId;
     }
@@ -63,7 +63,7 @@ public class Category {
     }
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "category_language_fk", nullable = false)
+    @JoinColumn(name = "CATEGORY_LANGUAGE_FK", nullable = false)
     public Language getLanguageId() {
         return languageId;
     }
@@ -73,7 +73,7 @@ public class Category {
     }
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "category_image_fk")
+    @JoinColumn(name = "CATEGORY_IMAGE_FK")
     public Image getImageId() {
         return imageId;
     }
@@ -83,9 +83,9 @@ public class Category {
     }
 
     @ManyToMany
-    @JoinTable(name = "jnd_product_category",
-            joinColumns = @JoinColumn(name = "category_fk"),
-            inverseJoinColumns = @JoinColumn(name = "product_fk"))
+    @JoinTable(name = "JND_PRODUCT_CATEGORY",
+            joinColumns = @JoinColumn(name = "CATEGORY_FK"),
+            inverseJoinColumns = @JoinColumn(name = "PRODUCT_FK"))
     public List<Product> getProducts() {
         return products;
     }
