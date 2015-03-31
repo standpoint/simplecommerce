@@ -16,7 +16,7 @@
 package ua.pp.simplecommerce.model.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 
 /**
  * Entity 'Address' contains address info. Foreign keys (country_fk,  city_fk and store_fk) are defined
@@ -29,7 +29,7 @@ public class Address {
 
     private Long addressId;
     private String address;
-    private int postcode;
+    private String postcode;
 
     @Id @GeneratedValue
     @Column(name = "ADDRESS_ID")
@@ -41,6 +41,7 @@ public class Address {
         this.addressId = addressId;
     }
 
+    @NotNull
     @Column(nullable = false, length = 255)
     public String getAddress() {
         return address;
@@ -50,12 +51,13 @@ public class Address {
         this.address = address;
     }
 
+    @NotNull @Pattern(regexp = "[\\d]{5}")
     @Column(nullable = false)
-    public int getPostcode() {
+    public String getPostcode() {
         return postcode;
     }
 
-    public void setPostcode(int postcode) {
+    public void setPostcode(String postcode) {
         this.postcode = postcode;
     }
 }

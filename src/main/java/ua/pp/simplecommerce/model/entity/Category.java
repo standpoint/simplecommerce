@@ -16,6 +16,7 @@
 package ua.pp.simplecommerce.model.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.List;
 
 /**
@@ -44,6 +45,7 @@ public class Category {
         this.categoryId = categoryId;
     }
 
+    @NotNull
     @Column(nullable = false)
     public String getName() {
         return name;
@@ -53,6 +55,7 @@ public class Category {
         this.name = name;
     }
 
+    @NotNull @Size(max = 2000)
     @Column(nullable = false, length = 2000)
     public String getDescription() {
         return description;
@@ -62,6 +65,7 @@ public class Category {
         this.description = description;
     }
 
+    @NotNull
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "CATEGORY_LANGUAGE_FK", nullable = false)
     public Language getLanguageId() {
