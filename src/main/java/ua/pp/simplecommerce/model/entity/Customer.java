@@ -16,6 +16,7 @@
 package ua.pp.simplecommerce.model.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.Calendar;
 import java.util.List;
 
@@ -60,7 +61,7 @@ public class Customer {
     }
 
     @Id @GeneratedValue
-    @Column(name = "CUSTOMER_ID", nullable = false)
+    @Column(name = "CUSTOMER_ID")
     public Long getCustomerId() {
         return customerId;
     }
@@ -69,6 +70,7 @@ public class Customer {
         this.customerId = customerId;
     }
 
+    @NotNull @Size(max = 45)
     @Column(unique = true, nullable = false, length = 45)
     public String getName() {
         return name;
@@ -78,6 +80,7 @@ public class Customer {
         this.name = name;
     }
 
+    @NotNull
     @Column(nullable = false)
     public String getPassword() {
         return password;
@@ -87,6 +90,7 @@ public class Customer {
         this.password = password;
     }
 
+    @NotNull
     @Column(name = "FIRST_NAME", nullable = false)
     public String getFirstName() {
         return firstName;
@@ -96,6 +100,7 @@ public class Customer {
         this.firstName = firstName;
     }
 
+    @NotNull
     @Column(name = "SECOND_NAME", nullable = false)
     public String getSecondName() {
         return secondName;
@@ -105,6 +110,7 @@ public class Customer {
         this.secondName = secondName;
     }
 
+    @NotNull
     @Column(nullable = false)
     public String getEmail() {
         return email;
@@ -114,6 +120,7 @@ public class Customer {
         this.email = email;
     }
 
+    @NotNull @Pattern(regexp = "\\+[\\d]{12}")
     @Column(nullable = false)
     public String getPhone() {
         return phone;
@@ -132,7 +139,7 @@ public class Customer {
     }
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CUSTOMER_ADDRESS_FK", nullable = false)
+    @JoinColumn(name = "CUSTOMER_ADDRESS_FK")
     public Address getAddress() {
         return address;
     }
@@ -151,6 +158,7 @@ public class Customer {
         this.customerTransactions = customerTransactions;
     }
 
+    @Past
     @Column(name = "DATE_ADDED", nullable = false)
     @Temporal(value = TemporalType.TIMESTAMP)
     public Calendar getDateAdded() {

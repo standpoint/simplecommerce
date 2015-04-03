@@ -16,6 +16,7 @@
 package ua.pp.simplecommerce.model.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.util.Calendar;
 
@@ -59,7 +60,7 @@ public class CustomerTransaction {
     }
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CUSTOMER_TRANSACTION_ORDER_FK", nullable = false)
+    @JoinColumn(name = "CUSTOMER_TRANSACTION_ORDER_FK")
     public Order getOrder() {
         return order;
     }
@@ -68,6 +69,7 @@ public class CustomerTransaction {
         this.order = order;
     }
 
+    @NotNull @Size(max = 2000)
     @Column(nullable = false, length = 2000)
     public String getSummary() {
         return summary;
@@ -77,6 +79,8 @@ public class CustomerTransaction {
         this.summary = summary;
     }
 
+    @NotNull
+    @Digits(integer = 12 ,fraction = 2) @DecimalMin(value = "0.00")
     @Column(nullable = false, scale = 2)
     public BigDecimal getAmount() {
         return amount;
@@ -86,6 +90,7 @@ public class CustomerTransaction {
         this.amount = amount;
     }
 
+    @Past
     @Column(name = "DATE_ADDED")
     @Temporal(value = TemporalType.TIMESTAMP)
     public Calendar getDateAdded() {

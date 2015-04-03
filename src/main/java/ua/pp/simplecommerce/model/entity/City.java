@@ -16,6 +16,7 @@
 package ua.pp.simplecommerce.model.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.List;
 
 /**
@@ -40,6 +41,7 @@ public class City {
         this.cityId = cityId;
     }
 
+    @NotNull @Size(max = 45)
     @Column(nullable = false, length = 45)
     public String getCity() {
         return city;

@@ -16,6 +16,7 @@
 package ua.pp.simplecommerce.model.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -69,7 +70,7 @@ public class Order {
     }
 
     @OneToMany
-    @JoinColumn(name = "ORDER_LINES_FK", nullable = false)
+    @JoinColumn(name = "ORDER_LINES_FK")
     public List<OrderLine> getOrderLines() {
         return orderLines;
     }
@@ -78,7 +79,8 @@ public class Order {
         this.orderLines = orderLines;
     }
 
-    @Column(name = "INVOICE_NUMBER", nullable = false)
+    @NotNull @Size(max = 20)
+    @Column(name = "INVOICE_NUMBER", nullable = false, length = 20)
     public String getInvoiceNumber() {
         return invoiceNumber;
     }
@@ -117,6 +119,7 @@ public class Order {
         this.shippingMethod = shippingMethod;
     }
 
+    @Size(max = 2000)
     @Column(length = 2000)
     public String getComment() {
         return comment;
@@ -126,6 +129,8 @@ public class Order {
         this.comment = comment;
     }
 
+    @NotNull
+    @DecimalMin(value = "0.00") @Digits(integer = 12, fraction = 2)
     @Column(scale = 2, nullable = false)
     public BigDecimal getAmount() {
         return amount;

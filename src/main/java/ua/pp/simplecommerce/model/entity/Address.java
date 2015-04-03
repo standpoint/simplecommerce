@@ -41,8 +41,8 @@ public class Address {
         this.addressId = addressId;
     }
 
-    @NotNull
-    @Column(nullable = false, length = 255)
+    @NotNull @Size(max = 255)
+    @Column(nullable = false)
     public String getAddress() {
         return address;
     }

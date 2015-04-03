@@ -16,6 +16,7 @@
 package ua.pp.simplecommerce.model.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.List;
 
 /**
@@ -40,6 +41,7 @@ public class Country {
         this.countryId = countryId;
     }
 
+    @NotNull @Size(max = 45)
     @Column(nullable = false, length = 45)
     public String getCountry() {
         return country;

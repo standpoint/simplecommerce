@@ -16,6 +16,7 @@
 package ua.pp.simplecommerce.model.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 /**
  * Entity ''UserGroup' has info about users' groups, such as group name and permission
@@ -60,6 +61,7 @@ public class UserGroup {
         this.groupId = groupId;
     }
 
+    @NotNull @Size(max = 45)
     @Column(nullable = false, unique = true, length = 45)
     public String getName() {
         return name;

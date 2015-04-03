@@ -15,6 +15,7 @@
 package ua.pp.simplecommerce.model.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 /**
  * Entity 'Store' contains global properties of the store like Name, Email, Description, etc.
@@ -80,6 +81,7 @@ public class Store {
         this.storeId = storeId;
     }
 
+    @NotNull @Size(max = 45)
     @Column(nullable = false, length = 45)
     public String getName() {
         return name;
@@ -89,6 +91,7 @@ public class Store {
         this.name = name;
     }
 
+    @NotNull @Size(max = 45)
     @Column(nullable = false, length = 45)
     public String getUrl() {
         return url;
@@ -98,7 +101,8 @@ public class Store {
         this.url = url;
     }
 
-    @Column(nullable = false, length = 255)
+    @NotNull @Size(max = 255)
+    @Column(nullable = false)
     public String getDescription() {
         return description;
     }
@@ -107,6 +111,7 @@ public class Store {
         this.description = description;
     }
 
+    @NotNull @Size(max = 2000)
     @Column(nullable = false, length = 2000)
     public String getAbout() {
         return about;
@@ -117,7 +122,7 @@ public class Store {
     }
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "STORE_FK", nullable = false)
+    @JoinColumn(name = "STORE_FK")
     public Address getAddress() {
         return address;
     }
@@ -126,6 +131,7 @@ public class Store {
         this.address = address;
     }
 
+    @NotNull @Size(max = 16)
     @Column(nullable = false, length = 16)
     public String getPhone1() {
         return phone1;
@@ -135,6 +141,7 @@ public class Store {
         this.phone1 = phone1;
     }
 
+    @NotNull @Size(max = 16)
     @Column(nullable = false, length = 16)
     public String getPhone2() {
         return phone2;
@@ -144,6 +151,7 @@ public class Store {
         this.phone2 = phone2;
     }
 
+    @NotNull @Size(max = 16)
     @Column(nullable = false, length = 16)
     public String getFax() {
         return fax;
@@ -154,7 +162,7 @@ public class Store {
     }
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "LANGUAGE_STORE_FK", nullable = false)
+    @JoinColumn(name = "LANGUAGE_STORE_FK")
     public Language getLanguageId() {
         return languageId;
     }

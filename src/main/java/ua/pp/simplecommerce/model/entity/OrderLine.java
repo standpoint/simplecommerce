@@ -16,6 +16,7 @@
 package ua.pp.simplecommerce.model.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 
 /**
@@ -54,7 +55,7 @@ public class OrderLine {
     }
 
     @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "ORDER_LINE_PRODUCT_FK", nullable = false)
+    @JoinColumn(name = "ORDER_LINE_PRODUCT_FK")
     public Product getProduct() {
         return product;
     }
@@ -63,6 +64,7 @@ public class OrderLine {
         this.product = product;
     }
 
+    @NotNull @Min(value = 0)
     @Column(nullable = false)
     public int getQuantity() {
         return quantity;
@@ -72,6 +74,8 @@ public class OrderLine {
         this.quantity = quantity;
     }
 
+    @NotNull
+    @DecimalMin(value = "0.00") @Digits(integer = 12, fraction = 2)
     @Column(scale = 2, nullable = false)
     public BigDecimal getAmount() {
         return amount;

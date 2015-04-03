@@ -16,6 +16,7 @@
 package ua.pp.simplecommerce.model.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 /**
  * Entity 'Manufacturer' has info about vendors of the products
@@ -40,6 +41,7 @@ public class Manufacturer {
         this.manufacturerId = manufacturerId;
     }
 
+    @NotNull @Size(max = 255)
     @Column(nullable = false)
     public String getName() {
         return name;

@@ -16,6 +16,7 @@
 package ua.pp.simplecommerce.model.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.util.Calendar;
 
 /**
@@ -51,6 +52,7 @@ public class OrderHistory {
         this.orderHistoryId = orderHistoryId;
     }
 
+    @Size(max = 2000)
     @Column(length = 2000)
     public String getContent() {
         return content;
@@ -60,6 +62,7 @@ public class OrderHistory {
         this.content = content;
     }
 
+    @Past
     @Column(name = "DATE_ADDED", nullable = false)
     @Temporal(value = TemporalType.TIMESTAMP)
     public Calendar getDataAdded() {

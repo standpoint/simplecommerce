@@ -16,6 +16,7 @@
 package ua.pp.simplecommerce.model.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -59,6 +60,7 @@ public class Product {
         this.categories = categories;
     }
 
+    @NotNull @Size(max = 255)
     @Column(nullable = false)
     public String getName() {
         return name;
@@ -68,6 +70,7 @@ public class Product {
         this.name = name;
     }
 
+    @NotNull @Size(max = 255)
     @Column(nullable = false)
     public String getPartnumber() {
         return partnumber;
@@ -77,7 +80,8 @@ public class Product {
         this.partnumber = partnumber;
     }
 
-    @Column(nullable = false)
+    @NotNull @Size(max = 2000)
+    @Column(nullable = false, length = 2000)
     public String getDescription() {
         return description;
     }
@@ -86,6 +90,7 @@ public class Product {
         this.description = description;
     }
 
+    @Min(0)
     public int getQuantity() {
         return quantity;
     }
@@ -94,6 +99,8 @@ public class Product {
         this.quantity = quantity;
     }
 
+    @NotNull
+    @DecimalMin(value = "0.00") @Digits(integer = 12, fraction = 2)
     @Column(nullable = false, scale = 2)
     public BigDecimal getPrice() {
         return price;
@@ -124,7 +131,7 @@ public class Product {
     }
 
     @OneToOne(optional = false)
-    @JoinColumn(name = "PRODUCT_LANGUAGE_FK", nullable = false)
+    @JoinColumn(name = "PRODUCT_LANGUAGE_FK")
     public Language getLanguageId() {
         return languageId;
     }

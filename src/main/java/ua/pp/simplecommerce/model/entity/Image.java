@@ -16,6 +16,7 @@
 package ua.pp.simplecommerce.model.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 /**
  * Entity 'Image' contains the pictures which are used in the store.
@@ -39,6 +40,7 @@ public class Image {
         this.imageId = imageId;
     }
 
+    @NotNull
     @Lob @Basic(fetch = FetchType.LAZY)
     @Column(columnDefinition="BLOB NOT NULL")
     public byte[] getContent() {

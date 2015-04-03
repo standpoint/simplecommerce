@@ -45,7 +45,7 @@ public class Category {
         this.categoryId = categoryId;
     }
 
-    @NotNull
+    @NotNull @Size(max = 255)
     @Column(nullable = false)
     public String getName() {
         return name;
@@ -65,9 +65,8 @@ public class Category {
         this.description = description;
     }
 
-    @NotNull
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "CATEGORY_LANGUAGE_FK", nullable = false)
+    @JoinColumn(name = "CATEGORY_LANGUAGE_FK")
     public Language getLanguageId() {
         return languageId;
     }

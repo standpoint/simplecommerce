@@ -16,6 +16,8 @@
 package ua.pp.simplecommerce.model.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
+import org.hibernate.validator.constraints.Email;
 import java.util.Calendar;
 import java.util.List;
 
@@ -81,7 +83,7 @@ public class User {
     }
 
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "USER_GROUP_FK", nullable = false)
+    @JoinColumn(name = "USER_GROUP_FK")
     public List<UserGroup> getUserGroups() {
         return userGroups;
     }
@@ -90,6 +92,7 @@ public class User {
         this.userGroups = userGroups;
     }
 
+    @NotNull @Size(max = 45)
     @Column(nullable = false, unique = true, length = 45)
     public String getUsername() {
         return username;
@@ -99,6 +102,7 @@ public class User {
         this.username = username;
     }
 
+    @NotNull @Size(max = 255)
     @Column(nullable = false)
     public String getPassword() {
         return password;
@@ -108,6 +112,7 @@ public class User {
         this.password = password;
     }
 
+    @Size(max = 255)
     public String getFirstName() {
         return firstName;
     }
@@ -116,6 +121,7 @@ public class User {
         this.firstName = firstName;
     }
 
+    @Size(max = 255)
     public String getLastName() {
         return lastName;
     }
@@ -124,6 +130,8 @@ public class User {
         this.lastName = lastName;
     }
 
+    @NotNull
+    @Email
     @Column(nullable = false, unique = true)
     public String getEmail() {
         return email;
@@ -141,6 +149,7 @@ public class User {
         this.isActive = isActive;
     }
 
+    @Past
     @Column(name = "DATE_ADDED")
     @Temporal(TemporalType.TIMESTAMP)
     public Calendar getDateAdded() {

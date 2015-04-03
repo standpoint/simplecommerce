@@ -15,7 +15,7 @@
 package ua.pp.simplecommerce.model.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 
 /**
  * Entity 'Language' contains attributes of the language, such as language name, code, locale, path, etc
@@ -45,6 +45,7 @@ public class Language {
         this.languageId = languageId;
     }
 
+    @NotNull @Size(max = 20)
     @Column(nullable = false, length = 20)
     public String getName() {
         return name;
@@ -54,7 +55,8 @@ public class Language {
         this.name = name;
     }
 
-    @Column(nullable = false, length = 3)
+    @NotNull @Pattern(regexp = "[\\d]{3}")
+    @Column(nullable = false, length = 2)
     public String getCode() {
         return code;
     }
@@ -63,6 +65,7 @@ public class Language {
         this.code = code;
     }
 
+    @NotNull @Pattern(regexp = "[a-z]{2}_[A-Z]{2}")
     @Column(nullable = false, length = 5)
     public String getLocale() {
         return locale;
@@ -73,7 +76,7 @@ public class Language {
     }
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "LANGUAGE_IMAGE_FK", nullable = false)
+    @JoinColumn(name = "LANGUAGE_IMAGE_FK")
     public Image getImage() {
         return image;
     }
@@ -82,7 +85,8 @@ public class Language {
         this.image = image;
     }
 
-    @Column(nullable = false, length = 255)
+    @NotNull @Size(max = 255)
+    @Column(nullable = false)
     public String getDirectory() {
         return directory;
     }
@@ -91,7 +95,8 @@ public class Language {
         this.directory = directory;
     }
 
-    @Column(nullable = false, length = 255)
+    @NotNull @Size(max = 255)
+    @Column(nullable = false)
     public String getFilename() {
         return filename;
     }
