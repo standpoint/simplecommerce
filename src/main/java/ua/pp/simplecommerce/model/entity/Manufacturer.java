@@ -31,6 +31,22 @@ public class Manufacturer {
     private String name;
     private Image imageId;
 
+    /**
+     * For JPA uses only
+     */
+    public Manufacturer(){}
+
+    /**
+     * Creates the Manufacturer instance with required fields
+     *
+     * @param name  manufacturer name
+     * @param image manufacturer image reference
+     */
+    public Manufacturer(String name, Image image){
+        this.name = name;
+        this.imageId = image;
+    }
+
     @Id @GeneratedValue
     @Column(name = "MANUFACTURER_ID")
     public Long getManufacturerId() {

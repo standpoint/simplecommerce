@@ -31,9 +31,29 @@ public class Language {
     private String code;
     private String locale;
     private Image image;
-    private String directory;
-    private String filename;
     private boolean status;
+
+    /**
+     * For JPA uses only
+     */
+    public Language(){}
+
+    /**
+     * Creates the Language instance with required fields
+     *
+     * @param name      language name
+     * @param code      language digital code
+     * @param locale    locale like "en_EN"
+     * @param image     language image reference
+     * @param status    status of store language (true - enable, false - disable)
+     */
+    public Language(String name, String code, String locale, Image image, boolean status){
+        this.name = name;
+        this.code = code;
+        this.locale = locale;
+        this.image = image;
+        this.status = status;
+    }
 
     @Id @GeneratedValue
     @Column(name = "LANGUAGE_ID")
@@ -83,26 +103,6 @@ public class Language {
 
     public void setImage(Image image) {
         this.image = image;
-    }
-
-    @NotNull @Size(max = 255)
-    @Column(nullable = false)
-    public String getDirectory() {
-        return directory;
-    }
-
-    public void setDirectory(String directory) {
-        this.directory = directory;
-    }
-
-    @NotNull @Size(max = 255)
-    @Column(nullable = false)
-    public String getFilename() {
-        return filename;
-    }
-
-    public void setFilename(String filename) {
-        this.filename = filename;
     }
 
     public boolean getStatus() {

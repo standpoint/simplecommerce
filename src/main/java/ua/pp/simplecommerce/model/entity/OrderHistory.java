@@ -33,11 +33,19 @@ public class OrderHistory {
     private String content;
     private Calendar dataAdded;
 
+    /**
+     * For JPA uses only
+     */
     public OrderHistory() {
     }
 
-    public OrderHistory(Long orderHistoryId, String content, Calendar dataAdded) {
-        this.orderHistoryId = orderHistoryId;
+    /**
+     * Creates the OrderHistory instance with required fields
+     *
+     * @param content   content of message for order history update
+     * @param dataAdded date and time of order history update
+     */
+    public OrderHistory(String content, Calendar dataAdded) {
         this.content = content;
         this.dataAdded = dataAdded;
     }

@@ -34,11 +34,20 @@ public class OrderLine {
     private int quantity;
     private BigDecimal amount;
 
+    /**
+     * For JPA uses only
+     */
     public OrderLine() {
     }
 
-    public OrderLine(Long orderLineId, Product product, int quantity, BigDecimal amount) {
-        this.orderLineId = orderLineId;
+    /**
+     * Creates the OrderLine instance with required fields
+     *
+     * @param product   product reference
+     * @param quantity  number of this product at the line of the order
+     * @param amount    amount of products in the line of the order
+     */
+    public OrderLine(Product product, int quantity, BigDecimal amount) {
         this.product = product;
         this.quantity = quantity;
         this.amount = amount;

@@ -41,13 +41,28 @@ public class Order {
     private OrderStatus orderStatus;
     private List<OrderHistory> orderHistoryList;
 
+    /**
+     * For JPA uses only
+     */
     public Order() {
     }
 
-    public Order(Long orderId, List<OrderLine> orderLines, String invoiceNumber, Address billTo, Address shipTo,
+    /**
+     * Creates the Order instance with required fields
+     *
+     * @param orderLines    list of lines in the order
+     * @param invoiceNumber number of the invoice
+     * @param billTo        bill-to address
+     * @param shipTo        ship-to address
+     * @param shippingMethod    method of the shipping
+     * @param comment       comment to the order
+     * @param amount        total amount of the order
+     * @param orderStatus   status of the order
+     * @param orderHistoryList  list of the order history updates
+     */
+    public Order(List<OrderLine> orderLines, String invoiceNumber, Address billTo, Address shipTo,
                  ShippingMethod shippingMethod, String comment, BigDecimal amount, OrderStatus orderStatus,
                  List<OrderHistory> orderHistoryList) {
-        this.orderId = orderId;
         this.orderLines = orderLines;
         this.invoiceNumber = invoiceNumber;
         this.billTo = billTo;
