@@ -15,11 +15,13 @@
 
 package ua.pp.simplecommerce.model.util;
 
-import com.mysql.jdbc.JDBC4DatabaseMetaData;
+import ua.pp.simplecommerce.model.entity.Address;
+import ua.pp.simplecommerce.model.entity.City;
+import ua.pp.simplecommerce.model.entity.Country;
 
 import javax.persistence.Persistence;
-import java.sql.JDBCType;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Vladimir Kamenskiy on 25.03.2015.
@@ -28,5 +30,21 @@ public class Main {
     public static void main(String[] args) {
 
         Persistence.generateSchema("ecommercePU", null);
+
+        Address address = new Address("I.Lepse av., 8", "03680");
+        List<Address> addresses = new ArrayList<>();
+        addresses.add(address);
+        City city = new City("Kiev", addresses);
+        Country country = new Country("Ukraine", city.getAddresses());
+
+//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ecommercePU");
+//        EntityManager em = emf.createEntityManager();
+//        EntityTransaction tr = em.getTransaction();
+//        tr.begin();
+//        em.persist(address);
+//        em.persist(city);
+//        em.persist(country);
+//        tr.commit();
+//        em.close();
     }
 }
