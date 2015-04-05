@@ -31,6 +31,22 @@ public class Country {
     private String country;
     private List<Address> addresses;
 
+    /**
+     * For JPA uses only
+     */
+    public Country(){}
+
+    /**
+     * Creates the Country instance with required fields
+     *
+     * @param country   name of the country
+     * @param addresses list of the existing addresses in this country
+     */
+    public Country(String country, List<Address> addresses){
+        this.country = country;
+        this.addresses = addresses;
+    }
+
     @Id @GeneratedValue
     @Column(name = "COUNTRY_ID")
     public Long getCountryId() {

@@ -31,6 +31,22 @@ public class Address {
     private String address;
     private String postcode;
 
+    /**
+     * For JPA uses only
+     */
+    public Address(){}
+
+    /**
+     * Creates the Address instance with required fields
+     *
+     * @param address   street address (e.g. "I.Lepse av., 8")
+     * @param postcode  zip/post/-code (must has 5 digits, e.g. "31680")
+     */
+    public Address(String address, String postcode){
+        this.address = address;
+        this.postcode = postcode;
+    }
+
     @Id @GeneratedValue
     @Column(name = "ADDRESS_ID")
     public Long getAddressId() {

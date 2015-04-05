@@ -37,12 +37,21 @@ public class CustomerTransaction {
     private BigDecimal amount;
     private Calendar dateAdded;
 
+    /**
+     * For JPA uses only
+     */
     public CustomerTransaction() {
     }
 
-    public CustomerTransaction(Long customerTransactionId, Order order, String summary, BigDecimal amount,
-                               Calendar dateAdded) {
-        this.customerTransactionId = customerTransactionId;
+    /**
+     * Creates the CustomerTransaction instance with required fields
+     *
+     * @param order     order reference
+     * @param summary   summary information about the order
+     * @param amount    total amount of the order
+     * @param dateAdded date and time of this transaction creating
+     */
+    public CustomerTransaction(Order order, String summary, BigDecimal amount, Calendar dateAdded) {
         this.order = order;
         this.summary = summary;
         this.amount = amount;

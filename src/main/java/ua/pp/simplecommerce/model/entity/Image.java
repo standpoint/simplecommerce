@@ -30,6 +30,19 @@ public class Image {
     private Long imageId;
     private byte[] content;
 
+    /**
+     * For JPA uses only
+     */
+    public Image(){}
+
+    /**
+     * Creates the Image instance with required fields
+     *
+     * @param content   image content
+     */
+    public Image(byte[] content){
+        this.content = content;
+    }
     @Id @GeneratedValue
     @Column(name = "IMAGE_ID")
     public Long getImageId() {

@@ -31,6 +31,22 @@ public class City {
     private String city;
     private List<Address> addresses;
 
+    /**
+     * For JPA uses only
+     */
+    public City(){}
+
+    /**
+     * Creates the City instance with required fields
+     *
+     * @param city      name of the city
+     * @param addresses list of the existing addresses for this city
+     */
+    public City(String city, List<Address> addresses){
+        this.city = city;
+        this.addresses = addresses;
+    }
+
     @Id @GeneratedValue
     @Column(name = "CITY_ID")
     public Long getCityId() {

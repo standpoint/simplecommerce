@@ -41,13 +41,29 @@ public class Customer {
     private List<CustomerTransaction> customerTransactions;
     private Calendar dateAdded;
 
+    /**
+     * For JPA uses only
+     */
     public Customer() {
     }
 
-    public Customer(Long customerId, String name, String password, String firstName, String secondName, String email,
+    /**
+     * Creates the Customer instance with required fields
+     *
+     * @param name          login name of the customer
+     * @param password      password
+     * @param firstName     first name
+     * @param secondName    second name
+     * @param email         valid email address
+     * @param phone         phone number (e.g. "+380671234567")
+     * @param isActive      user account status (true - user account is active, false - disactive)
+     * @param address       address reference
+     * @param customerTransactions  customer transactions reference
+     * @param dateAdded     the date and time of user account creating
+     */
+    public Customer(String name, String password, String firstName, String secondName, String email,
                     String phone, boolean isActive, Address address, List<CustomerTransaction> customerTransactions,
                     Calendar dateAdded) {
-        this.customerId = customerId;
         this.name = name;
         this.password = password;
         this.firstName = firstName;

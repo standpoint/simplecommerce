@@ -35,6 +35,29 @@ public class Category {
     private Image imageId;
     private List<Product> products;
 
+    /**
+     * For JPA uses only
+     */
+    public Category(){}
+
+    /**
+     * Creates the Category instance with required fields
+     *
+     * @param name          name of the product category
+     * @param description   description
+     * @param language      language reference
+     * @param image         image reference
+     * @param products      list of the products in this category
+     */
+    public Category(String name, String description, Language language,
+                    Image image, List<Product> products){
+        this.name = name;
+        this.description = description;
+        this.languageId = language;
+        this.imageId = image;
+        this.products = products;
+    }
+
     @Id @GeneratedValue
     @Column(name = "CATEGORY_ID")
     public Long getCategoryId() {
