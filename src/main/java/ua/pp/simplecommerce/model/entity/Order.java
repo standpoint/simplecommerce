@@ -15,6 +15,9 @@
 
 package ua.pp.simplecommerce.model.entity;
 
+import ua.pp.simplecommerce.model.entity.enumerations.OrderStatus;
+import ua.pp.simplecommerce.model.entity.enumerations.ShippingMethod;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;

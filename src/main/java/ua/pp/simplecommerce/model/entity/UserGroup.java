@@ -15,6 +15,8 @@
 
 package ua.pp.simplecommerce.model.entity;
 
+import ua.pp.simplecommerce.model.entity.enumerations.Role;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
@@ -41,12 +43,10 @@ public class UserGroup {
     /**
      * Creates the UserGroup instance with required fields
      *
-     * @param groupId   unique id-number of the UserGroup
      * @param name      name of the UserGroup
      * @param role      the UserGroup role for access, such as Administrator, Demo, Employee, Employer
      */
-    public UserGroup(Long groupId, String name, Role role) {
-        this.groupId = groupId;
+    public UserGroup(String name, Role role) {
         this.name = name;
         this.role = role;
     }

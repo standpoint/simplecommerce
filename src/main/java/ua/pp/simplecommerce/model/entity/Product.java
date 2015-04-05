@@ -15,6 +15,8 @@
 
 package ua.pp.simplecommerce.model.entity;
 
+import ua.pp.simplecommerce.model.entity.enumerations.StockStatus;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
@@ -40,6 +42,38 @@ public class Product {
     private Manufacturer manufacturerId;
     private Language languageId;
     private List<Image> images;
+
+    /**
+     * For JPA uses only
+     */
+    public Product(){}
+
+    /**
+     * @param categories    list of the categories contains this product
+     * @param name          name of the product
+     * @param partNumber    product part number
+     * @param description   product description
+     * @param quantity      quantity at the store warehouse
+     * @param price         price
+     * @param stockStatus   status of stock
+     * @param manufacturer  manufacturer reference
+     * @param language      language reference
+     * @param images        list of the item images
+     */
+    public Product(List<Category> categories, String name, String partNumber, String description, int quantity,
+                   BigDecimal price, StockStatus stockStatus, Manufacturer manufacturer, Language language,
+                   List<Image> images) {
+        this.categories = categories;
+        this.name = name;
+        this.partnumber = partNumber;
+        this.description = description;
+        this.quantity = quantity;
+        this.price = price;
+        this.stockStatus = stockStatus;
+        this.manufacturerId = manufacturer;
+        this.languageId = language;
+        this.images = images;
+    }
 
     @Id @GeneratedValue
     @Column(name = "PRODUCT_ID")

@@ -15,9 +15,12 @@
 
 package ua.pp.simplecommerce.model.entity;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
 import org.hibernate.validator.constraints.Email;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 import java.util.Calendar;
 import java.util.List;
 
@@ -49,7 +52,6 @@ public class User {
     /**
      * Creates the User instance with required fields
      *
-     * @param userId        unique id-number of the User
      * @param userGroups    User Group
      * @param username      nic-name of the User
      * @param password      user' password
@@ -59,9 +61,8 @@ public class User {
      * @param isActive      the status of the User. Must be active(true) or inactive(false)
      * @param dateAdded     date and time of adding the User in the database
      */
-    public User(Long userId, List<UserGroup> userGroups, String username, String password, String firstName,
+    public User(List<UserGroup> userGroups, String username, String password, String firstName,
                 String lastName, String email, boolean isActive, Calendar dateAdded) {
-        this.userId = userId;
         this.userGroups = userGroups;
         this.username = username;
         this.password = password;

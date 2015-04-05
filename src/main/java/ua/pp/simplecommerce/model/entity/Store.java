@@ -46,7 +46,6 @@ public class Store {
     /**
      * Creates the Store instance with required fields
      *
-     * @param storeId       unique id-number of the Store
      * @param name          name of the Store
      * @param url           url-link to the Store in the network
      * @param description   short description (means a definition) of the Store (up to 255 characters)
@@ -57,9 +56,8 @@ public class Store {
      * @param fax           fax number of the Store
      * @param languageId    id-number of the Store language
      */
-    public Store(Long storeId, String name, String url, String description, String about, Address address,
+    public Store(String name, String url, String description, String about, Address address,
                  String phone1, String phone2, String fax, Language languageId) {
-        this.storeId = storeId;
         this.name = name;
         this.url = url;
         this.description = description;
