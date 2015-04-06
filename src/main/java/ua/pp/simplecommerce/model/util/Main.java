@@ -19,6 +19,9 @@ import ua.pp.simplecommerce.model.entity.Address;
 import ua.pp.simplecommerce.model.entity.City;
 import ua.pp.simplecommerce.model.entity.Country;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,14 +40,14 @@ public class Main {
         City city = new City("Kiev", addresses);
         Country country = new Country("Ukraine", city.getAddresses());
 
-//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ecommercePU");
-//        EntityManager em = emf.createEntityManager();
-//        EntityTransaction tr = em.getTransaction();
-//        tr.begin();
-//        em.persist(address);
-//        em.persist(city);
-//        em.persist(country);
-//        tr.commit();
-//        em.close();
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("ecommercePU");
+        EntityManager em = emf.createEntityManager();
+        EntityTransaction tr = em.getTransaction();
+        tr.begin();
+        em.persist(address);
+        em.persist(city);
+        em.persist(country);
+        tr.commit();
+        em.close();
     }
 }
