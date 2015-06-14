@@ -88,7 +88,7 @@ public class Category {
         this.description = description;
     }
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "CATEGORY_LANGUAGE_FK")
     public Language getLanguageId() {
         return languageId;

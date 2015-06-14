@@ -76,7 +76,7 @@ public class Language {
     }
 
     @NotNull @Pattern(regexp = "[\\d]{3}")
-    @Column(nullable = false, length = 2)
+    @Column(nullable = false, length = 3)
     public String getCode() {
         return code;
     }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence    xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
+                version="2.1">
+    <persistence-unit name="ecommerceTestPU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <class>ua.pp.simplecommerce.model.entity.Address</class>
+        <class>ua.pp.simplecommerce.model.entity.Category</class>
+        <class>ua.pp.simplecommerce.model.entity.City</class>
+        <class>ua.pp.simplecommerce.model.entity.Country</class>
+        <class>ua.pp.simplecommerce.model.entity.Customer</class>
+        <class>ua.pp.simplecommerce.model.entity.CustomerTransaction</class>
+        <class>ua.pp.simplecommerce.model.entity.Image</class>
+        <class>ua.pp.simplecommerce.model.entity.Language</class>
+        <class>ua.pp.simplecommerce.model.entity.Manufacturer</class>
+        <class>ua.pp.simplecommerce.model.entity.Order</class>
+        <class>ua.pp.simplecommerce.model.entity.OrderHistory</class>
+        <class>ua.pp.simplecommerce.model.entity.OrderLine</class>
+        <class>ua.pp.simplecommerce.model.entity.Product</class>
+        <class>ua.pp.simplecommerce.model.entity.Store</class>
+        <class>ua.pp.simplecommerce.model.entity.User</class>
+        <class>ua.pp.simplecommerce.model.entity.UserGroup</class>
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:derby:memory:ecommerceDB;create=true" />
+            <property name="eclipselink.ddl-generation" value="create-tables" />
+            <property name="javax.persistence.sql-load-script-source" value="insert.sql" />
+            <property name="eclipselink.loggin.level" value="INFO" />
+        </properties>
+    </persistence-unit>
+</persistence>

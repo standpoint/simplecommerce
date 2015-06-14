@@ -29,6 +29,10 @@ import java.util.List;
  */
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "findAllProducts", query = "SELECT p FROM Product p"),
+        @NamedQuery(name = "getNewProduct", query = "SELECT p FROM Product p WHERE p.name = 'New Product'")
+})
 public class Product {
 
     private Long productId;
@@ -164,7 +168,7 @@ public class Product {
         this.manufacturerId = manufacturerId;
     }
 
-    @OneToOne(optional = false)
+    @OneToOne(optional = false, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "PRODUCT_LANGUAGE_FK")
     public Language getLanguageId() {
         return languageId;
