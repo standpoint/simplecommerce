@@ -31,6 +31,7 @@ import java.util.List;
  */
 
 @Entity
+@Table(name = "USERS")
 public class User {
 
     private Long userId;
