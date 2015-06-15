@@ -29,8 +29,17 @@ import java.util.Calendar;
 @Table(name = "ORDER_HISTORY")
 public class OrderHistory {
 
+    @Id @GeneratedValue
+    @Column(name = "ORDER_HISTORY_ID")
     private Long orderHistoryId;
+
+    @Size(max = 2000)
+    @Column(length = 2000)
     private String content;
+
+    @Past
+    @Column(name = "DATE_ADDED", nullable = false)
+    @Temporal(value = TemporalType.TIMESTAMP)
     private Calendar dataAdded;
 
     /**
@@ -50,8 +59,6 @@ public class OrderHistory {
         this.dataAdded = dataAdded;
     }
 
-    @Id @GeneratedValue
-    @Column(name = "ORDER_HISTORY_ID")
     public Long getOrderHistoryId() {
         return orderHistoryId;
     }
@@ -60,8 +67,6 @@ public class OrderHistory {
         this.orderHistoryId = orderHistoryId;
     }
 
-    @Size(max = 2000)
-    @Column(length = 2000)
     public String getContent() {
         return content;
     }
@@ -70,9 +75,6 @@ public class OrderHistory {
         this.content = content;
     }
 
-    @Past
-    @Column(name = "DATE_ADDED", nullable = false)
-    @Temporal(value = TemporalType.TIMESTAMP)
     public Calendar getDataAdded() {
         return dataAdded;
     }

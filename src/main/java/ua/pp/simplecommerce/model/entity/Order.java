@@ -33,15 +33,45 @@ import java.util.List;
 @Table(name = "ORDERS")
 public class Order {
 
+    @Id @GeneratedValue
+    @Column(name = "ORDER_ID")
     private Long orderId;
+
+    @OneToMany
+    @JoinColumn(name = "ORDER_LINES_FK")
     private List<OrderLine> orderLines;
+
+    @NotNull @Size(max = 20)
+    @Column(name = "INVOICE_NUMBER", nullable = false, length = 20)
     private String invoiceNumber;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ORDER_BILL_TO_ADDRESS_FK", nullable = false)
     private Address billTo;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ORDER_SHIP_TO_ADDRESS_FK", nullable = false)
     private Address shipTo;
+
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "SHIPPING_METHOD")
     private ShippingMethod shippingMethod;
+
+    @Size(max = 2000)
+    @Column(length = 2000)
     private String comment;
+
+    @NotNull
+    @DecimalMin(value = "0.00") @Digits(integer = 12, fraction = 2)
+    @Column(scale = 2, nullable = false)
     private BigDecimal amount;
+
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "ORDER_STATUS")
     private OrderStatus orderStatus;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ORDER_HISTORY_FK", nullable = false)
     private List<OrderHistory> orderHistoryList;
 
     /**
@@ -77,8 +107,6 @@ public class Order {
         this.orderHistoryList = orderHistoryList;
     }
 
-    @Id @GeneratedValue
-    @Column(name = "ORDER_ID")
     public Long getOrderId() {
         return orderId;
     }
@@ -87,8 +115,6 @@ public class Order {
         this.orderId = orderId;
     }
 
-    @OneToMany
-    @JoinColumn(name = "ORDER_LINES_FK")
     public List<OrderLine> getOrderLines() {
         return orderLines;
     }
@@ -97,8 +123,6 @@ public class Order {
         this.orderLines = orderLines;
     }
 
-    @NotNull @Size(max = 20)
-    @Column(name = "INVOICE_NUMBER", nullable = false, length = 20)
     public String getInvoiceNumber() {
         return invoiceNumber;
     }
@@ -107,8 +131,6 @@ public class Order {
         this.invoiceNumber = invoiceNumber;
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ORDER_BILL_TO_ADDRESS_FK", nullable = false)
     public Address getBillTo() {
         return billTo;
     }
@@ -117,8 +139,6 @@ public class Order {
         this.billTo = billTo;
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ORDER_SHIP_TO_ADDRESS_FK", nullable = false)
     public Address getShipTo() {
         return shipTo;
     }
@@ -127,8 +147,6 @@ public class Order {
         this.shipTo = shipTo;
     }
 
-    @Enumerated(value = EnumType.STRING)
-    @Column(name = "SHIPPING_METHOD")
     public ShippingMethod getShippingMethod() {
         return shippingMethod;
     }
@@ -137,8 +155,6 @@ public class Order {
         this.shippingMethod = shippingMethod;
     }
 
-    @Size(max = 2000)
-    @Column(length = 2000)
     public String getComment() {
         return comment;
     }
@@ -147,9 +163,6 @@ public class Order {
         this.comment = comment;
     }
 
-    @NotNull
-    @DecimalMin(value = "0.00") @Digits(integer = 12, fraction = 2)
-    @Column(scale = 2, nullable = false)
     public BigDecimal getAmount() {
         return amount;
     }
@@ -158,8 +171,6 @@ public class Order {
         this.amount = amount;
     }
 
-    @Enumerated(value = EnumType.STRING)
-    @Column(name = "ORDER_STATUS")
     public OrderStatus getOrderStatus() {
         return orderStatus;
     }
@@ -168,8 +179,6 @@ public class Order {
         this.orderStatus = orderStatus;
     }
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ORDER_HISTORY_FK", nullable = false)
     public List<OrderHistory> getOrderHistoryList() {
         return orderHistoryList;
     }

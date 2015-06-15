@@ -26,10 +26,24 @@ import javax.validation.constraints.*;
 @Entity
 public class Language {
 
+    @Id @GeneratedValue
+    @Column(name = "LANGUAGE_ID")
     private Long languageId;
+
+    @NotNull @Size(max = 20)
+    @Column(nullable = false, length = 20)
     private String name;
+
+    @NotNull @Pattern(regexp = "[\\d]{3}")
+    @Column(nullable = false, length = 3)
     private String code;
+
+    @NotNull @Pattern(regexp = "[a-z]{2}_[A-Z]{2}")
+    @Column(nullable = false, length = 5)
     private String locale;
+
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "LANGUAGE_IMAGE_FK")
     private Image image;
     private boolean status;
 
@@ -55,8 +69,6 @@ public class Language {
         this.status = status;
     }
 
-    @Id @GeneratedValue
-    @Column(name = "LANGUAGE_ID")
     public Long getLanguageId() {
         return languageId;
     }
@@ -65,8 +77,6 @@ public class Language {
         this.languageId = languageId;
     }
 
-    @NotNull @Size(max = 20)
-    @Column(nullable = false, length = 20)
     public String getName() {
         return name;
     }
@@ -75,8 +85,6 @@ public class Language {
         this.name = name;
     }
 
-    @NotNull @Pattern(regexp = "[\\d]{3}")
-    @Column(nullable = false, length = 3)
     public String getCode() {
         return code;
     }
@@ -85,8 +93,6 @@ public class Language {
         this.code = code;
     }
 
-    @NotNull @Pattern(regexp = "[a-z]{2}_[A-Z]{2}")
-    @Column(nullable = false, length = 5)
     public String getLocale() {
         return locale;
     }
@@ -95,8 +101,6 @@ public class Language {
         this.locale = locale;
     }
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "LANGUAGE_IMAGE_FK")
     public Image getImage() {
         return image;
     }

@@ -30,8 +30,15 @@ import javax.validation.constraints.*;
 @Table(name = "USER_GROUP")
 public class UserGroup {
 
+    @Id @GeneratedValue
+    @Column(name = "GROUP_ID")
     private Long groupId;
+
+    @NotNull @Size(max = 45)
+    @Column(nullable = false, unique = true, length = 45)
     private String name;
+
+    @Enumerated(value = EnumType.STRING)
     private Role role;
 
     /**
@@ -51,8 +58,6 @@ public class UserGroup {
         this.role = role;
     }
 
-    @Id @GeneratedValue
-    @Column(name = "GROUP_ID")
     public Long getGroupId() {
         return groupId;
     }
@@ -61,8 +66,6 @@ public class UserGroup {
         this.groupId = groupId;
     }
 
-    @NotNull @Size(max = 45)
-    @Column(nullable = false, unique = true, length = 45)
     public String getName() {
         return name;
     }
@@ -71,7 +74,6 @@ public class UserGroup {
         this.name = name;
     }
 
-    @Enumerated(value = EnumType.STRING)
     public Role getRole() {
         return role;
     }

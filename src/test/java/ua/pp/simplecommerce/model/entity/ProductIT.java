@@ -28,8 +28,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertNotNull;
 
 /**
  * The integration test for the entity {@link ua.pp.simplecommerce.model.entity.Product}
@@ -84,7 +84,7 @@ public class ProductIT {
         Image image = em.find(Image.class, 1L);
         List<Image> images = new ArrayList<>();
         images.add(image);
-        Product product = new Product(categories, null, "", "empty product name!", 0,
+        Product product = new Product(categories, null, "PN:0002", "a new product description", 0,
                 new BigDecimal(0.01), StockStatus.OUT_OF_STOCK, manufacturer, language, images);
         em.persist(product);
     }

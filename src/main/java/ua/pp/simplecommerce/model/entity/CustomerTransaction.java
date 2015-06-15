@@ -31,10 +31,26 @@ import java.util.Calendar;
 @Table(name = "CUSTOMER_TRANSACTION")
 public class CustomerTransaction {
 
+    @Id @GeneratedValue
+    @Column(name = "CUSTOMER_TRANSACTION_ID")
     private Long customerTransactionId;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CUSTOMER_TRANSACTION_ORDER_FK")
     private Order order;
+
+    @NotNull @Size(max = 2000)
+    @Column(nullable = false, length = 2000)
     private String summary;
+
+    @NotNull
+    @Digits(integer = 12 ,fraction = 2) @DecimalMin(value = "0.00")
+    @Column(nullable = false, scale = 2)
     private BigDecimal amount;
+
+    @Past
+    @Column(name = "DATE_ADDED")
+    @Temporal(value = TemporalType.TIMESTAMP)
     private Calendar dateAdded;
 
     /**
@@ -58,8 +74,6 @@ public class CustomerTransaction {
         this.dateAdded = dateAdded;
     }
 
-    @Id @GeneratedValue
-    @Column(name = "CUSTOMER_TRANSACTION_ID")
     public Long getCustomerTransactionId() {
         return customerTransactionId;
     }
@@ -68,8 +82,6 @@ public class CustomerTransaction {
         this.customerTransactionId = customerTransactionId;
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CUSTOMER_TRANSACTION_ORDER_FK")
     public Order getOrder() {
         return order;
     }
@@ -78,8 +90,6 @@ public class CustomerTransaction {
         this.order = order;
     }
 
-    @NotNull @Size(max = 2000)
-    @Column(nullable = false, length = 2000)
     public String getSummary() {
         return summary;
     }
@@ -88,9 +98,6 @@ public class CustomerTransaction {
         this.summary = summary;
     }
 
-    @NotNull
-    @Digits(integer = 12 ,fraction = 2) @DecimalMin(value = "0.00")
-    @Column(nullable = false, scale = 2)
     public BigDecimal getAmount() {
         return amount;
     }
@@ -99,9 +106,6 @@ public class CustomerTransaction {
         this.amount = amount;
     }
 
-    @Past
-    @Column(name = "DATE_ADDED")
-    @Temporal(value = TemporalType.TIMESTAMP)
     public Calendar getDateAdded() {
         return dateAdded;
     }

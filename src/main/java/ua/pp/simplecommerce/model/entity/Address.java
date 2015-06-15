@@ -27,8 +27,16 @@ import javax.validation.constraints.*;
 @Entity
 public class Address {
 
+    @Id @GeneratedValue
+    @Column(name = "ADDRESS_ID")
     private Long addressId;
+
+    @NotNull @Size(max = 255)
+    @Column(nullable = false)
     private String address;
+
+    @NotNull @Pattern(regexp = "[\\d]{5}")
+    @Column(nullable = false)
     private String postcode;
 
     /**
@@ -47,8 +55,6 @@ public class Address {
         this.postcode = postcode;
     }
 
-    @Id @GeneratedValue
-    @Column(name = "ADDRESS_ID")
     public Long getAddressId() {
         return addressId;
     }
@@ -57,8 +63,6 @@ public class Address {
         this.addressId = addressId;
     }
 
-    @NotNull @Size(max = 255)
-    @Column(nullable = false)
     public String getAddress() {
         return address;
     }
@@ -67,8 +71,6 @@ public class Address {
         this.address = address;
     }
 
-    @NotNull @Pattern(regexp = "[\\d]{5}")
-    @Column(nullable = false)
     public String getPostcode() {
         return postcode;
     }

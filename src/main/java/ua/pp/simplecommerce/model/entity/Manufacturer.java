@@ -27,8 +27,16 @@ import javax.validation.constraints.*;
 @Entity
 public class Manufacturer {
 
+    @Id @GeneratedValue
+    @Column(name = "MANUFACTURER_ID")
     private Long manufacturerId;
+
+    @NotNull @Size(max = 255)
+    @Column(nullable = false)
     private String name;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "MANUFACTURER_IMAGE_FK")
     private Image imageId;
 
     /**
@@ -47,8 +55,6 @@ public class Manufacturer {
         this.imageId = image;
     }
 
-    @Id @GeneratedValue
-    @Column(name = "MANUFACTURER_ID")
     public Long getManufacturerId() {
         return manufacturerId;
     }
@@ -57,8 +63,6 @@ public class Manufacturer {
         this.manufacturerId = manufacturerId;
     }
 
-    @NotNull @Size(max = 255)
-    @Column(nullable = false)
     public String getName() {
         return name;
     }
@@ -67,8 +71,6 @@ public class Manufacturer {
         this.name = name;
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MANUFACTURER_IMAGE_FK")
     public Image getImageId() {
         return imageId;
     }

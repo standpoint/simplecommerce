@@ -27,8 +27,16 @@ import java.util.List;
 @Entity
 public class City {
 
+    @Id @GeneratedValue
+    @Column(name = "CITY_ID")
     private Long cityId;
+
+    @NotNull @Size(max = 45)
+    @Column(nullable = false, length = 45)
     private String city;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "CITY_FK")
     private List<Address> addresses;
 
     /**
@@ -47,8 +55,6 @@ public class City {
         this.addresses = addresses;
     }
 
-    @Id @GeneratedValue
-    @Column(name = "CITY_ID")
     public Long getCityId() {
         return cityId;
     }
@@ -57,8 +63,6 @@ public class City {
         this.cityId = cityId;
     }
 
-    @NotNull @Size(max = 45)
-    @Column(nullable = false, length = 45)
     public String getCity() {
         return city;
     }
@@ -67,8 +71,6 @@ public class City {
         this.city = city;
     }
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "CITY_FK")
     public List<Address> getAddresses() {
         return addresses;
     }

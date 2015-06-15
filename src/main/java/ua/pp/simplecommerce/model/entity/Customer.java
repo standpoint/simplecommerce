@@ -29,16 +29,47 @@ import java.util.List;
 @Entity
 public class Customer {
 
+    @Id @GeneratedValue
+    @Column(name = "CUSTOMER_ID")
     private Long customerId;
+
+    @NotNull @Size(max = 45)
+    @Column(unique = true, nullable = false, length = 45)
     private String name;
+
+    @NotNull
+    @Column(nullable = false)
     private String password;
+
+    @NotNull
+    @Column(name = "FIRST_NAME", nullable = false)
     private String firstName;
+
+    @NotNull
+    @Column(name = "SECOND_NAME", nullable = false)
     private String secondName;
+
+    @NotNull
+    @Column(nullable = false)
     private String email;
+
+    @NotNull @Pattern(regexp = "\\+[\\d]{12}")
+    @Column(nullable = false)
     private String phone;
+
     private boolean isActive;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CUSTOMER_ADDRESS_FK")
     private Address address;
+
+    @OneToMany
+    @JoinColumn(name = "CUSTOMER_TRANSACTION_FK")
     private List<CustomerTransaction> customerTransactions;
+
+    @Past
+    @Column(name = "DATE_ADDED", nullable = false)
+    @Temporal(value = TemporalType.TIMESTAMP)
     private Calendar dateAdded;
 
     /**
@@ -76,8 +107,6 @@ public class Customer {
         this.dateAdded = dateAdded;
     }
 
-    @Id @GeneratedValue
-    @Column(name = "CUSTOMER_ID")
     public Long getCustomerId() {
         return customerId;
     }
@@ -86,8 +115,6 @@ public class Customer {
         this.customerId = customerId;
     }
 
-    @NotNull @Size(max = 45)
-    @Column(unique = true, nullable = false, length = 45)
     public String getName() {
         return name;
     }
@@ -96,8 +123,6 @@ public class Customer {
         this.name = name;
     }
 
-    @NotNull
-    @Column(nullable = false)
     public String getPassword() {
         return password;
     }
@@ -106,8 +131,6 @@ public class Customer {
         this.password = password;
     }
 
-    @NotNull
-    @Column(name = "FIRST_NAME", nullable = false)
     public String getFirstName() {
         return firstName;
     }
@@ -116,8 +139,6 @@ public class Customer {
         this.firstName = firstName;
     }
 
-    @NotNull
-    @Column(name = "SECOND_NAME", nullable = false)
     public String getSecondName() {
         return secondName;
     }
@@ -126,8 +147,6 @@ public class Customer {
         this.secondName = secondName;
     }
 
-    @NotNull
-    @Column(nullable = false)
     public String getEmail() {
         return email;
     }
@@ -136,8 +155,6 @@ public class Customer {
         this.email = email;
     }
 
-    @NotNull @Pattern(regexp = "\\+[\\d]{12}")
-    @Column(nullable = false)
     public String getPhone() {
         return phone;
     }
@@ -154,8 +171,6 @@ public class Customer {
         this.isActive = isActive;
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CUSTOMER_ADDRESS_FK")
     public Address getAddress() {
         return address;
     }
@@ -164,8 +179,6 @@ public class Customer {
         this.address = address;
     }
 
-    @OneToMany
-    @JoinColumn(name = "CUSTOMER_TRANSACTION_FK")
     public List<CustomerTransaction> getCustomerTransactions() {
         return customerTransactions;
     }
@@ -174,9 +187,6 @@ public class Customer {
         this.customerTransactions = customerTransactions;
     }
 
-    @Past
-    @Column(name = "DATE_ADDED", nullable = false)
-    @Temporal(value = TemporalType.TIMESTAMP)
     public Calendar getDateAdded() {
         return dateAdded;
     }

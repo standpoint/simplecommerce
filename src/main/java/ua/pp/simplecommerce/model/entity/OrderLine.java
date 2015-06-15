@@ -29,9 +29,21 @@ import java.math.BigDecimal;
 @Table(name = "ORDER_LINE")
 public class OrderLine {
 
+    @Id @GeneratedValue
+    @Column(name = "ORDER_LINE_ID", nullable = false)
     private Long orderLineId;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ORDER_LINE_PRODUCT_FK")
     private Product product;
+
+    @NotNull @Min(value = 0)
+    @Column(nullable = false)
     private int quantity;
+
+    @NotNull
+    @DecimalMin(value = "0.00") @Digits(integer = 12, fraction = 2)
+    @Column(scale = 2, nullable = false)
     private BigDecimal amount;
 
     /**
@@ -53,8 +65,6 @@ public class OrderLine {
         this.amount = amount;
     }
 
-    @Id @GeneratedValue
-    @Column(name = "ORDER_LINE_ID", nullable = false)
     public Long getOrderLineId() {
         return orderLineId;
     }
@@ -63,8 +73,6 @@ public class OrderLine {
         this.orderLineId = orderLineId;
     }
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "ORDER_LINE_PRODUCT_FK")
     public Product getProduct() {
         return product;
     }
@@ -73,8 +81,6 @@ public class OrderLine {
         this.product = product;
     }
 
-    @NotNull @Min(value = 0)
-    @Column(nullable = false)
     public int getQuantity() {
         return quantity;
     }
@@ -83,9 +89,6 @@ public class OrderLine {
         this.quantity = quantity;
     }
 
-    @NotNull
-    @DecimalMin(value = "0.00") @Digits(integer = 12, fraction = 2)
-    @Column(scale = 2, nullable = false)
     public BigDecimal getAmount() {
         return amount;
     }

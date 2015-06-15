@@ -34,14 +34,38 @@ import java.util.List;
 @Table(name = "USERS")
 public class User {
 
+    @Id @GeneratedValue
+    @Column(name = "USER_ID")
     private Long userId;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "USER_GROUP_FK")
     private List<UserGroup> userGroups;
+
+    @NotNull @Size(max = 45)
+    @Column(nullable = false, unique = true, length = 45)
     private String username;
+
+    @NotNull @Size(max = 255)
+    @Column(nullable = false)
     private String password;
+
+    @Size(max = 255)
     private String firstName;
+
+    @Size(max = 255)
     private String lastName;
+
+    @NotNull
+    @Email
+    @Column(nullable = false, unique = true)
     private String email;
+
     private boolean isActive;
+
+    @Past
+    @Column(name = "DATE_ADDED")
+    @Temporal(TemporalType.TIMESTAMP)
     private Calendar dateAdded;
 
     /**
@@ -74,8 +98,6 @@ public class User {
         this.dateAdded = dateAdded;
     }
 
-    @Id @GeneratedValue
-    @Column(name = "USER_ID")
     public Long getUserId() {
         return userId;
     }
@@ -84,8 +106,6 @@ public class User {
         this.userId = userId;
     }
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "USER_GROUP_FK")
     public List<UserGroup> getUserGroups() {
         return userGroups;
     }
@@ -94,8 +114,6 @@ public class User {
         this.userGroups = userGroups;
     }
 
-    @NotNull @Size(max = 45)
-    @Column(nullable = false, unique = true, length = 45)
     public String getUsername() {
         return username;
     }
@@ -104,8 +122,6 @@ public class User {
         this.username = username;
     }
 
-    @NotNull @Size(max = 255)
-    @Column(nullable = false)
     public String getPassword() {
         return password;
     }
@@ -114,7 +130,6 @@ public class User {
         this.password = password;
     }
 
-    @Size(max = 255)
     public String getFirstName() {
         return firstName;
     }
@@ -123,7 +138,6 @@ public class User {
         this.firstName = firstName;
     }
 
-    @Size(max = 255)
     public String getLastName() {
         return lastName;
     }
@@ -132,9 +146,6 @@ public class User {
         this.lastName = lastName;
     }
 
-    @NotNull
-    @Email
-    @Column(nullable = false, unique = true)
     public String getEmail() {
         return email;
     }
@@ -151,9 +162,6 @@ public class User {
         this.isActive = isActive;
     }
 
-    @Past
-    @Column(name = "DATE_ADDED")
-    @Temporal(TemporalType.TIMESTAMP)
     public Calendar getDateAdded() {
         return dateAdded;
     }

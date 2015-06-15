@@ -28,11 +28,30 @@ import java.util.List;
 @Entity
 public class Category {
 
+    @Id @GeneratedValue
+    @Column(name = "CATEGORY_ID")
     private Long categoryId;
+
+    @NotNull @Size(max = 255)
+    @Column(nullable = false)
     private String name;
+
+    @NotNull @Size(max = 2000)
+    @Column(nullable = false, length = 2000)
     private String description;
+
+    @OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "CATEGORY_LANGUAGE_FK")
     private Language languageId;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "CATEGORY_IMAGE_FK")
     private Image imageId;
+
+    @ManyToMany
+    @JoinTable(name = "JND_PRODUCT_CATEGORY",
+            joinColumns = @JoinColumn(name = "CATEGORY_FK"),
+            inverseJoinColumns = @JoinColumn(name = "PRODUCT_FK"))
     private List<Product> products;
 
     /**
@@ -58,8 +77,6 @@ public class Category {
         this.products = products;
     }
 
-    @Id @GeneratedValue
-    @Column(name = "CATEGORY_ID")
     public Long getCategoryId() {
         return categoryId;
     }
@@ -68,8 +85,6 @@ public class Category {
         this.categoryId = categoryId;
     }
 
-    @NotNull @Size(max = 255)
-    @Column(nullable = false)
     public String getName() {
         return name;
     }
@@ -78,8 +93,6 @@ public class Category {
         this.name = name;
     }
 
-    @NotNull @Size(max = 2000)
-    @Column(nullable = false, length = 2000)
     public String getDescription() {
         return description;
     }
@@ -88,8 +101,6 @@ public class Category {
         this.description = description;
     }
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "CATEGORY_LANGUAGE_FK")
     public Language getLanguageId() {
         return languageId;
     }
@@ -98,8 +109,6 @@ public class Category {
         this.languageId = languageId;
     }
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "CATEGORY_IMAGE_FK")
     public Image getImageId() {
         return imageId;
     }
@@ -108,10 +117,6 @@ public class Category {
         this.imageId = imageId;
     }
 
-    @ManyToMany
-    @JoinTable(name = "JND_PRODUCT_CATEGORY",
-            joinColumns = @JoinColumn(name = "CATEGORY_FK"),
-            inverseJoinColumns = @JoinColumn(name = "PRODUCT_FK"))
     public List<Product> getProducts() {
         return products;
     }

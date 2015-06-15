@@ -27,7 +27,13 @@ import javax.validation.constraints.*;
 @Entity
 public class Image {
 
+    @Id @GeneratedValue
+    @Column(name = "IMAGE_ID")
     private Long imageId;
+
+    @NotNull
+    @Lob @Basic(fetch = FetchType.LAZY)
+    @Column(columnDefinition="BLOB NOT NULL")
     private byte[] content;
 
     /**
@@ -43,8 +49,7 @@ public class Image {
     public Image(byte[] content){
         this.content = content;
     }
-    @Id @GeneratedValue
-    @Column(name = "IMAGE_ID")
+
     public Long getImageId() {
         return imageId;
     }
@@ -53,9 +58,6 @@ public class Image {
         this.imageId = imageId;
     }
 
-    @NotNull
-    @Lob @Basic(fetch = FetchType.LAZY)
-    @Column(columnDefinition="BLOB NOT NULL")
     public byte[] getContent() {
         return content;
     }

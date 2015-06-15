@@ -35,16 +35,47 @@ import java.util.List;
 })
 public class Product {
 
+    @Id @GeneratedValue
+    @Column(name = "PRODUCT_ID")
     private Long productId;
+
+    @ManyToMany(mappedBy = "products")
     private List<Category> categories;
+
+    @NotNull @Size(max = 255)
+    @Column(nullable = false)
     private String name;
+
+    @NotNull @Size(max = 255)
+    @Column(nullable = false)
     private String partnumber;
+
+    @NotNull @Size(max = 2000)
+    @Column(nullable = false, length = 2000)
     private String description;
+
+    @Min(0)
     private int quantity;
+
+    @NotNull
+    @DecimalMin(value = "0.00") @Digits(integer = 12, fraction = 2)
+    @Column(nullable = false, scale = 2)
     private BigDecimal price;
+
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "STOCK_STATUS")
     private StockStatus stockStatus;
+
+    @OneToOne(optional = false)
+    @JoinColumn(name = "PRODUCT_MANUFACTURER_FK")
     private Manufacturer manufacturerId;
+
+    @OneToOne(optional = false, cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "PRODUCT_LANGUAGE_FK")
     private Language languageId;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinColumn(name = "PRODUCT_IMAGE_FK")
     private List<Image> images;
 
     /**
@@ -79,8 +110,6 @@ public class Product {
         this.images = images;
     }
 
-    @Id @GeneratedValue
-    @Column(name = "PRODUCT_ID")
     public Long getProductId() {
         return productId;
     }
@@ -89,7 +118,6 @@ public class Product {
         this.productId = productId;
     }
 
-    @ManyToMany(mappedBy = "products")
     public List<Category> getCategories() {
         return categories;
     }
@@ -98,8 +126,6 @@ public class Product {
         this.categories = categories;
     }
 
-    @NotNull @Size(max = 255)
-    @Column(nullable = false)
     public String getName() {
         return name;
     }
@@ -108,8 +134,6 @@ public class Product {
         this.name = name;
     }
 
-    @NotNull @Size(max = 255)
-    @Column(nullable = false)
     public String getPartnumber() {
         return partnumber;
     }
@@ -118,8 +142,6 @@ public class Product {
         this.partnumber = partnumber;
     }
 
-    @NotNull @Size(max = 2000)
-    @Column(nullable = false, length = 2000)
     public String getDescription() {
         return description;
     }
@@ -128,7 +150,6 @@ public class Product {
         this.description = description;
     }
 
-    @Min(0)
     public int getQuantity() {
         return quantity;
     }
@@ -137,9 +158,6 @@ public class Product {
         this.quantity = quantity;
     }
 
-    @NotNull
-    @DecimalMin(value = "0.00") @Digits(integer = 12, fraction = 2)
-    @Column(nullable = false, scale = 2)
     public BigDecimal getPrice() {
         return price;
     }
@@ -148,8 +166,6 @@ public class Product {
         this.price = price;
     }
 
-    @Enumerated(value = EnumType.STRING)
-    @Column(name = "STOCK_STATUS")
     public StockStatus getStockStatus() {
         return stockStatus;
     }
@@ -158,8 +174,6 @@ public class Product {
         this.stockStatus = stockStatus;
     }
 
-    @OneToOne(optional = false)
-    @JoinColumn(name = "PRODUCT_MANUFACTURER_FK")
     public Manufacturer getManufacturerId() {
         return manufacturerId;
     }
@@ -168,8 +182,6 @@ public class Product {
         this.manufacturerId = manufacturerId;
     }
 
-    @OneToOne(optional = false, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "PRODUCT_LANGUAGE_FK")
     public Language getLanguageId() {
         return languageId;
     }
@@ -178,8 +190,6 @@ public class Product {
         this.languageId = languageId;
     }
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PRODUCT_IMAGE_FK")
     public List<Image> getImages() {
         return images;
     }

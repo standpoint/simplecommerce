@@ -26,15 +26,42 @@ import javax.validation.constraints.*;
 @Entity
 public class Store {
 
+    @Id @GeneratedValue
+    @Column(name = "STORE_ID")
     private Long storeId;
+
+    @NotNull @Size(max = 45)
+    @Column(nullable = false, length = 45)
     private String name;
+
+    @NotNull @Size(max = 45)
+    @Column(nullable = false, length = 45)
     private String url;
+
+    @NotNull @Size(max = 255)
+    @Column(nullable = false)
     private String description;
+
+    @NotNull @Size(max = 2000)
+    @Column(nullable = false, length = 2000)
     private String about;
+
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "STORE_FK")
     private Address address;
+
+    @NotNull @Size(max = 16)
+    @Column(nullable = false, length = 16)
     private String phone1;
+
+    @Column(length = 16)
     private String phone2;
+
+    @Column(length = 16)
     private String fax;
+
+    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "LANGUAGE_STORE_FK")
     private Language languageId;
 
     /**
@@ -69,8 +96,6 @@ public class Store {
         this.languageId = languageId;
     }
 
-    @Id @GeneratedValue
-    @Column(name = "STORE_ID")
     public Long getStoreId() {
         return storeId;
     }
@@ -79,8 +104,6 @@ public class Store {
         this.storeId = storeId;
     }
 
-    @NotNull @Size(max = 45)
-    @Column(nullable = false, length = 45)
     public String getName() {
         return name;
     }
@@ -89,8 +112,6 @@ public class Store {
         this.name = name;
     }
 
-    @NotNull @Size(max = 45)
-    @Column(nullable = false, length = 45)
     public String getUrl() {
         return url;
     }
@@ -99,8 +120,6 @@ public class Store {
         this.url = url;
     }
 
-    @NotNull @Size(max = 255)
-    @Column(nullable = false)
     public String getDescription() {
         return description;
     }
@@ -109,8 +128,6 @@ public class Store {
         this.description = description;
     }
 
-    @NotNull @Size(max = 2000)
-    @Column(nullable = false, length = 2000)
     public String getAbout() {
         return about;
     }
@@ -119,8 +136,6 @@ public class Store {
         this.about = about;
     }
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "STORE_FK")
     public Address getAddress() {
         return address;
     }
@@ -129,8 +144,6 @@ public class Store {
         this.address = address;
     }
 
-    @NotNull @Size(max = 16)
-    @Column(nullable = false, length = 16)
     public String getPhone1() {
         return phone1;
     }
@@ -139,8 +152,6 @@ public class Store {
         this.phone1 = phone1;
     }
 
-    @NotNull @Size(max = 16)
-    @Column(nullable = false, length = 16)
     public String getPhone2() {
         return phone2;
     }
@@ -149,8 +160,6 @@ public class Store {
         this.phone2 = phone2;
     }
 
-    @NotNull @Size(max = 16)
-    @Column(nullable = false, length = 16)
     public String getFax() {
         return fax;
     }
@@ -159,8 +168,6 @@ public class Store {
         this.fax = fax;
     }
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "LANGUAGE_STORE_FK")
     public Language getLanguageId() {
         return languageId;
     }
