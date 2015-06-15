@@ -34,7 +34,7 @@ import java.util.List;
 @Table(name = "USERS")
 public class User {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USER_ID")
     private Long userId;
 
@@ -61,6 +61,7 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
+    @Column(name = "ACTIVE")
     private boolean isActive;
 
     @Past

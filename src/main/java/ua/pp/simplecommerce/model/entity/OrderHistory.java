@@ -29,7 +29,7 @@ import java.util.Calendar;
 @Table(name = "ORDER_HISTORY")
 public class OrderHistory {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ORDER_HISTORY_ID")
     private Long orderHistoryId;
 

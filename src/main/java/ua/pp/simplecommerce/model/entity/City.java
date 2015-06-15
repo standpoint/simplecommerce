@@ -27,7 +27,7 @@ import java.util.List;
 @Entity
 public class City {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CITY_ID")
     private Long cityId;
 

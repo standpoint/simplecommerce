@@ -29,7 +29,7 @@ import java.math.BigDecimal;
 @Table(name = "ORDER_LINE")
 public class OrderLine {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ORDER_LINE_ID", nullable = false)
     private Long orderLineId;
 

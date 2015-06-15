@@ -31,7 +31,7 @@ import java.util.Calendar;
 @Table(name = "CUSTOMER_TRANSACTION")
 public class CustomerTransaction {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CUSTOMER_TRANSACTION_ID")
     private Long customerTransactionId;
 

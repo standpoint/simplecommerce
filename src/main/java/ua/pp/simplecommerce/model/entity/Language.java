@@ -26,7 +26,7 @@ import javax.validation.constraints.*;
 @Entity
 public class Language {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "LANGUAGE_ID")
     private Long languageId;
 

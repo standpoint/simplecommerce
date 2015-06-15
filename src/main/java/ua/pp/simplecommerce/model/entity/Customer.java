@@ -29,7 +29,7 @@ import java.util.List;
 @Entity
 public class Customer {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CUSTOMER_ID")
     private Long customerId;
 
@@ -57,6 +57,7 @@ public class Customer {
     @Column(nullable = false)
     private String phone;
 
+    @Column(name = "ACTIVE")
     private boolean isActive;
 
     @OneToOne(fetch = FetchType.LAZY)

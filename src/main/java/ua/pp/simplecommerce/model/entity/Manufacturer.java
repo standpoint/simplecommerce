@@ -27,7 +27,7 @@ import javax.validation.constraints.*;
 @Entity
 public class Manufacturer {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "MANUFACTURER_ID")
     private Long manufacturerId;
 

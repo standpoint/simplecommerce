@@ -30,7 +30,7 @@ import javax.validation.constraints.*;
 @Table(name = "USER_GROUP")
 public class UserGroup {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "GROUP_ID")
     private Long groupId;
 
