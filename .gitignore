@@ -58,6 +58,9 @@ $RECYCLE.BIN/
 # IntelliJ
 out/
 
+# Install output folder
+target/
+
 # mpeltonen/sbt-idea plugin
 .idea_modules/
 
