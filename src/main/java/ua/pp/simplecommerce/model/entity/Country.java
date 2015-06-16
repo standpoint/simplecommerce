@@ -32,7 +32,6 @@ public class Country {
     private Long countryId;
 
     @NotNull @Size(max = 45)
-    @Column(nullable = false, length = 45)
     private String country;
 
     @OneToMany(fetch = FetchType.EAGER)

@@ -32,7 +32,6 @@ public class City {
     private Long cityId;
 
     @NotNull @Size(max = 45)
-    @Column(nullable = false, length = 45)
     private String city;
 
     @OneToMany(fetch = FetchType.EAGER)

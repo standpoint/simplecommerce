@@ -43,15 +43,12 @@ public class Product {
     private List<Category> categories;
 
     @NotNull @Size(max = 255)
-    @Column(nullable = false)
     private String name;
 
     @NotNull @Size(max = 255)
-    @Column(nullable = false)
     private String partnumber;
 
     @NotNull @Size(max = 2000)
-    @Column(nullable = false, length = 2000)
     private String description;
 
     @Min(0)
@@ -59,7 +56,6 @@ public class Product {
 
     @NotNull
     @DecimalMin(value = "0.00") @Digits(integer = 12, fraction = 2)
-    @Column(nullable = false, scale = 2)
     private BigDecimal price;
 
     @Enumerated(value = EnumType.STRING)

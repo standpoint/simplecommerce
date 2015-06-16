@@ -31,15 +31,12 @@ public class Language {
     private Long languageId;
 
     @NotNull @Size(max = 20)
-    @Column(nullable = false, length = 20)
     private String name;
 
     @NotNull @Pattern(regexp = "[\\d]{3}")
-    @Column(nullable = false, length = 3)
     private String code;
 
     @NotNull @Pattern(regexp = "[a-z]{2}_[A-Z]{2}")
-    @Column(nullable = false, length = 5)
     private String locale;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)

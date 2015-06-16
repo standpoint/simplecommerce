@@ -37,6 +37,7 @@ import static junit.framework.TestCase.assertNotNull;
  * Created by volodya on 14.06.2015.
  */
 public class ProductIT {
+    private static Long ID = 10000000000L;
     private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("ecommerceTestPU");
     private EntityManager em;
     private EntityTransaction tx;
@@ -54,20 +55,21 @@ public class ProductIT {
     }
     @Test
     public void shouldFindTheProduct() throws Exception {
-        Product product = em.find(Product.class, 1L);
+        Product product = em.find(Product.class, ID);
         assertEquals("The Product",product.getName());
     }
     @Test
     public void shouldCreateNewProduct() throws Exception {
         List<Category> categories = new ArrayList<>();
-        categories.add(em.find(Category.class, 1L));
-        Manufacturer manufacturer = em.find(Manufacturer.class, 1L);
-        Language language = em.find(Language.class, 1L);
-        Image image = em.find(Image.class, 1L);
+        categories.add(em.find(Category.class, ID));
+        Manufacturer manufacturer = em.find(Manufacturer.class, ID);
+        Language language = em.find(Language.class, ID);
+        Image image = em.find(Image.class, ID);
         List<Image> images = new ArrayList<>();
         images.add(image);
+        BigDecimal price = new BigDecimal(0.99).setScale(2,BigDecimal.ROUND_HALF_UP);
         Product product = new Product(categories, "New Product", "PN:0002", "a new product description", 1000,
-                new BigDecimal(0.99), StockStatus.IN_STOCK, manufacturer, language, images);
+                price, StockStatus.IN_STOCK, manufacturer, language, images);
         tx.begin();
         em.persist(product);
         tx.commit();
@@ -78,14 +80,15 @@ public class ProductIT {
     @Test(expected = ConstraintViolationException.class)
     public void shouldRaiseConstraintViolationCauseNullName() {
         List<Category> categories = new ArrayList<>();
-        categories.add(em.find(Category.class, 1L));
-        Manufacturer manufacturer = em.find(Manufacturer.class, 1L);
-        Language language = em.find(Language.class, 1L);
-        Image image = em.find(Image.class, 1L);
+        categories.add(em.find(Category.class, ID));
+        Manufacturer manufacturer = em.find(Manufacturer.class, ID);
+        Language language = em.find(Language.class, ID);
+        Image image = em.find(Image.class, ID);
         List<Image> images = new ArrayList<>();
         images.add(image);
-        Product product = new Product(categories, null, "PN:0002", "a new product description", 0,
-                new BigDecimal(0.01), StockStatus.OUT_OF_STOCK, manufacturer, language, images);
+        BigDecimal price = new BigDecimal(0.01).setScale(2,BigDecimal.ROUND_HALF_UP);
+        Product product = new Product(categories, null, "PN:0002", "a new product description", 0, price,
+                StockStatus.OUT_OF_STOCK, manufacturer, language, images);
         em.persist(product);
     }
 }

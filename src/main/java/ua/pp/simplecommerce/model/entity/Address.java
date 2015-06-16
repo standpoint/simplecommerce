@@ -32,11 +32,9 @@ public class Address {
     private Long addressId;
 
     @NotNull @Size(max = 255)
-    @Column(nullable = false)
     private String address;
 
     @NotNull @Pattern(regexp = "[\\d]{5}")
-    @Column(nullable = false)
     private String postcode;
 
     /**

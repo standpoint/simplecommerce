@@ -30,7 +30,7 @@ import java.math.BigDecimal;
 public class OrderLine {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ORDER_LINE_ID", nullable = false)
+    @Column(name = "ORDER_LINE_ID")
     private Long orderLineId;
 
     @OneToOne(fetch = FetchType.EAGER)
@@ -38,12 +38,10 @@ public class OrderLine {
     private Product product;
 
     @NotNull @Min(value = 0)
-    @Column(nullable = false)
     private int quantity;
 
     @NotNull
     @DecimalMin(value = "0.00") @Digits(integer = 12, fraction = 2)
-    @Column(scale = 2, nullable = false)
     private BigDecimal amount;
 
     /**

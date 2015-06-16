@@ -40,12 +40,10 @@ public class CustomerTransaction {
     private Order order;
 
     @NotNull @Size(max = 2000)
-    @Column(nullable = false, length = 2000)
     private String summary;
 
     @NotNull
     @Digits(integer = 12 ,fraction = 2) @DecimalMin(value = "0.00")
-    @Column(nullable = false, scale = 2)
     private BigDecimal amount;
 
     @Past

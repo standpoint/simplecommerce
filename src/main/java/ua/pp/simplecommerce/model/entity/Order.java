@@ -42,15 +42,15 @@ public class Order {
     private List<OrderLine> orderLines;
 
     @NotNull @Size(max = 20)
-    @Column(name = "INVOICE_NUMBER", nullable = false, length = 20)
+    @Column(name = "INVOICE_NUMBER")
     private String invoiceNumber;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ORDER_BILL_TO_ADDRESS_FK", nullable = false)
+    @JoinColumn(name = "ORDER_BILL_TO_ADDRESS_FK")
     private Address billTo;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ORDER_SHIP_TO_ADDRESS_FK", nullable = false)
+    @JoinColumn(name = "ORDER_SHIP_TO_ADDRESS_FK")
     private Address shipTo;
 
     @Enumerated(value = EnumType.STRING)
@@ -58,12 +58,10 @@ public class Order {
     private ShippingMethod shippingMethod;
 
     @Size(max = 2000)
-    @Column(length = 2000)
     private String comment;
 
     @NotNull
     @DecimalMin(value = "0.00") @Digits(integer = 12, fraction = 2)
-    @Column(scale = 2, nullable = false)
     private BigDecimal amount;
 
     @Enumerated(value = EnumType.STRING)
@@ -71,7 +69,7 @@ public class Order {
     private OrderStatus orderStatus;
 
     @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "ORDER_HISTORY_FK", nullable = false)
+    @JoinColumn(name = "ORDER_HISTORY_FK")
     private List<OrderHistory> orderHistoryList;
 
     /**

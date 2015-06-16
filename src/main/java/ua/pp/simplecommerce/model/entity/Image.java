@@ -25,6 +25,10 @@ import javax.validation.constraints.*;
  * Created by Vladimir Kamenskiy on 17.03.2015.
  */
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "findAllImages", query = "SELECT img FROM Image img"),
+        @NamedQuery(name = "getFFFImage", query = "SELECT img FROM Image img WHERE img.content = 4095")
+})
 public class Image {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +37,6 @@ public class Image {
 
     @NotNull
     @Lob @Basic(fetch = FetchType.LAZY)
-    @Column(columnDefinition="BLOB NOT NULL")
     private byte[] content;
 
     /**

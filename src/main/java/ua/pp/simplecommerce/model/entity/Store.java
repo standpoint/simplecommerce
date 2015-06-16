@@ -31,33 +31,28 @@ public class Store {
     private Long storeId;
 
     @NotNull @Size(max = 45)
-    @Column(nullable = false, length = 45)
     private String name;
 
     @NotNull @Size(max = 45)
-    @Column(nullable = false, length = 45)
     private String url;
 
     @NotNull @Size(max = 255)
-    @Column(nullable = false)
     private String description;
 
     @NotNull @Size(max = 2000)
-    @Column(nullable = false, length = 2000)
     private String about;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "STORE_FK")
     private Address address;
 
-    @NotNull @Size(max = 16)
-    @Column(nullable = false, length = 16)
+    @NotNull @Size(min = 16, max = 16)
     private String phone1;
 
-    @Column(length = 16)
+    @Size(min = 16, max = 16)
     private String phone2;
 
-    @Column(length = 16)
+    @Size(min = 16, max = 16)
     private String fax;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)

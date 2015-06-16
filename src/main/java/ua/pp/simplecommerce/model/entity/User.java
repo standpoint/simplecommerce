@@ -43,11 +43,10 @@ public class User {
     private List<UserGroup> userGroups;
 
     @NotNull @Size(max = 45)
-    @Column(nullable = false, unique = true, length = 45)
-    private String username;
+    @Column(unique = true)
+    private String login;
 
     @NotNull @Size(max = 255)
-    @Column(nullable = false)
     private String password;
 
     @Size(max = 255)
@@ -56,17 +55,14 @@ public class User {
     @Size(max = 255)
     private String lastName;
 
-    @NotNull
-    @Email
-    @Column(nullable = false, unique = true)
+    @NotNull @Email
     private String email;
 
     @Column(name = "ACTIVE")
     private boolean isActive;
 
-    @Past
+    @Past @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "DATE_ADDED")
-    @Temporal(TemporalType.TIMESTAMP)
     private Calendar dateAdded;
 
     /**
@@ -79,7 +75,7 @@ public class User {
      * Creates the User instance with required fields
      *
      * @param userGroups    User Group
-     * @param username      nic-name of the User
+     * @param login      nic-name of the User
      * @param password      user' password
      * @param firstName     user' first name
      * @param lastName      user' surname
@@ -87,10 +83,10 @@ public class User {
      * @param isActive      the status of the User. Must be active(true) or inactive(false)
      * @param dateAdded     date and time of adding the User in the database
      */
-    public User(List<UserGroup> userGroups, String username, String password, String firstName,
+    public User(List<UserGroup> userGroups, String login, String password, String firstName,
                 String lastName, String email, boolean isActive, Calendar dateAdded) {
         this.userGroups = userGroups;
-        this.username = username;
+        this.login = login;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -115,12 +111,12 @@ public class User {
         this.userGroups = userGroups;
     }
 
-    public String getUsername() {
-        return username;
+    public String getLogin() {
+        return login;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setLogin(String username) {
+        this.login = username;
     }
 
     public String getPassword() {

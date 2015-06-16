@@ -34,27 +34,24 @@ public class Customer {
     private Long customerId;
 
     @NotNull @Size(max = 45)
-    @Column(unique = true, nullable = false, length = 45)
-    private String name;
+    @Column(unique = true)
+    private String login;
 
     @NotNull
-    @Column(nullable = false)
     private String password;
 
     @NotNull
-    @Column(name = "FIRST_NAME", nullable = false)
+    @Column(name = "FIRST_NAME")
     private String firstName;
 
     @NotNull
-    @Column(name = "SECOND_NAME", nullable = false)
+    @Column(name = "SECOND_NAME")
     private String secondName;
 
     @NotNull
-    @Column(nullable = false)
     private String email;
 
     @NotNull @Pattern(regexp = "\\+[\\d]{12}")
-    @Column(nullable = false)
     private String phone;
 
     @Column(name = "ACTIVE")
@@ -69,7 +66,7 @@ public class Customer {
     private List<CustomerTransaction> customerTransactions;
 
     @Past
-    @Column(name = "DATE_ADDED", nullable = false)
+    @Column(name = "DATE_ADDED")
     @Temporal(value = TemporalType.TIMESTAMP)
     private Calendar dateAdded;
 
@@ -82,7 +79,7 @@ public class Customer {
     /**
      * Creates the Customer instance with required fields
      *
-     * @param name          login name of the customer
+     * @param login          login name of the customer
      * @param password      password
      * @param firstName     first name
      * @param secondName    second name
@@ -93,10 +90,10 @@ public class Customer {
      * @param customerTransactions  customer transactions reference
      * @param dateAdded     the date and time of user account creating
      */
-    public Customer(String name, String password, String firstName, String secondName, String email,
+    public Customer(String login, String password, String firstName, String secondName, String email,
                     String phone, boolean isActive, Address address, List<CustomerTransaction> customerTransactions,
                     Calendar dateAdded) {
-        this.name = name;
+        this.login = login;
         this.password = password;
         this.firstName = firstName;
         this.secondName = secondName;
@@ -116,12 +113,12 @@ public class Customer {
         this.customerId = customerId;
     }
 
-    public String getName() {
-        return name;
+    public String getLogin() {
+        return login;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLogin(String name) {
+        this.login = name;
     }
 
     public String getPassword() {

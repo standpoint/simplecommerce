@@ -33,11 +33,9 @@ public class Category {
     private Long categoryId;
 
     @NotNull @Size(max = 255)
-    @Column(nullable = false)
     private String name;
 
     @NotNull @Size(max = 2000)
-    @Column(nullable = false, length = 2000)
     private String description;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.PERSIST)

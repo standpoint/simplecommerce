@@ -32,7 +32,6 @@ public class Manufacturer {
     private Long manufacturerId;
 
     @NotNull @Size(max = 255)
-    @Column(nullable = false)
     private String name;
 
     @OneToOne(fetch = FetchType.LAZY)

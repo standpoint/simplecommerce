@@ -34,12 +34,10 @@ public class OrderHistory {
     private Long orderHistoryId;
 
     @Size(max = 2000)
-    @Column(length = 2000)
     private String content;
 
-    @Past
-    @Column(name = "DATE_ADDED", nullable = false)
-    @Temporal(value = TemporalType.TIMESTAMP)
+    @Past @Temporal(value = TemporalType.TIMESTAMP)
+    @Column(name = "DATE_ADDED")
     private Calendar dataAdded;
 
     /**
