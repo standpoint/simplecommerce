@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
@@ -19,7 +20,7 @@
     <dependency>
       <groupId>org.eclipse.persistence</groupId>
       <artifactId>org.eclipse.persistence.jpa</artifactId>
-      <version>2.6.0</version>
+      <version>${eclipselink.version}</version>
     </dependency>
 
     <dependency>
@@ -114,7 +115,38 @@
             <mainClass>ua.pp.simplecommerce.model.util.Main</mainClass>
           </configuration>
         </plugin>
+
+        <plugin>
+          <groupId>de.empulse.eclipselink</groupId>
+          <artifactId>staticweave-maven-plugin</artifactId>
+          <version>1.0.0</version>
+          <executions>
+            <execution>
+              <phase>process-classes</phase>
+              <goals>
+                <goal>weave</goal>
+              </goals>
+              <configuration>
+                <persistenceXMLLocation>META-INF/persistence.xml</persistenceXMLLocation>
+                <logLevel>FINE</logLevel>
+              </configuration>
+            </execution>
+          </executions>
+          <dependencies>
+            <dependency>
+              <groupId>org.eclipse.persistence</groupId>
+              <artifactId>org.eclipse.persistence.jpa</artifactId>
+              <version>${eclipselink.version}</version>
+            </dependency>
+          </dependencies>
+        </plugin>
       </plugins>
   </build>
+
+  <properties>
+    <eclipselink.version>2.6.0</eclipselink.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  </properties>
 
 </project>
