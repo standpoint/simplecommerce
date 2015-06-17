@@ -55,7 +55,7 @@ public class Store {
     @Size(min = 16, max = 16)
     private String fax;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
+    @OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "LANGUAGE_STORE_FK")
     private Language languageId;
 

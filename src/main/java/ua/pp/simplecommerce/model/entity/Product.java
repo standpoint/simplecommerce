@@ -62,7 +62,7 @@ public class Product {
     @Column(name = "STOCK_STATUS")
     private StockStatus stockStatus;
 
-    @OneToOne(optional = false)
+    @OneToOne(optional = false, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "PRODUCT_MANUFACTURER_FK")
     private Manufacturer manufacturerId;
 

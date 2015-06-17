@@ -37,7 +37,7 @@ public class Order {
     @Column(name = "ORDER_ID")
     private Long orderId;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "ORDER_LINES_FK")
     private List<OrderLine> orderLines;
 
@@ -45,11 +45,11 @@ public class Order {
     @Column(name = "INVOICE_NUMBER")
     private String invoiceNumber;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "ORDER_BILL_TO_ADDRESS_FK")
     private Address billTo;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL,orphanRemoval = true)
     @JoinColumn(name = "ORDER_SHIP_TO_ADDRESS_FK")
     private Address shipTo;
 
@@ -68,7 +68,7 @@ public class Order {
     @Column(name = "ORDER_STATUS")
     private OrderStatus orderStatus;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "ORDER_HISTORY_FK")
     private List<OrderHistory> orderHistoryList;
 

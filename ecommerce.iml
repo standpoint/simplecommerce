@@ -20,10 +20,11 @@
         <setting name="validation-enabled" value="true" />
         <setting name="provider-name" value="" />
         <datasource-mapping>
+          <factory-entry name="ecommercePU" value="0b48fcb1-fafe-48cb-ae17-224c94bc2502" />
           <factory-entry name="ecommerceTestPU" value="0b48fcb1-fafe-48cb-ae17-224c94bc2502" />
           <factory-entry name="noname-persistence.xml@345" />
         </datasource-mapping>
-        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/test/resources/META-INF/persistence.xml" />
+        <deploymentDescriptor name="persistence.xml" url="file://$MODULE_DIR$/src/main/resources/META-INF/persistence.xml" />
       </configuration>
     </facet>
   </component>

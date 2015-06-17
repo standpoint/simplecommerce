@@ -35,7 +35,7 @@ public class CustomerTransaction {
     @Column(name = "CUSTOMER_TRANSACTION_ID")
     private Long customerTransactionId;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "CUSTOMER_TRANSACTION_ORDER_FK")
     private Order order;
 
@@ -46,9 +46,8 @@ public class CustomerTransaction {
     @Digits(integer = 12 ,fraction = 2) @DecimalMin(value = "0.00")
     private BigDecimal amount;
 
-    @Past
+    @Past @Temporal(value = TemporalType.TIMESTAMP)
     @Column(name = "DATE_ADDED")
-    @Temporal(value = TemporalType.TIMESTAMP)
     private Calendar dateAdded;
 
     /**

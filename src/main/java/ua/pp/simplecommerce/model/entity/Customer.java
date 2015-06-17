@@ -57,11 +57,11 @@ public class Customer {
     @Column(name = "ACTIVE")
     private boolean isActive;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "CUSTOMER_ADDRESS_FK")
     private Address address;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "CUSTOMER_TRANSACTION_FK")
     private List<CustomerTransaction> customerTransactions;
 
@@ -85,7 +85,7 @@ public class Customer {
      * @param secondName    second name
      * @param email         valid email address
      * @param phone         phone number (e.g. "+380671234567")
-     * @param isActive      user account status (true - user account is active, false - disactive)
+     * @param isActive      user account status (true - user account is active, false - inactive)
      * @param address       address reference
      * @param customerTransactions  customer transactions reference
      * @param dateAdded     the date and time of user account creating
