@@ -53,11 +53,13 @@ public class ProductIT {
             em.close();
         }
     }
+
     @Test
     public void shouldFindTheProduct() throws Exception {
         Product product = em.find(Product.class, ID);
-        assertEquals("The Product",product.getName());
+        assertEquals("The Product", product.getName());
     }
+
     @Test
     public void shouldCreateNewProduct() throws Exception {
         List<Category> categories = new ArrayList<>();
@@ -74,9 +76,13 @@ public class ProductIT {
         em.persist(product);
         tx.commit();
         assertNotNull("The Product ID can't be Null", product.getProductId());
-        product = em.createNamedQuery("getNewProduct", Product.class).getSingleResult();
+        product = em.createNamedQuery(Product.GET_BY_NAME, Product.class)
+                .setParameter("name", product.getName())
+                .getSingleResult();
+
         assertEquals("PN:0002",product.getPartnumber());
     }
+
     @Test(expected = ConstraintViolationException.class)
     public void shouldRaiseConstraintViolationCauseNullName() {
         List<Category> categories = new ArrayList<>();

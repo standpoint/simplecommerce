@@ -30,10 +30,15 @@ import java.util.List;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "findAllProducts", query = "SELECT p FROM Product p"),
-        @NamedQuery(name = "getNewProduct", query = "SELECT p FROM Product p WHERE p.name = 'New Product'")
+        @NamedQuery(name = Product.FIND_ALL, query = "SELECT p FROM Product p"),
+        @NamedQuery(name = Product.GET_BY_NAME, query = "SELECT p FROM Product p WHERE p.name = :name"),
+        @NamedQuery(name = Product.GET_BY_PARTNUMBER, query = "SELECT p FROM Product p WHERE p.partnumber = :partnumber")
 })
 public class Product {
+
+    public static final String FIND_ALL = "Product.findAll";
+    public static final String GET_BY_NAME = "Product.getByName";
+    public static final String GET_BY_PARTNUMBER = "Product.getByPartnumber";
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PRODUCT_ID")
