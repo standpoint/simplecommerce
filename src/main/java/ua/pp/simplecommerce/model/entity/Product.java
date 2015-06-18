@@ -63,15 +63,15 @@ public class Product {
     private StockStatus stockStatus;
 
     @OneToOne(optional = false, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "PRODUCT_MANUFACTURER_FK")
+    @JoinColumn(name = "MANUFACTURER_FK")
     private Manufacturer manufacturerId;
 
     @OneToOne(optional = false, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "PRODUCT_LANGUAGE_FK")
+    @JoinColumn(name = "LANGUAGE_FK")
     private Language languageId;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "PRODUCT_IMAGE_FK")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "PRODUCT_FK")
     private List<Image> images;
 
     /**

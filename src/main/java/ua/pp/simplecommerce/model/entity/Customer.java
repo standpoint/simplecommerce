@@ -54,11 +54,11 @@ public class Customer {
     @NotNull @Pattern(regexp = "\\+[\\d]{12}")
     private String phone;
 
-    @Column(name = "ACTIVE")
-    private boolean isActive;
+    @Column(name = "ENABLED")
+    private boolean enabled;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "CUSTOMER_ADDRESS_FK")
+    @JoinColumn(name = "ADDRESS_FK")
     private Address address;
 
     @OneToMany(cascade = CascadeType.PERSIST)
@@ -77,21 +77,21 @@ public class Customer {
     }
 
     /**
-     * Creates the Customer instance with required fields
+     * Creates the Customer instance with required fields.
      *
-     * @param login          login name of the customer
+     * @param login         login name of the customer
      * @param password      password
      * @param firstName     first name
      * @param secondName    second name
      * @param email         valid email address
      * @param phone         phone number (e.g. "+380671234567")
-     * @param isActive      user account status (true - user account is active, false - inactive)
+     * @param enabled       user account status (true - user account is enabled, false - inactive)
      * @param address       address reference
      * @param customerTransactions  customer transactions reference
      * @param dateAdded     the date and time of user account creating
      */
     public Customer(String login, String password, String firstName, String secondName, String email,
-                    String phone, boolean isActive, Address address, List<CustomerTransaction> customerTransactions,
+                    String phone, boolean enabled, Address address, List<CustomerTransaction> customerTransactions,
                     Calendar dateAdded) {
         this.login = login;
         this.password = password;
@@ -99,7 +99,7 @@ public class Customer {
         this.secondName = secondName;
         this.email = email;
         this.phone = phone;
-        this.isActive = isActive;
+        this.enabled = enabled;
         this.address = address;
         this.customerTransactions = customerTransactions;
         this.dateAdded = dateAdded;
@@ -161,12 +161,12 @@ public class Customer {
         this.phone = phone;
     }
 
-    public boolean isActive() {
-        return isActive;
+    public boolean isEnabled() {
+        return enabled;
     }
 
-    public void setActive(boolean isActive) {
-        this.isActive = isActive;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public Address getAddress() {

@@ -34,8 +34,8 @@ public class Manufacturer {
     @NotNull @Size(max = 255)
     private String name;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "MANUFACTURER_IMAGE_FK")
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "IMAGE_FK")
     private Image imageId;
 
     /**

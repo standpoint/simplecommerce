@@ -43,7 +43,7 @@ public class Store {
     private String about;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "STORE_FK")
+    @JoinColumn(name = "ADDRESS_FK")
     private Address address;
 
     @NotNull @Size(min = 16, max = 16)
@@ -56,7 +56,7 @@ public class Store {
     private String fax;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "LANGUAGE_STORE_FK")
+    @JoinColumn(name = "LANGUAGE_FK")
     private Language languageId;
 
     /**

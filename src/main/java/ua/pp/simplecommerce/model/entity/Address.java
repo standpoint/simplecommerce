@@ -34,6 +34,14 @@ public class Address {
     @NotNull @Size(max = 255)
     private String address;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "CITY_FK", referencedColumnName = "CITY_ID")
+    private City city;
+
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "COUNTRY_FK", referencedColumnName = "COUNTRY_ID")
+    private Country country;
+
     @NotNull @Pattern(regexp = "[\\d]{5}")
     private String postcode;
 
@@ -44,12 +52,15 @@ public class Address {
 
     /**
      * Creates the Address instance with required fields
-     *
      * @param address   street address (e.g. "I.Lepse av., 8")
+     * @param city      the city name
+     * @param country   the country name
      * @param postcode  zip/post/-code (must has 5 digits, e.g. "31680")
      */
-    public Address(String address, String postcode){
+    public Address(String address, City city, Country country, String postcode){
         this.address = address;
+        this.city = city;
+        this.country = country;
         this.postcode = postcode;
     }
 
@@ -75,5 +86,21 @@ public class Address {
 
     public void setPostcode(String postcode) {
         this.postcode = postcode;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 }

@@ -25,7 +25,6 @@ package ua.pp.simplecommerce.model.entity.enumerations;
  */
 public enum Role {
     ADMINISTRATOR,
-    EMPLOYEE,
-    EMPLOYER,
+    OPERATOR,
     DEMO
 }

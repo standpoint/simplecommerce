@@ -16,8 +16,8 @@
 package ua.pp.simplecommerce.model.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-import java.util.List;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * Entity 'City' contains names of the cities
@@ -34,10 +34,6 @@ public class City {
     @NotNull @Size(max = 45)
     private String city;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "CITY_FK")
-    private List<Address> addresses;
-
     /**
      * For JPA uses only
      */
@@ -47,11 +43,9 @@ public class City {
      * Creates the City instance with required fields
      *
      * @param city      name of the city
-     * @param addresses list of the existing addresses for this city
      */
-    public City(String city, List<Address> addresses){
+    public City(String city){
         this.city = city;
-        this.addresses = addresses;
     }
 
     public Long getCityId() {
@@ -68,13 +62,5 @@ public class City {
 
     public void setCity(String city) {
         this.city = city;
-    }
-
-    public List<Address> getAddresses() {
-        return addresses;
-    }
-
-    public void setAddresses(List<Address> addresses) {
-        this.addresses = addresses;
     }
 }

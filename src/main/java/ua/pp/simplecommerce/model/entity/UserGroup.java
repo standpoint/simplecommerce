@@ -18,7 +18,10 @@ package ua.pp.simplecommerce.model.entity;
 import ua.pp.simplecommerce.model.entity.enumerations.Role;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Entity ''UserGroup' has info about users' groups, such as group name and permission
@@ -40,6 +43,9 @@ public class UserGroup {
 
     @Enumerated(value = EnumType.STRING)
     private Role role;
+
+    @ManyToMany(mappedBy = "userGroups")
+    private List<User> users = new ArrayList<>();
 
     /**
      * For JPA uses only

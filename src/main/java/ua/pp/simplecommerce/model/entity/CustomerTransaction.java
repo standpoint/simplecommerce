@@ -35,6 +35,10 @@ public class CustomerTransaction {
     @Column(name = "CUSTOMER_TRANSACTION_ID")
     private Long customerTransactionId;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "CUSTOMER_TRANSACTION_CUSTOMER_FK", referencedColumnName = "CUSTOMER_ID")
+    private Customer customer;
+
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "CUSTOMER_TRANSACTION_ORDER_FK")
     private Order order;

@@ -26,8 +26,8 @@ import javax.validation.constraints.*;
  */
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "findAllImages", query = "SELECT img FROM Image img"),
-        @NamedQuery(name = "getFFFImage", query = "SELECT img FROM Image img WHERE img.content = 4095")
+        @NamedQuery(name = "getAllImages", query = "SELECT img FROM Image img"),
+        @NamedQuery(name = "getImageByFilename", query = "SELECT img FROM Image img WHERE img.url LIKE :filename")
 })
 public class Image {
 
@@ -36,8 +36,7 @@ public class Image {
     private Long imageId;
 
     @NotNull
-    @Lob @Basic(fetch = FetchType.LAZY)
-    private byte[] content;
+    private String url;
 
     /**
      * For JPA uses only
@@ -47,10 +46,10 @@ public class Image {
     /**
      * Creates the Image instance with required fields
      *
-     * @param content   image content
+     * @param url   url (or filepath) to the image
      */
-    public Image(byte[] content){
-        this.content = content;
+    public Image(String url){
+        this.url = url;
     }
 
     public Long getImageId() {
@@ -61,11 +60,11 @@ public class Image {
         this.imageId = imageId;
     }
 
-    public byte[] getContent() {
-        return content;
+    public String getUrl() {
+        return url;
     }
 
-    public void setContent(byte[] content) {
-        this.content = content;
+    public void setUrl(String content) {
+        this.url = content;
     }
 }

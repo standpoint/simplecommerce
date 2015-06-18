@@ -16,8 +16,8 @@
 package ua.pp.simplecommerce.model.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-import java.util.List;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * Entity 'Country' contains names of the countries
@@ -34,10 +34,6 @@ public class Country {
     @NotNull @Size(max = 45)
     private String country;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "COUNTRY_FK")
-    private List<Address> addresses;
-
     /**
      * For JPA uses only
      */
@@ -47,11 +43,9 @@ public class Country {
      * Creates the Country instance with required fields
      *
      * @param country   name of the country
-     * @param addresses list of the existing addresses in this country
      */
-    public Country(String country, List<Address> addresses){
+    public Country(String country){
         this.country = country;
-        this.addresses = addresses;
     }
 
     public Long getCountryId() {
@@ -70,11 +64,4 @@ public class Country {
         this.country = country;
     }
 
-    public List<Address> getAddresses() {
-        return addresses;
-    }
-
-    public void setAddresses(List<Address> addresses) {
-        this.addresses = addresses;
-    }
 }

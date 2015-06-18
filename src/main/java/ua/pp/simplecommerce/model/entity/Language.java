@@ -39,8 +39,8 @@ public class Language {
     @NotNull @Pattern(regexp = "[a-z]{2}_[A-Z]{2}")
     private String locale;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "LANGUAGE_IMAGE_FK")
+    @OneToOne(fetch = FetchType.EAGER, optional = false, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "IMAGE_FK", referencedColumnName = "IMAGE_ID")
     private Image image;
     private boolean status;
 

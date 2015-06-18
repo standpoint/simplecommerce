@@ -21,6 +21,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -38,9 +39,11 @@ public class User {
     @Column(name = "USER_ID")
     private Long userId;
 
-    @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "USER_GROUP_FK")
-    private List<UserGroup> userGroups;
+    @ManyToMany
+    @JoinTable(name = "JND_USER_GROUP_USER",
+            joinColumns = @JoinColumn(name = "USER_FK"),
+            inverseJoinColumns = @JoinColumn(name = "USER_GROUP_FK"))
+    private List<UserGroup> userGroups = new ArrayList<>();
 
     @NotNull @Size(max = 45)
     @Column(unique = true)
@@ -58,8 +61,8 @@ public class User {
     @NotNull @Email
     private String email;
 
-    @Column(name = "ACTIVE")
-    private boolean isActive;
+    @Column(name = "ENABLED")
+    private boolean enabled;
 
     @Past @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "DATE_ADDED")
@@ -80,18 +83,18 @@ public class User {
      * @param firstName     user' first name
      * @param lastName      user' surname
      * @param email         user' email address
-     * @param isActive      the status of the User. Must be active(true) or inactive(false)
+     * @param enabled      the status of the User
      * @param dateAdded     date and time of adding the User in the database
      */
     public User(List<UserGroup> userGroups, String login, String password, String firstName,
-                String lastName, String email, boolean isActive, Calendar dateAdded) {
+                String lastName, String email, boolean enabled, Calendar dateAdded) {
         this.userGroups = userGroups;
         this.login = login;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.isActive = isActive;
+        this.enabled = enabled;
         this.dateAdded = dateAdded;
     }
 
@@ -151,12 +154,12 @@ public class User {
         this.email = email;
     }
 
-    public boolean isActive() {
-        return isActive;
+    public boolean isEnabled() {
+        return enabled;
     }
 
-    public void setActive(boolean isActive) {
-        this.isActive = isActive;
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 
     public Calendar getDateAdded() {

@@ -39,11 +39,11 @@ public class Category {
     private String description;
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "CATEGORY_LANGUAGE_FK")
+    @JoinColumn(name = "LANGUAGE_FK")
     private Language languageId;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "CATEGORY_IMAGE_FK")
+    @JoinColumn(name = "IMAGE_FK")
     private Image imageId;
 
     @ManyToMany
