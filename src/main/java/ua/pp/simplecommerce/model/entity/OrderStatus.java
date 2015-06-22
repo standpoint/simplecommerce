@@ -13,7 +13,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-package ua.pp.simplecommerce.model.entity.enumerations;
+package ua.pp.simplecommerce.model.entity;
 
 /**
  * An enumeration of the available order' statuses. Uses by the Order entity.

@@ -92,7 +92,7 @@ public class CustomerTransaction {
     }
 
     public String getSummary() {
-        return summary;
+        return order.getSummary();
     }
 
     public void setSummary(String summary) {

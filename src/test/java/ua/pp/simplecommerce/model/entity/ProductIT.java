@@ -17,7 +17,6 @@ package ua.pp.simplecommerce.model.entity;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import ua.pp.simplecommerce.model.entity.enumerations.StockStatus;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -37,6 +36,7 @@ import static junit.framework.TestCase.assertNotNull;
  * Created by volodya on 14.06.2015.
  */
 public class ProductIT {
+
     private static Long ID = 10000000000L;
     private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("ecommerceTestPU");
     private EntityManager em;
@@ -70,17 +70,18 @@ public class ProductIT {
         List<Image> images = new ArrayList<>();
         images.add(image);
         BigDecimal price = new BigDecimal(0.99).setScale(2,BigDecimal.ROUND_HALF_UP);
-        Product product = new Product(categories, "New Product", "PN:0002", "a new product description", 1000,
-                price, StockStatus.IN_STOCK, manufacturer, language, images);
+        Product product = new Product(categories, "New Product", ObjectFactory.DEFAULT_PARTNUMBER,
+                "a new product description", 1000, price, StockStatus.IN_STOCK, manufacturer, language, images);
         tx.begin();
         em.persist(product);
         tx.commit();
+
         assertNotNull("The Product ID can't be Null", product.getProductId());
         product = em.createNamedQuery(Product.GET_BY_NAME, Product.class)
                 .setParameter("name", product.getName())
                 .getSingleResult();
 
-        assertEquals("PN:0002",product.getPartnumber());
+        assertEquals(ObjectFactory.DEFAULT_PARTNUMBER, product.getPartnumber());
     }
 
     @Test(expected = ConstraintViolationException.class)

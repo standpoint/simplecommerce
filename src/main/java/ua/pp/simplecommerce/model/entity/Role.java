@@ -13,15 +13,18 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-package ua.pp.simplecommerce.model.entity.enumerations;
+package ua.pp.simplecommerce.model.entity;
 
 /**
- * An enumeration of the available shipping methods. Uses by the Order entity.
+ * Roles for the groups of the shop users
+ * ADMINISTRATOR - all rights (read/wright)
+ * EMPLOYEE - selective rights (read/wright)
+ * DEMO - rights for demonstration mode (read-only)
  *
  * Created by Vladimir Kamenskiy on 23.03.2015.
  */
-public enum ShippingMethod {
-    PICKUP,
-    POST,
-    YOUR_CARRIER
+public enum Role {
+    ADMINISTRATOR,
+    OPERATOR,
+    DEMO
 }

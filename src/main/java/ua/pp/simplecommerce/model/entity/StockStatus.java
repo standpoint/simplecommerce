@@ -13,18 +13,16 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-package ua.pp.simplecommerce.model.entity.enumerations;
+package ua.pp.simplecommerce.model.entity;
 
 /**
- * Roles for the groups of the shop users
- * ADMINISTRATOR - all rights (read/wright)
- * EMPLOYEE - selective rights (read/wright)
- * DEMO - rights for demonstration mode (read-only)
+ * Status of the products presence at the store warehouse
  *
- * Created by Vladimir Kamenskiy on 23.03.2015.
+ * Created by Vladimir Kamenskiy on 18.03.2015.
  */
-public enum Role {
-    ADMINISTRATOR,
-    OPERATOR,
-    DEMO
+public enum StockStatus {
+    IN_STOCK,
+    OUT_OF_STOCK,
+    EXPECTED,
+    LIMITED_STOCK
 }

@@ -15,8 +15,6 @@
 
 package ua.pp.simplecommerce.model.entity;
 
-import ua.pp.simplecommerce.model.entity.enumerations.StockStatus;
-
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
@@ -36,15 +34,15 @@ import java.util.List;
 })
 public class Product {
 
-    public static final String FIND_ALL = "Product.findAll";
-    public static final String GET_BY_NAME = "Product.getByName";
-    public static final String GET_BY_PARTNUMBER = "Product.getByPartnumber";
+    public static final String FIND_ALL = "findAllProducts";
+    public static final String GET_BY_NAME = "getProductByName";
+    public static final String GET_BY_PARTNUMBER = "getProductByPartnumber";
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "PRODUCT_ID")
     private Long productId;
 
-    @ManyToMany(mappedBy = "products")
+    @ManyToMany(mappedBy = "products", cascade = CascadeType.ALL)
     private List<Category> categories;
 
     @NotNull @Size(max = 255)

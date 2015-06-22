@@ -15,9 +15,6 @@
 
 package ua.pp.simplecommerce.model.entity;
 
-import ua.pp.simplecommerce.model.entity.enumerations.OrderStatus;
-import ua.pp.simplecommerce.model.entity.enumerations.ShippingMethod;
-
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
@@ -103,6 +100,23 @@ public class Order {
         this.amount = amount;
         this.orderStatus = orderStatus;
         this.orderHistoryList = orderHistoryList;
+    }
+
+    public String getSummary() {
+
+        //TODO : there is need to find out the better concept, look and feel and implementation of the 'Order Summary'
+
+        StringBuilder summary = new StringBuilder("Order summary: \n");
+        List<OrderLine> orderLines = getOrderLines();
+        int pos = 0;
+        if(orderLines != null && !orderLines.isEmpty()) {
+            for (OrderLine orderLine : orderLines) {
+                summary.append(++pos + ".\t" + orderLine.toString() + "\n");
+            }
+            summary.append("Amount: " + getAmount());
+            return summary.toString();
+        }
+        return "";
     }
 
     public Long getOrderId() {
