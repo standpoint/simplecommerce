@@ -78,36 +78,91 @@ public class Product {
     private List<Image> images;
 
     /**
-     * For JPA uses only
+     * An implementation of Product' builder.
+     * There are a significant number of the optional parameters, so we won't use both of telescoping constructors
+     * and getters/setters to instantiate the Product entity.
      */
-    public Product(){}
+    public static class Builder {
+        private List<Category> categories;
+        private String name;
+        private Language language;
+        private String partnumber = ObjectFactory.DEFAULT_PARTNUMBER;
+        private String description = ObjectFactory.DEFAULT_PRODUCT_DESCRIPTION;
+        private int quantity = 0;
+        private BigDecimal price = ObjectFactory.DEFAULT_PRICE;
+        private StockStatus stockStatus = StockStatus.OUT_OF_STOCK;
+        private Manufacturer manufacturer = ObjectFactory.getDefaultManufacturer();
+        private List<Image> images = ObjectFactory.getImageList(ObjectFactory.DefaultImages.PRODUCT.getImage());
+
+        /**
+         * @param categories    list of the categories contains this product
+         * @param name          name of the product
+         * @param language      language reference
+         */
+        public Builder(List<Category> categories, String name, Language language) {
+            this.categories = categories;
+            this.name = name;
+            this.language = language;
+        }
+
+        public Builder partnumber(String value) {
+            partnumber = value;
+            return  this;
+        }
+        public Builder description(String value) {
+            description = value;
+            return this;
+        }
+        public Builder quantity(int value) {
+            quantity = value;
+            return this;
+        }
+        public Builder price(BigDecimal value) {
+            price = value;
+            return this;
+        }
+        public Builder stockStatus(StockStatus value) {
+            stockStatus = value;
+            return this;
+        }
+        public Builder manufacturer(Manufacturer value) {
+            manufacturer = value;
+            return this;
+        }
+        public Builder images(List<Image> value) {
+            images = value;
+            return this;
+        }
+
+        public Product build() {
+            return new Product(this);
+        }
+
+    }
+
 
     /**
-     * @param categories    list of the categories contains this product
-     * @param name          name of the product
-     * @param partNumber    product part number
-     * @param description   product description
-     * @param quantity      quantity at the store warehouse
-     * @param price         price
-     * @param stockStatus   status of stock
-     * @param manufacturer  manufacturer reference
-     * @param language      language reference
-     * @param images        list of the item images
+     * Used by Builder to get instance of the Product entity
+     *
+     * @param builder   the Builder object
      */
-    public Product(List<Category> categories, String name, String partNumber, String description, int quantity,
-                   BigDecimal price, StockStatus stockStatus, Manufacturer manufacturer, Language language,
-                   List<Image> images) {
-        this.categories = categories;
-        this.name = name;
-        this.partnumber = partNumber;
-        this.description = description;
-        this.quantity = quantity;
-        this.price = price;
-        this.stockStatus = stockStatus;
-        this.manufacturer = manufacturer;
-        this.language = language;
-        this.images = images;
+    private Product(Builder builder) {
+        this.categories = builder.categories;
+        this.name = builder.name;
+        this.partnumber = builder.partnumber;
+        this.description = builder.description;
+        this.quantity = builder.quantity;
+        this.price = builder.price;
+        this.stockStatus = builder.stockStatus;
+        this.manufacturer = builder.manufacturer;
+        this.language = builder.language;
+        this.images = builder.images;
     }
+
+    /**
+     * For JPA uses only
+     */
+    protected Product() {}
 
     public Long getProductId() {
         return productId;
@@ -177,16 +232,16 @@ public class Product {
         return manufacturer;
     }
 
-    public void setManufacturer(Manufacturer manufacturerId) {
-        this.manufacturer = manufacturerId;
+    public void setManufacturer(Manufacturer manufacturer) {
+        this.manufacturer = manufacturer;
     }
 
     public Language getLanguage() {
         return language;
     }
 
-    public void setLanguage(Language languageId) {
-        this.language = languageId;
+    public void setLanguage(Language language) {
+        this.language = language;
     }
 
     public List<Image> getImages() {

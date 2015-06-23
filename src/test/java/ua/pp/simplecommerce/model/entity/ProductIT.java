@@ -63,13 +63,15 @@ public class ProductIT {
     public void shouldCreateNewProduct() throws Exception {
         List<Category> categories = new ArrayList<>();
         categories.add(em.find(Category.class, ID));
-        Product product = ObjectFactory.getDefaultProduct();
-        product.setCategories(categories);
+        Product product = new Product.Builder(categories, "A product", ObjectFactory.getDefaultLanguage()).build();
         tx.begin();
         em.persist(product);
         tx.commit();
 
         assertNotNull("The Product ID can't be Null", product.getProductId());
+
+        em.detach(product);
+        product.setPartnumber("New partnumber");
         product = em.createNamedQuery(Product.GET_BY_NAME, Product.class)
                 .setParameter("name", product.getName())
                 .getSingleResult();

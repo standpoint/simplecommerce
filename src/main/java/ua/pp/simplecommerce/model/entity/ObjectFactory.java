@@ -39,6 +39,7 @@ public final class ObjectFactory {
     public static final String DEFAULT_STREET_ADDRESS = "I.Lepse av., 8";
     public static final String DEFAULT_POSTCODE = "03680";
     public static final String DEFAULT_PARTNUMBER = "PN:12345";
+    public static final String DEFAULT_PRODUCT_DESCRIPTION = "This is a new product. There is no yet description.";
 
     public enum DefaultImages{
 
@@ -78,9 +79,7 @@ public final class ObjectFactory {
     }
 
     public static Product getDefaultProduct() {
-        return new Product(getCategoryList(getDefaultCategory()), "Default Product", DEFAULT_PARTNUMBER,
-                "This is a default product", DEFAULT_QUANTITY, DEFAULT_PRICE, StockStatus.IN_STOCK,
-                getDefaultManufacturer(), getDefaultLanguage(), getImageList(DefaultImages.PRODUCT.getImage()));
+        return new Product.Builder(getCategoryList(getDefaultCategory()),"A new product",getDefaultLanguage()).build();
     }
 
     public static Manufacturer getDefaultManufacturer() {
