@@ -23,8 +23,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.validation.ConstraintViolationException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
@@ -61,9 +61,9 @@ public class ProductIT {
 
     @Test
     public void shouldCreateNewProduct() throws Exception {
-        List<Category> categories = new ArrayList<>();
+        Set<Category> categories = new HashSet<>();
         categories.add(em.find(Category.class, ID));
-        Product product = new Product.Builder(categories, "A product", ObjectFactory.getDefaultLanguage()).build();
+        Product product = new Product.Builder(categories, "New product", ObjectFactory.getDefaultLanguage()).build();
         tx.begin();
         em.persist(product);
         tx.commit();
@@ -81,7 +81,7 @@ public class ProductIT {
 
     @Test(expected = ConstraintViolationException.class)
     public void shouldRaiseConstraintViolationCauseNullName() {
-        List<Category> categories = new ArrayList<>();
+        Set<Category> categories = new HashSet<>();
         categories.add(em.find(Category.class, ID));
         Product product = ObjectFactory.getDefaultProduct();
         product.setCategories(categories);

@@ -16,10 +16,7 @@
 package ua.pp.simplecommerce.model.entity;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.List;
+import java.util.*;
 
 /**
  * The factory of the entities objects.
@@ -75,31 +72,31 @@ public final class ObjectFactory {
 
     public static Category getDefaultCategory() {
         return new Category("Default Category", "This is a default category", getDefaultLanguage(),
-                DefaultImages.CATEGORY.getImage(), getEmptyProductList());
+                DefaultImages.CATEGORY.getImage(), getEmptyProductSet());
     }
 
     public static Product getDefaultProduct() {
-        return new Product.Builder(getCategoryList(getDefaultCategory()),"A new product",getDefaultLanguage()).build();
+        return new Product.Builder(getCategorySet(getDefaultCategory()),"A new product",getDefaultLanguage()).build();
     }
 
     public static Manufacturer getDefaultManufacturer() {
         return new Manufacturer("Default Manufacturer", DefaultImages.MANUFACTURER.getImage());
     }
 
-    public static List<Product> getEmptyProductList() {
-        return new ArrayList<>();
+    public static Set<Product> getEmptyProductSet() {
+        return new HashSet<>();
     }
 
-    public static List<Product> getProductList(Product ... products) {
-        return new ArrayList<>(Arrays.asList(products));
+    public static Set<Product> getProductList(Product ... products) {
+        return new HashSet<>(Arrays.asList(products));
     }
 
-    public static List<Category> getEmptyCategoryList() {
-        return new ArrayList<>();
+    public static Set<Category> getEmptyCategorySet() {
+        return new HashSet<>();
     }
 
-    public static List<Category> getCategoryList(Category ... categories) {
-        return new ArrayList<>(Arrays.asList(categories));
+    public static Set<Category> getCategorySet(Category... categories) {
+        return new HashSet<>(Arrays.asList(categories));
     }
 
     public static List<Image> getImageList(Image ... images) {

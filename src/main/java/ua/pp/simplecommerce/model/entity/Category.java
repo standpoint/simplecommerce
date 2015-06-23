@@ -16,8 +16,11 @@
 package ua.pp.simplecommerce.model.entity;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Entity 'Category' contains info about categories of products
@@ -50,7 +53,7 @@ public class Category {
     @JoinTable(name = "JND_PRODUCT_CATEGORY",
             joinColumns = @JoinColumn(name = "CATEGORY_FK"),
             inverseJoinColumns = @JoinColumn(name = "PRODUCT_FK"))
-    private List<Product> products;
+    private Set<Product> products = new HashSet<>();
 
     /**
      * For JPA uses only
@@ -67,7 +70,7 @@ public class Category {
      * @param products      list of the products in this category
      */
     public Category(String name, String description, Language language,
-                    Image image, List<Product> products){
+                    Image image, Set<Product> products){
         this.name = name;
         this.description = description;
         this.languageId = language;
@@ -115,11 +118,21 @@ public class Category {
         this.imageId = imageId;
     }
 
-    public List<Product> getProducts() {
+    public Set<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setProducts(Set<Product> products) {
         this.products = products;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return (o instanceof Category) && o != null && name != null && ((Category) o).name.equals(name);
+    }
+
+    @Override
+    public int hashCode() {
+        return name != null ? name.hashCode() : 0;
     }
 }

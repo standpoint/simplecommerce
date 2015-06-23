@@ -14,6 +14,8 @@
  */
 package ua.pp.simplecommerce.model.entity;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
@@ -112,5 +114,15 @@ public class Language {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return o != null && (o instanceof Language) && ((Language) o).code.equals(code);
+    }
+
+    @Override
+    public int hashCode() {
+        return code != null ? code.hashCode() : 0;
     }
 }

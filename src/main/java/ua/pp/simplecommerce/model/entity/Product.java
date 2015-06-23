@@ -15,10 +15,14 @@
 
 package ua.pp.simplecommerce.model.entity;
 
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Entity 'Product' contains info about the store products, like partnumber, description, qty, price, etc.
@@ -43,7 +47,7 @@ public class Product {
     private Long productId;
 
     @ManyToMany(mappedBy = "products")
-    private List<Category> categories;
+    private Set<Category> categories;
 
     @NotNull @Size(max = 255)
     private String name;
@@ -83,7 +87,7 @@ public class Product {
      * and getters/setters to instantiate the Product entity.
      */
     public static class Builder {
-        private List<Category> categories;
+        private Set<Category> categories = new HashSet<>();
         private String name;
         private Language language;
         private String partnumber = ObjectFactory.DEFAULT_PARTNUMBER;
@@ -99,7 +103,7 @@ public class Product {
          * @param name          name of the product
          * @param language      language reference
          */
-        public Builder(List<Category> categories, String name, Language language) {
+        public Builder(Set<Category> categories, String name, Language language) {
             this.categories = categories;
             this.name = name;
             this.language = language;
@@ -172,11 +176,11 @@ public class Product {
         this.productId = productId;
     }
 
-    public List<Category> getCategories() {
+    public Set<Category> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<Category> categories) {
+    public void setCategories(Set<Category> categories) {
         this.categories = categories;
     }
 
@@ -250,6 +254,22 @@ public class Product {
 
     public void setImages(List<Image> images) {
         this.images = images;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return  (o instanceof Product) && o != null && name != null && partnumber != null && language != null
+                && ((Product) o).name.equals(name)
+                && ((Product) o).partnumber.equals(partnumber)
+                && ((Product) o).language.equals(language);
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 11).append(name)
+                .append(partnumber)
+                .append(language)
+                .toHashCode();
     }
 }
 
