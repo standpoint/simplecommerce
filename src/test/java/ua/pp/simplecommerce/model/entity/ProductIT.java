@@ -23,7 +23,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.validation.ConstraintViolationException;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,14 +63,8 @@ public class ProductIT {
     public void shouldCreateNewProduct() throws Exception {
         List<Category> categories = new ArrayList<>();
         categories.add(em.find(Category.class, ID));
-        Manufacturer manufacturer = em.find(Manufacturer.class, ID);
-        Language language = em.find(Language.class, ID);
-        Image image = em.find(Image.class, ID);
-        List<Image> images = new ArrayList<>();
-        images.add(image);
-        BigDecimal price = new BigDecimal(0.99).setScale(2,BigDecimal.ROUND_HALF_UP);
-        Product product = new Product(categories, "New Product", ObjectFactory.DEFAULT_PARTNUMBER,
-                "a new product description", 1000, price, StockStatus.IN_STOCK, manufacturer, language, images);
+        Product product = ObjectFactory.getDefaultProduct();
+        product.setCategories(categories);
         tx.begin();
         em.persist(product);
         tx.commit();
@@ -88,14 +81,9 @@ public class ProductIT {
     public void shouldRaiseConstraintViolationCauseNullName() {
         List<Category> categories = new ArrayList<>();
         categories.add(em.find(Category.class, ID));
-        Manufacturer manufacturer = em.find(Manufacturer.class, ID);
-        Language language = em.find(Language.class, ID);
-        Image image = em.find(Image.class, ID);
-        List<Image> images = new ArrayList<>();
-        images.add(image);
-        BigDecimal price = new BigDecimal(0.01).setScale(2,BigDecimal.ROUND_HALF_UP);
-        Product product = new Product(categories, null, "PN:0002", "a new product description", 0, price,
-                StockStatus.OUT_OF_STOCK, manufacturer, language, images);
+        Product product = ObjectFactory.getDefaultProduct();
+        product.setCategories(categories);
+        product.setName(null);
         em.persist(product);
     }
 }

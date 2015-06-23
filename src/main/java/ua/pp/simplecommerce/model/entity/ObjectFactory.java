@@ -108,7 +108,7 @@ public final class ObjectFactory {
     }
 
     public static Language getDefaultLanguage() {
-        return new Language("English", "045", "en_En", DefaultImages.LANGUAGE.getImage(), true);
+        return new Language("English", "045", "en_EN", DefaultImages.LANGUAGE.getImage(), true);
     }
 
     public static Customer getDefaultCustomer() {

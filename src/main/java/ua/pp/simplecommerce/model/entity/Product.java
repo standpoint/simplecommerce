@@ -42,7 +42,7 @@ public class Product {
     @Column(name = "PRODUCT_ID")
     private Long productId;
 
-    @ManyToMany(mappedBy = "products", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "products")
     private List<Category> categories;
 
     @NotNull @Size(max = 255)
@@ -67,11 +67,11 @@ public class Product {
 
     @OneToOne(optional = false, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "MANUFACTURER_FK")
-    private Manufacturer manufacturerId;
+    private Manufacturer manufacturer;
 
     @OneToOne(optional = false, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "LANGUAGE_FK")
-    private Language languageId;
+    private Language language;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "PRODUCT_FK")
@@ -104,8 +104,8 @@ public class Product {
         this.quantity = quantity;
         this.price = price;
         this.stockStatus = stockStatus;
-        this.manufacturerId = manufacturer;
-        this.languageId = language;
+        this.manufacturer = manufacturer;
+        this.language = language;
         this.images = images;
     }
 
@@ -173,20 +173,20 @@ public class Product {
         this.stockStatus = stockStatus;
     }
 
-    public Manufacturer getManufacturerId() {
-        return manufacturerId;
+    public Manufacturer getManufacturer() {
+        return manufacturer;
     }
 
-    public void setManufacturerId(Manufacturer manufacturerId) {
-        this.manufacturerId = manufacturerId;
+    public void setManufacturer(Manufacturer manufacturerId) {
+        this.manufacturer = manufacturerId;
     }
 
-    public Language getLanguageId() {
-        return languageId;
+    public Language getLanguage() {
+        return language;
     }
 
-    public void setLanguageId(Language languageId) {
-        this.languageId = languageId;
+    public void setLanguage(Language languageId) {
+        this.language = languageId;
     }
 
     public List<Image> getImages() {
