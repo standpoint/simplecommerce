@@ -47,7 +47,7 @@ public class Product {
     private Long productId;
 
     @ManyToMany(mappedBy = "products")
-    private Set<Category> categories;
+    private Set<Category> categories = new HashSet<>();
 
     @NotNull @Size(max = 255)
     private String name;
@@ -87,7 +87,7 @@ public class Product {
      * and getters/setters to instantiate the Product entity.
      */
     public static class Builder {
-        private Set<Category> categories = new HashSet<>();
+        private Set<Category> categories;
         private String name;
         private Language language;
         private String partnumber = ObjectFactory.DEFAULT_PARTNUMBER;
@@ -103,7 +103,7 @@ public class Product {
          * @param name          name of the product
          * @param language      language reference
          */
-        public Builder(Set<Category> categories, String name, Language language) {
+        public Builder(@NotNull(message = "{validation.not_null}") Set<Category> categories, @NotNull String name, @NotNull Language language) {
             this.categories = categories;
             this.name = name;
             this.language = language;
@@ -258,7 +258,7 @@ public class Product {
 
     @Override
     public boolean equals(Object o) {
-        return  (o instanceof Product) && o != null && name != null && partnumber != null && language != null
+        return  (o instanceof Product) && name != null && partnumber != null && language != null
                 && ((Product) o).name.equals(name)
                 && ((Product) o).partnumber.equals(partnumber)
                 && ((Product) o).language.equals(language);

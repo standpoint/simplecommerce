@@ -37,6 +37,7 @@ public final class ObjectFactory {
     public static final String DEFAULT_POSTCODE = "03680";
     public static final String DEFAULT_PARTNUMBER = "PN:12345";
     public static final String DEFAULT_PRODUCT_DESCRIPTION = "This is a new product. There is no yet description.";
+    public static final String DEFAULT_PRODUCT_NAME = "New Product";
 
     public enum DefaultImages{
 
@@ -76,7 +77,8 @@ public final class ObjectFactory {
     }
 
     public static Product getDefaultProduct() {
-        return new Product.Builder(getCategorySet(getDefaultCategory()),"A new product",getDefaultLanguage()).build();
+        return new Product.Builder(getCategorySet(getDefaultCategory()), DEFAULT_PRODUCT_NAME, getDefaultLanguage())
+                .build();
     }
 
     public static Manufacturer getDefaultManufacturer() {
