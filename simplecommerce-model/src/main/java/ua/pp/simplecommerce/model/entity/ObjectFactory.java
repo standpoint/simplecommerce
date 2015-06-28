@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2015. SimpleCommerce.pp.ua
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -12,7 +12,6 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
-
 package ua.pp.simplecommerce.model.entity;
 
 import java.math.BigDecimal;
@@ -22,7 +21,7 @@ import java.util.*;
  * The factory of the entities objects.
  * Uses for the tests as lightweight way to create entity with default parameters.
  *
- * Created by volodya on 22.06.2015.
+ * Created by Vladimir Kamenskiy on 22.06.2015.
  */
 public final class ObjectFactory {
 

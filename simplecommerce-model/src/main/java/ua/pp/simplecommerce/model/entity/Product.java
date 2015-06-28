@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2015. SimpleCommerce.pp.ua
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -12,7 +12,6 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
-
 package ua.pp.simplecommerce.model.entity;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -22,6 +21,7 @@ import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -141,7 +141,6 @@ public class Product {
         public Product build() {
             return new Product(this);
         }
-
     }
 
 
@@ -258,15 +257,22 @@ public class Product {
 
     @Override
     public boolean equals(Object o) {
-        return  (o instanceof Product) && name != null && partnumber != null && language != null
-                && ((Product) o).name.equals(name)
-                && ((Product) o).partnumber.equals(partnumber)
-                && ((Product) o).language.equals(language);
+        if(o == this) {
+            return true;
+        }
+        if(!(o instanceof Product)) {
+            return false;
+        }
+        Product product = (Product) o;
+        return  Objects.equals(product.name, name)
+                && Objects.equals(product.partnumber, partnumber)
+                && Objects.equals(product.language, language);
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder(17, 11).append(name)
+        return new HashCodeBuilder(17, 11)
+                .append(name)
                 .append(partnumber)
                 .append(language)
                 .toHashCode();

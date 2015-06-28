@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2015. SimpleCommerce.pp.ua
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -32,7 +32,7 @@ import static junit.framework.TestCase.assertNotNull;
 /**
  * The integration test for the entity {@link ua.pp.simplecommerce.model.entity.Product}
  *
- * Created by volodya on 14.06.2015.
+ * Created by Vladimir Kamenskiy on 14.06.2015.
  */
 public class ProductIT {
 

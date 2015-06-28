@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2015. SimpleCommerce.pp.ua
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -12,14 +12,13 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
-
 package ua.pp.simplecommerce.model.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.HashSet;
-import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -69,8 +68,7 @@ public class Category {
      * @param image         image reference
      * @param products      list of the products in this category
      */
-    public Category(String name, String description, Language language,
-                    Image image, Set<Product> products){
+    public Category(String name, String description, Language language, Image image, Set<Product> products){
         this.name = name;
         this.description = description;
         this.languageId = language;
@@ -128,11 +126,18 @@ public class Category {
 
     @Override
     public boolean equals(Object o) {
-        return (o instanceof Category) && o != null && name != null && ((Category) o).name.equals(name);
+        if (o == this) {
+            return true;
+        }
+        if (!(o instanceof Category)) {
+            return false;
+        }
+        Category category = (Category)o;
+        return Objects.equals(category.name, name);
     }
 
     @Override
     public int hashCode() {
-        return name != null ? name.hashCode() : 0;
+        return Objects.hashCode(name);
     }
 }

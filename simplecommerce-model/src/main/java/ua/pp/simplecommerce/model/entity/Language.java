@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (c) 2015. SimpleCommerce.pp.ua
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -18,6 +18,7 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.Objects;
 
 /**
  * Entity 'Language' contains attributes of the language, such as language name, code, locale, path, etc
@@ -118,11 +119,18 @@ public class Language {
 
     @Override
     public boolean equals(Object o) {
-        return o != null && (o instanceof Language) && ((Language) o).code.equals(code);
+        if(o == this) {
+            return true;
+        }
+        if(!(o instanceof Language)) {
+            return false;
+        }
+        Language language = (Language) o;
+        return Objects.equals(language.code, code);
     }
 
     @Override
     public int hashCode() {
-        return code != null ? code.hashCode() : 0;
+        return Objects.hashCode(code);
     }
 }
