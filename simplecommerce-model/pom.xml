@@ -10,7 +10,7 @@
     </parent>
     <groupId>ua.pp.simplecommerce</groupId>
     <artifactId>simplecommerce-model</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <name>${project.artifactId}</name>
 
     <build>
         <plugins>

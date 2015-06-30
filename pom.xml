@@ -11,6 +11,7 @@
   <modules>
     <module>simplecommerce-model</module>
     <module>simplecommerce-service</module>
+    <module>simplecommerce-view</module>
   </modules>
 
   <dependencies>
