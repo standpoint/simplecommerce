@@ -25,7 +25,8 @@ import java.util.Calendar;
 import java.util.List;
 
 /**
- * Entity 'User' obtains info about users (or staff) of the store's back-end
+ * Entity 'User' obtains info about users of the store's back-end
+ * (the same as a store staff or operator)
  *
  * Created by Vladimir Kamenskiy on 20.03.2015.
  */
@@ -38,34 +39,15 @@ public class User {
     @Column(name = "USER_ID")
     private Long userId;
 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "USER_DETAILS_FK")
+    private UserDetails userDetails;
+
     @ManyToMany
     @JoinTable(name = "JND_USER_GROUP_USER",
             joinColumns = @JoinColumn(name = "USER_FK"),
             inverseJoinColumns = @JoinColumn(name = "USER_GROUP_FK"))
     private List<UserGroup> userGroups = new ArrayList<>();
-
-    @NotNull @Size(max = 45)
-    @Column(unique = true)
-    private String login;
-
-    @NotNull @Size(max = 255)
-    private String password;
-
-    @Size(max = 255)
-    private String firstName;
-
-    @Size(max = 255)
-    private String lastName;
-
-    @NotNull @Email
-    private String email;
-
-    @Column(name = "ENABLED")
-    private boolean enabled;
-
-    @Past @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "DATE_ADDED")
-    private Calendar dateAdded;
 
     /**
      * For JPA uses only
@@ -76,25 +58,12 @@ public class User {
     /**
      * Creates the User instance with required fields
      *
+     * @param userDetails    Detail information about the user
      * @param userGroups    User Group
-     * @param login      nic-name of the User
-     * @param password      user' password
-     * @param firstName     user' first name
-     * @param lastName      user' surname
-     * @param email         user' email address
-     * @param enabled      the status of the User
-     * @param dateAdded     date and time of adding the User in the database
      */
-    public User(List<UserGroup> userGroups, String login, String password, String firstName,
-                String lastName, String email, boolean enabled, Calendar dateAdded) {
+    public User(UserDetails userDetails, List<UserGroup> userGroups) {
+        this.userDetails = userDetails;
         this.userGroups = userGroups;
-        this.login = login;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.enabled = enabled;
-        this.dateAdded = dateAdded;
     }
 
     public Long getUserId() {
@@ -105,67 +74,19 @@ public class User {
         this.userId = userId;
     }
 
+    public UserDetails getUserDetails() {
+        return userDetails;
+    }
+
+    public void setUserDetails(UserDetails userDetails) {
+        this.userDetails = userDetails;
+    }
+
     public List<UserGroup> getUserGroups() {
         return userGroups;
     }
 
     public void setUserGroups(List<UserGroup> userGroups) {
         this.userGroups = userGroups;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String username) {
-        this.login = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
-    public Calendar getDateAdded() {
-        return dateAdded;
-    }
-
-    public void setDateAdded(Calendar dateAdded) {
-        this.dateAdded = dateAdded;
     }
 }

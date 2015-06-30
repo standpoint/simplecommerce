@@ -12,7 +12,9 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
-package ua.pp.simplecommerce.model.entity;
+package ua.pp.simplecommerce.model.util;
+
+import ua.pp.simplecommerce.model.entity.*;
 
 import java.math.BigDecimal;
 import java.util.*;
@@ -108,13 +110,17 @@ public final class ObjectFactory {
         return new Language("English", "045", "en_EN", DefaultImages.LANGUAGE.getImage(), true);
     }
 
+    public static UserDetails getDefaultUserDetails() {
+        return new UserDetails("customer", "customer", "", "Firstname", "Secondname", "customer@mail.com",
+                DEFAULT_PHONE_NUMBER, getDefaultAddress(), true, getDefaultDate());
+    }
+
     public static Customer getDefaultCustomer() {
-        return new Customer("customer", "customer", "Firstname", "Secondname", "customer@mail.com", DEFAULT_PHONE_NUMBER,
-                true, getDefaultAddress(), getEmptyCustomerTransactionList(), getDefaultDate());
+        return new Customer(getDefaultUserDetails(), getEmptyCustomerTransactionList());
     }
 
     public static CustomerTransaction getCustomerTransaction() {
-        return new CustomerTransaction(getDefaultOrder(), getDefaultOrder().getSummary(),
+        return new CustomerTransaction(getDefaultOrder(), getDefaultCustomer(), getDefaultOrder().getSummary(),
                 DEFAULT_AMOUNT, getDefaultDate());
     }
 

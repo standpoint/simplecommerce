@@ -17,6 +17,7 @@ package ua.pp.simplecommerce.model.entity;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import ua.pp.simplecommerce.model.util.ObjectFactory;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

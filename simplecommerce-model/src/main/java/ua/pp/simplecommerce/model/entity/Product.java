@@ -15,6 +15,7 @@
 package ua.pp.simplecommerce.model.entity;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import ua.pp.simplecommerce.model.util.ObjectFactory;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;

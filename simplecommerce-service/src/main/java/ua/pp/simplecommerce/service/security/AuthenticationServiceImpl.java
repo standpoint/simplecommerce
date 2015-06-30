@@ -27,9 +27,11 @@ import java.util.Arrays;
  */
 public class AuthenticationServiceImpl implements AuthenticationService {
 
-    private final String ALGORITHM = "PBKDF2WithHmacSHA1";
+    private final String PASSWORD_ALGORITHM = "PBKDF2WithHmacSHA1";
+    private final String SALT_ALGORITHM = "SHA1PRNG";
     private final int DERIVED_KEY_LENGTH = 160;
     private final int ITERATIONS = 20000;
+    private final int SALT_SIZE = 8;
     /**
      * Provides authentication process.
      *
@@ -58,7 +60,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public byte[] getEncryptedPassword(String password, byte[] salt) throws NoSuchAlgorithmException, InvalidKeySpecException {
         KeySpec keySpec = new PBEKeySpec(password.toCharArray(), salt, ITERATIONS, DERIVED_KEY_LENGTH);
-        SecretKeyFactory secretKeyFactory = SecretKeyFactory.getInstance(ALGORITHM);
+        SecretKeyFactory secretKeyFactory = SecretKeyFactory.getInstance(PASSWORD_ALGORITHM);
         return secretKeyFactory.generateSecret(keySpec).getEncoded();
     }
 
@@ -70,8 +72,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
      */
     @Override
     public byte[] generateSalt() throws NoSuchAlgorithmException {
-        SecureRandom random = SecureRandom.getInstance("SHA1PRNG");
-        byte[] salt = new byte[8];
+        SecureRandom random = SecureRandom.getInstance(SALT_ALGORITHM);
+        byte[] salt = new byte[SALT_SIZE];
         random.nextBytes(salt);
         return salt;
     }

@@ -37,6 +37,7 @@
         <class>ua.pp.simplecommerce.model.entity.Store</class>
         <class>ua.pp.simplecommerce.model.entity.User</class>
         <class>ua.pp.simplecommerce.model.entity.UserGroup</class>
+        <class>ua.pp.simplecommerce.model.entity.UserDetails</class>
         <properties>
             <property name="javax.persistence.schema-generation.database.action" value="create" />
             <property name="javax.persistence.schema-generation.scripts.create-target" value="create.sql"/>

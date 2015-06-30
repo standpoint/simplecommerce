@@ -67,8 +67,9 @@ public class CustomerTransaction {
      * @param amount    total amount of the order
      * @param dateAdded date and time of this transaction creating
      */
-    public CustomerTransaction(Order order, String summary, BigDecimal amount, Calendar dateAdded) {
+    public CustomerTransaction(Order order, Customer customer, String summary, BigDecimal amount, Calendar dateAdded) {
         this.order = order;
+        this.customer = customer;
         this.summary = summary;
         this.amount = amount;
         this.dateAdded = dateAdded;
@@ -90,8 +91,16 @@ public class CustomerTransaction {
         this.order = order;
     }
 
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
     public String getSummary() {
-        return order.getSummary();
+        return summary;
     }
 
     public void setSummary(String summary) {
