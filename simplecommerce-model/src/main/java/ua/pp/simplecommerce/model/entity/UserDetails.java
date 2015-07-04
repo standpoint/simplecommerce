@@ -14,6 +14,7 @@
  */
 package ua.pp.simplecommerce.model.entity;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.Email;
 
 import javax.persistence.*;
@@ -189,5 +190,20 @@ public class UserDetails {
 
     public void setDateAdded(Calendar dateAdded) {
         this.dateAdded = dateAdded;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("id", userDetailsId)
+                .append("login", login)
+                .append("first name", firstName)
+                .append("last name", lastName)
+                .append("email", email)
+                .append("phone number", phone)
+                .append("address", address)
+                .append("is enabled", enabled)
+                .append("date added", dateAdded)
+                .toString();
     }
 }

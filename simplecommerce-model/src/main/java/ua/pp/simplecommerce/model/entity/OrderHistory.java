@@ -14,6 +14,8 @@
  */
 package ua.pp.simplecommerce.model.entity;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.Calendar;
@@ -78,5 +80,14 @@ public class OrderHistory {
 
     public void setDataAdded(Calendar dataAdded) {
         this.dataAdded = dataAdded;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("id", orderHistoryId)
+                .append("content", content)
+                .append("date added", dataAdded)
+                .toString();
     }
 }

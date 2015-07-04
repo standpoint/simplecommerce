@@ -14,6 +14,8 @@
  */
 package ua.pp.simplecommerce.model.entity;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
@@ -196,5 +198,19 @@ public class Order {
 
     public void setOrderHistoryList(List<OrderHistory> orderHistoryList) {
         this.orderHistoryList = orderHistoryList;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("id", orderId)
+                .append("invoice no.", invoiceNumber)
+                .append("bill to", billTo)
+                .append("ship to", shipTo)
+                .append("shipping method", shippingMethod)
+                .append("comment", comment)
+                .append("amount", amount)
+                .append("order status", orderStatus)
+                .toString();
     }
 }

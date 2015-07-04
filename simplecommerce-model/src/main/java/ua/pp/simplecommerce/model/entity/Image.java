@@ -14,6 +14,8 @@
  */
 package ua.pp.simplecommerce.model.entity;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
@@ -63,7 +65,15 @@ public class Image {
         return url;
     }
 
-    public void setUrl(String content) {
-        this.url = content;
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("id", imageId)
+                .append("image destination", url)
+                .toString();
     }
 }

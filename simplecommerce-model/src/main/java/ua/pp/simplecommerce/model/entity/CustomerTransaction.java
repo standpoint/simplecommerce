@@ -14,6 +14,8 @@
  */
 package ua.pp.simplecommerce.model.entity;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
@@ -121,5 +123,17 @@ public class CustomerTransaction {
 
     public void setDateAdded(Calendar dateAdded) {
         this.dateAdded = dateAdded;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("id", customerTransactionId)
+                .append("customer", customer)
+                .append("order", order)
+                .append("summary", summary)
+                .append("amount", amount)
+                .append("date added", dateAdded)
+                .toString();
     }
 }

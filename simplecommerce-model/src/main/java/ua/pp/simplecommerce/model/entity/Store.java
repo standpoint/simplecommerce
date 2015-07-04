@@ -14,8 +14,11 @@
  */
 package ua.pp.simplecommerce.model.entity;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * Entity 'Store' contains global properties of the store like Name, Email, Description, etc.
@@ -169,5 +172,10 @@ public class Store {
 
     public void setLanguageId(Language languageId) {
         this.languageId = languageId;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this).reflectionToString(this);
     }
 }

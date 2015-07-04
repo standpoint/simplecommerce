@@ -14,6 +14,8 @@
  */
 package ua.pp.simplecommerce.model.entity;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -69,5 +71,13 @@ public class Customer {
 
     public void setCustomerTransactions(List<CustomerTransaction> customerTransactions) {
         this.customerTransactions = customerTransactions;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("id", customerId)
+                .append("customer details", customerDetails)
+                .toString();
     }
 }

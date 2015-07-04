@@ -20,12 +20,22 @@ package ua.pp.simplecommerce.model.entity;
  * Created by Vladimir Kamenskiy on 23.03.2015.
  */
 public enum OrderStatus {
-    CANCELED,
-    CHARGE_BACK,
-    COMPLETE,
-    DENIED,
-    EXPIRED,
-    PENDING,
-    PROCESSED,
-    SHIPPED
+    CANCELED("canceled"),
+    CHARGE_BACK("charge back"),
+    COMPLETE("complete"),
+    DENIED("denied"),
+    EXPIRED("expired"),
+    PENDING("pending"),
+    PROCESSED("processed"),
+    SHIPPED("shipped");
+
+    private final String status;
+    OrderStatus(String status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString(){
+        return status;
+    }
 }

@@ -23,7 +23,17 @@ package ua.pp.simplecommerce.model.entity;
  * Created by Vladimir Kamenskiy on 23.03.2015.
  */
 public enum Role {
-    ADMINISTRATOR,
-    OPERATOR,
-    DEMO
+    ADMINISTRATOR("Administrator"),
+    OPERATOR("Store operator"),
+    DEMO("Demo user");
+
+    private final String role;
+    Role(String role) {
+        this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return  role;
+    }
 }

@@ -102,4 +102,15 @@ public class Address {
     public void setCountry(Country country) {
         this.country = country;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder postAddress = new StringBuilder();
+        String delimiter = ", ";
+        postAddress.append(address + delimiter)
+                .append(city + delimiter)
+                .append(country + delimiter)
+                .append(postcode);
+        return postAddress.toString();
+    }
 }

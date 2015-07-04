@@ -14,14 +14,10 @@
  */
 package ua.pp.simplecommerce.model.entity;
 
-import org.hibernate.validator.constraints.Email;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Size;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -88,5 +84,10 @@ public class User {
 
     public void setUserGroups(List<UserGroup> userGroups) {
         this.userGroups = userGroups;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this).reflectionToString(this);
     }
 }

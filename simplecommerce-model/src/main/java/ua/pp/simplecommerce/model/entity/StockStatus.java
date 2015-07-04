@@ -20,8 +20,18 @@ package ua.pp.simplecommerce.model.entity;
  * Created by Vladimir Kamenskiy on 18.03.2015.
  */
 public enum StockStatus {
-    IN_STOCK,
-    OUT_OF_STOCK,
-    EXPECTED,
-    LIMITED_STOCK
+    IN_STOCK("In stock"),
+    OUT_OF_STOCK("Out of stock"),
+    EXPECTED("Expected"),
+    LIMITED_STOCK("Limited stock");
+
+    private final String status;
+    StockStatus(String status) {
+        this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return status;
+    }
 }

@@ -20,7 +20,17 @@ package ua.pp.simplecommerce.model.entity;
  * Created by Vladimir Kamenskiy on 23.03.2015.
  */
 public enum ShippingMethod {
-    PICKUP,
-    POST,
-    YOUR_CARRIER
+    PICKUP("Pickup"),
+    POST("Post"),
+    YOUR_CARRIER("Your carrier");
+
+    private final String method;
+    ShippingMethod(String method) {
+        this.method = method;
+    }
+
+    @Override
+    public String toString() {
+        return method;
+    }
 }

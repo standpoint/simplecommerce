@@ -14,6 +14,8 @@
  */
 package ua.pp.simplecommerce.model.entity;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
@@ -35,7 +37,7 @@ public class Manufacturer {
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "IMAGE_FK")
-    private Image imageId;
+    private Image image;
 
     /**
      * For JPA uses only
@@ -50,7 +52,7 @@ public class Manufacturer {
      */
     public Manufacturer(String name, Image image){
         this.name = name;
-        this.imageId = image;
+        this.image = image;
     }
 
     public Long getManufacturerId() {
@@ -69,11 +71,20 @@ public class Manufacturer {
         this.name = name;
     }
 
-    public Image getImageId() {
-        return imageId;
+    public Image getImage() {
+        return image;
     }
 
-    public void setImageId(Image imageId) {
-        this.imageId = imageId;
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("id", manufacturerId)
+                .append("name", name)
+                .append("image", image)
+                .toString();
     }
 }

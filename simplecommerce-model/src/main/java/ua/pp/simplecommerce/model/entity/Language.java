@@ -14,10 +14,12 @@
  */
 package ua.pp.simplecommerce.model.entity;
 
-import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 /**
@@ -132,5 +134,17 @@ public class Language {
     @Override
     public int hashCode() {
         return Objects.hashCode(code);
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("id", languageId)
+                .append("name", name)
+                .append("code", code)
+                .append("locale", locale)
+                .append("image", image)
+                .append("status", status)
+                .toString();
     }
 }

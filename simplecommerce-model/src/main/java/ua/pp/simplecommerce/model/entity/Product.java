@@ -15,6 +15,7 @@
 package ua.pp.simplecommerce.model.entity;
 
 import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 import ua.pp.simplecommerce.model.util.ObjectFactory;
 
 import javax.persistence.*;
@@ -277,6 +278,20 @@ public class Product {
                 .append(partnumber)
                 .append(language)
                 .toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("id", productId)
+                .append("name", name)
+                .append("part number", partnumber)
+                .append("description", description)
+                .append("quantity", quantity)
+                .append("price", price)
+                .append("stock status", stockStatus)
+                .append("manufacurer", manufacturer.getName())
+                .toString();
     }
 }
 
