@@ -90,7 +90,7 @@ public final class ObjectFactory {
         return new HashSet<>();
     }
 
-    public static Set<Product> getProductList(Product ... products) {
+    public static Set<Product> getProductSet(Product... products) {
         return new HashSet<>(Arrays.asList(products));
     }
 

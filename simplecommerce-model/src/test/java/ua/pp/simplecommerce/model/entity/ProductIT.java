@@ -41,7 +41,8 @@ public class ProductIT extends AbstractPersistentTest {
     public void shouldCreateNewProduct() throws Exception {
         Set<Category> categories = new HashSet<>();
         categories.add(em.find(Category.class, START_ID));
-        Product product = new Product.Builder(categories, "New product", ObjectFactory.getDefaultLanguage()).build();
+        Language language = em.find(Language.class, START_ID);
+        Product product = new Product.Builder(categories, "New product", language).build();
         tx.begin();
         em.persist(product);
         tx.commit();

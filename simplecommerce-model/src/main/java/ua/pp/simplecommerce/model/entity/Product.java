@@ -75,7 +75,7 @@ public class Product {
     @JoinColumn(name = "MANUFACTURER_FK")
     private Manufacturer manufacturer;
 
-    @OneToOne(optional = false, cascade = CascadeType.PERSIST)
+    @OneToOne(optional = false)
     @JoinColumn(name = "LANGUAGE_FK")
     private Language language;
 

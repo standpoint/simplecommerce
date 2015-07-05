@@ -28,7 +28,16 @@ import java.util.Set;
  */
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = Category.FIND_ALL, query = "SELECT c FROM Category c"),
+        @NamedQuery(name = Category.FIND_BY_NAME, query = "SELECT c FROM Category c WHERE c.name = :name"),
+        @NamedQuery(name = Category.FIND_BY_PRODUCT, query = "SELECT c FROM Category c INNER JOIN c.products p WHERE p.name = :name")
+})
 public class Category {
+
+    public static final String FIND_ALL = "findAllCategories";
+    public static final String FIND_BY_NAME = "findCategoryByName";
+    public static final String FIND_BY_PRODUCT = "findCategoriesWithProduct";
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CATEGORY_ID")
@@ -42,13 +51,13 @@ public class Category {
 
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "LANGUAGE_FK")
-    private Language languageId;
+    private Language language;
 
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "IMAGE_FK")
-    private Image imageId;
+    private Image image;
 
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "JND_PRODUCT_CATEGORY",
             joinColumns = @JoinColumn(name = "CATEGORY_FK"),
             inverseJoinColumns = @JoinColumn(name = "PRODUCT_FK"))
@@ -71,8 +80,8 @@ public class Category {
     public Category(String name, String description, Language language, Image image, Set<Product> products){
         this.name = name;
         this.description = description;
-        this.languageId = language;
-        this.imageId = image;
+        this.language = language;
+        this.image = image;
         this.products = products;
     }
 
@@ -100,20 +109,20 @@ public class Category {
         this.description = description;
     }
 
-    public Language getLanguageId() {
-        return languageId;
+    public Language getLanguage() {
+        return language;
     }
 
-    public void setLanguageId(Language languageId) {
-        this.languageId = languageId;
+    public void setLanguage(Language language) {
+        this.language = language;
     }
 
-    public Image getImageId() {
-        return imageId;
+    public Image getImage() {
+        return image;
     }
 
-    public void setImageId(Image imageId) {
-        this.imageId = imageId;
+    public void setImage(Image image) {
+        this.image = image;
     }
 
     public Set<Product> getProducts() {

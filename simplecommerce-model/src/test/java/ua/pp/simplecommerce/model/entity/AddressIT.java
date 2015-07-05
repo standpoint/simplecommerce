@@ -25,7 +25,7 @@ import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
 
 /**
- * Created by volodya on 05.07.2015.
+ * Created by Vladimir Kamenskiy on 05.07.2015.
  */
 public class AddressIT extends AbstractPersistentTest {
 
@@ -60,7 +60,7 @@ public class AddressIT extends AbstractPersistentTest {
     @Test(expected = ConstraintViolationException.class)
     public void shouldRaiseConstraintViolationCauseWrongPostcode() {
         Address address = ObjectFactory.getDefaultAddress();
-        address.setPostcode(null);
+        address.setPostcode("0xxxx");
         em.persist(address);
     }
 }
