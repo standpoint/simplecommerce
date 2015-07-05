@@ -24,7 +24,28 @@ import javax.validation.constraints.*;
  * Created by Vladimir Kamenskiy on 16.03.2015.
  */
 @Entity
+@NamedQueries({
+        @NamedQuery(name = Address.FIND_BY_COUNTRY,
+                query = "SELECT ad FROM Address ad " +
+                        "WHERE ad.country = :country"),
+        @NamedQuery(name = Address.FIND_BY_CITY,
+                query = "SELECT ad FROM Address ad " +
+                        "WHERE ad.city = :city"),
+        @NamedQuery(name = Address.FIND_BY_DETAILS,
+                query = "SELECT ad FROM Address ad " +
+                        "WHERE ad.country = :country AND " +
+                        "ad.city = :city AND " +
+                        "ad.address = :address"),
+        @NamedQuery(name = Address.FIND_POSTCODE,
+                query = "SELECT ad FROM Address ad " +
+                        "WHERE ad.postcode = :postcode")
+})
 public class Address {
+
+    public static final String FIND_BY_COUNTRY = "findAddressesByCountry";
+    public static final String FIND_BY_CITY = "findAddressesByCity";
+    public static final String FIND_BY_DETAILS = "findAddressesByCountryCityStreetAddress";
+    public static final String FIND_POSTCODE = "findAddressesByPostcode";
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ADDRESS_ID")
@@ -33,11 +54,11 @@ public class Address {
     @NotNull @Size(max = 255)
     private String address;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "CITY_FK", referencedColumnName = "CITY_ID")
     private City city;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "COUNTRY_FK", referencedColumnName = "COUNTRY_ID")
     private Country country;
 

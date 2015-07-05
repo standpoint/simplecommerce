@@ -14,15 +14,9 @@
  */
 package ua.pp.simplecommerce.model.entity;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import ua.pp.simplecommerce.model.util.ObjectFactory;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
 import javax.validation.ConstraintViolationException;
 import java.util.HashSet;
 import java.util.Set;
@@ -35,41 +29,24 @@ import static junit.framework.TestCase.assertNotNull;
  *
  * Created by Vladimir Kamenskiy on 14.06.2015.
  */
-public class ProductIT {
-
-    private static Long ID = 10000000000L;
-    private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("ecommerceTestPU");
-    private EntityManager em;
-    private EntityTransaction tx;
-
-    @Before
-    public void initEntityManager() throws Exception {
-        em = emf.createEntityManager();
-        tx = em.getTransaction();
-    }
-    @After
-    public void closeEntityManager() throws Exception {
-        if (em != null) {
-            em.close();
-        }
-    }
+public class ProductIT extends AbstractPersistentTest {
 
     @Test
     public void shouldFindTheProduct() throws Exception {
-        Product product = em.find(Product.class, ID);
+        Product product = em.find(Product.class, START_ID);
         assertEquals("The Product", product.getName());
     }
 
     @Test
     public void shouldCreateNewProduct() throws Exception {
         Set<Category> categories = new HashSet<>();
-        categories.add(em.find(Category.class, ID));
+        categories.add(em.find(Category.class, START_ID));
         Product product = new Product.Builder(categories, "New product", ObjectFactory.getDefaultLanguage()).build();
         tx.begin();
         em.persist(product);
         tx.commit();
 
-        assertNotNull("The Product ID can't be Null", product.getProductId());
+        assertNotNull("The Product id can't be null", product.getProductId());
 
         em.detach(product);
         product.setPartnumber("New partnumber");
@@ -83,7 +60,7 @@ public class ProductIT {
     @Test(expected = ConstraintViolationException.class)
     public void shouldRaiseConstraintViolationCauseNullName() {
         Set<Category> categories = new HashSet<>();
-        categories.add(em.find(Category.class, ID));
+        categories.add(em.find(Category.class, START_ID));
         Product product = ObjectFactory.getDefaultProduct();
         product.setCategories(categories);
         product.setName(null);
