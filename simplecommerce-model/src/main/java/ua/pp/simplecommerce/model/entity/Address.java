@@ -88,40 +88,45 @@ public class Address {
         return addressId;
     }
 
-    public void setAddressId(Long addressId) {
+    public Address setAddressId(Long addressId) {
         this.addressId = addressId;
+        return this;
     }
 
     public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public Address setAddress(String address) {
         this.address = address;
+        return this;
     }
 
     public String getPostcode() {
         return postcode;
     }
 
-    public void setPostcode(String postcode) {
+    public Address setPostcode(String postcode) {
         this.postcode = postcode;
+        return this;
     }
 
     public City getCity() {
         return city;
     }
 
-    public void setCity(City city) {
+    public Address setCity(City city) {
         this.city = city;
+        return this;
     }
 
     public Country getCountry() {
         return country;
     }
 
-    public void setCountry(Country country) {
+    public Address setCountry(Country country) {
         this.country = country;
+        return this;
     }
 
     @Override

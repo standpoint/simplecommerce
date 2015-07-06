@@ -17,6 +17,7 @@ package ua.pp.simplecommerce.model.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Objects;
 
 /**
  * Entity 'City' contains names of the cities
@@ -24,7 +25,14 @@ import javax.validation.constraints.Size;
  * Created by Vladimir Kamenskiy on 16.03.2015.
  */
 @Entity
-public class City {
+@NamedQueries({
+        @NamedQuery(name = City.FIND_ALL, query = "SELECT c FROM City c"),
+        @NamedQuery(name = City.FIND_BY_NAME, query = "SELECT c FROM City c WHERE c.city LIKE :name")
+})
+public class City implements Comparable<City> {
+
+    public static final String FIND_ALL = "findAllCities";
+    public static final String FIND_BY_NAME = "findCitiesWithName";
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CITY_ID")
@@ -51,16 +59,40 @@ public class City {
         return cityId;
     }
 
-    public void setCityId(Long cityId) {
+    public City setCityId(Long cityId) {
         this.cityId = cityId;
+        return this;
     }
 
     public String getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public City setCity(String city) {
         this.city = city;
+        return this;
+    }
+
+    @Override
+    public int compareTo(City c) {
+        return city.compareToIgnoreCase(c.city);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == this) {
+            return true;
+        }
+        if (o == null || city == null || !(o instanceof City)) {
+            return false;
+        }
+        City c = (City) o;
+        return city.equalsIgnoreCase(c.city);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(city);
     }
 
     @Override

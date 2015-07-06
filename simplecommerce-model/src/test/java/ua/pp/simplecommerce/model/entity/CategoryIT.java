@@ -18,6 +18,7 @@ package ua.pp.simplecommerce.model.entity;
 import org.junit.Test;
 import ua.pp.simplecommerce.model.util.ObjectFactory;
 
+import javax.validation.ConstraintViolationException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -42,27 +43,21 @@ public class CategoryIT extends AbstractPersistentTest {
     }
 
     @Test
-    public void shouldFindByDistinctProduct() {
+    public void shouldFindCategoryByDistinctProduct() {
         Set<Product> productSet1 = new HashSet<>();
         Set<Product> productSet2 = new HashSet<>();
         Language language = em.find(Language.class, START_ID);
         Category category1 = ObjectFactory.getDefaultCategory();
         Category category2 = ObjectFactory.getDefaultCategory();
-        category1.setProducts(productSet1);
-        category1.setName("Category 1");
-        category1.setLanguage(language);
-        category2.setProducts(productSet2);
-        category2.setName("Category 2");
-        category2.setLanguage(language);
+        category1.setProducts(productSet1).setName("Category 1").setLanguage(language);
+        category2.setProducts(productSet2).setName("Category 2").setLanguage(language);
         for(int i = 1; i <= 3; i++){
             Product product1 = ObjectFactory.getDefaultProduct();
             Product product2 = ObjectFactory.getDefaultProduct();
-            product1.setName("Product #1" + i);
-            product1.setLanguage(language);
-            product1.setCategories(ObjectFactory.getCategorySet(category1));
-            product2.setName("Product #2" + i);
-            product2.setLanguage(language);
-            product2.setCategories(ObjectFactory.getCategorySet(category2));
+            product1.setName("Product #" + i + " in Category #1").setLanguage(language)
+                    .setCategories(ObjectFactory.getCategorySet(category1));
+            product2.setName("Product #" + i + " in Category #2").setLanguage(language)
+                    .setCategories(ObjectFactory.getCategorySet(category2));
             productSet1.add(product1);
             productSet2.add(product2);
         }
@@ -71,9 +66,15 @@ public class CategoryIT extends AbstractPersistentTest {
         em.persist(category2);
         tx.commit();
         List<Category> categories = em.createNamedQuery(Category.FIND_BY_PRODUCT, Category.class)
-                .setParameter("name", "Product #23")
+                .setParameter("name", "Product #3 in Category #2")
                 .getResultList();
-        assertEquals(1,categories.size());
+        assertEquals(1, categories.size());
         assertEquals("Category 2", categories.get(0).getName());
+    }
+
+    @Test(expected = ConstraintViolationException.class)
+    public void shouldRaiseConstraintViolationCauseNullName() {
+        Category category = ObjectFactory.getDefaultCategory().setLanguage(em.find(Language.class, START_ID));
+        em.persist(category.setName(null));
     }
 }

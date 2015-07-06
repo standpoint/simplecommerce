@@ -59,12 +59,9 @@ public class ProductIT extends AbstractPersistentTest {
     }
 
     @Test(expected = ConstraintViolationException.class)
-    public void shouldRaiseConstraintViolationCauseNullName() {
+    public void shouldRaiseConstraintViolationCauseNoCategoryAssignedToTheProduct() {
         Set<Category> categories = new HashSet<>();
-        categories.add(em.find(Category.class, START_ID));
         Product product = ObjectFactory.getDefaultProduct();
-        product.setCategories(categories);
-        product.setName(null);
-        em.persist(product);
+        em.persist(product.setCategories(categories));
     }
 }

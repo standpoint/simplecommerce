@@ -48,6 +48,7 @@ public class Product {
     @Column(name = "PRODUCT_ID")
     private Long productId;
 
+    @Size(min = 1)
     @ManyToMany(mappedBy = "products")
     private Set<Category> categories = new HashSet<>();
 
@@ -105,7 +106,8 @@ public class Product {
          * @param name          name of the product
          * @param language      language reference
          */
-        public Builder(@NotNull(message = "{validation.not_null}") Set<Category> categories, @NotNull String name, @NotNull Language language) {
+        public Builder(@NotNull(message = "{validation.not_null}") Set<Category> categories,
+                       @NotNull String name, @NotNull Language language) {
             this.categories = categories;
             this.name = name;
             this.language = language;
@@ -173,88 +175,99 @@ public class Product {
         return productId;
     }
 
-    public void setProductId(Long productId) {
+    public Product setProductId(Long productId) {
         this.productId = productId;
+        return this;
     }
 
     public Set<Category> getCategories() {
         return categories;
     }
 
-    public void setCategories(Set<Category> categories) {
+    public Product setCategories(Set<Category> categories) {
         this.categories = categories;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public Product setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getPartnumber() {
         return partnumber;
     }
 
-    public void setPartnumber(String partnumber) {
+    public Product setPartnumber(String partnumber) {
         this.partnumber = partnumber;
+        return this;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public Product setDescription(String description) {
         this.description = description;
+        return this;
     }
 
     public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public Product setQuantity(int quantity) {
         this.quantity = quantity;
+        return this;
     }
 
     public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public Product setPrice(BigDecimal price) {
         this.price = price;
+        return this;
     }
 
     public StockStatus getStockStatus() {
         return stockStatus;
     }
 
-    public void setStockStatus(StockStatus stockStatus) {
+    public Product setStockStatus(StockStatus stockStatus) {
         this.stockStatus = stockStatus;
+        return this;
     }
 
     public Manufacturer getManufacturer() {
         return manufacturer;
     }
 
-    public void setManufacturer(Manufacturer manufacturer) {
+    public Product setManufacturer(Manufacturer manufacturer) {
         this.manufacturer = manufacturer;
+        return this;
     }
 
     public Language getLanguage() {
         return language;
     }
 
-    public void setLanguage(Language language) {
+    public Product setLanguage(Language language) {
         this.language = language;
+        return this;
     }
 
     public List<Image> getImages() {
         return images;
     }
 
-    public void setImages(List<Image> images) {
+    public Product setImages(List<Image> images) {
         this.images = images;
+        return this;
     }
 
     @Override

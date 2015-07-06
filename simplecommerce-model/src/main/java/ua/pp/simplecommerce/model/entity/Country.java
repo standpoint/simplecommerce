@@ -17,6 +17,7 @@ package ua.pp.simplecommerce.model.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Objects;
 
 /**
  * Entity 'Country' contains names of the countries
@@ -24,7 +25,14 @@ import javax.validation.constraints.Size;
  * Created by Vladimir Kamenskiy on 16.03.2015.
  */
 @Entity
-public class Country {
+@NamedQueries({
+        @NamedQuery(name = Country.FIND_ALL, query = "SELECT c FROM Country c"),
+        @NamedQuery(name = Country.FIND_BY_NAME, query = "SELECT c FROM Country c WHERE c.country LIKE :name")
+})
+public class Country implements Comparable<Country> {
+
+    public static final String FIND_ALL = "findAllCountries";
+    public static final String FIND_BY_NAME = "findCountriesWithName";
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "COUNTRY_ID")
@@ -64,7 +72,29 @@ public class Country {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || country == null || !(o instanceof Country)) {
+            return false;
+        }
+        Country c = (Country) o;
+        return country.equalsIgnoreCase(c.country);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(country);
+    }
+
+    @Override
     public String toString() {
         return country;
+    }
+
+    @Override
+    public int compareTo(Country c) {
+        return country.compareToIgnoreCase(c.country);
     }
 }

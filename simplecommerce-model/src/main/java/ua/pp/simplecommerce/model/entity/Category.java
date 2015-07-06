@@ -89,48 +89,54 @@ public class Category {
         return categoryId;
     }
 
-    public void setCategoryId(Long categoryId) {
+    public Category setCategoryId(Long categoryId) {
         this.categoryId = categoryId;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public Category setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public Category setDescription(String description) {
         this.description = description;
+        return this;
     }
 
     public Language getLanguage() {
         return language;
     }
 
-    public void setLanguage(Language language) {
+    public Category setLanguage(Language language) {
         this.language = language;
+        return this;
     }
 
     public Image getImage() {
         return image;
     }
 
-    public void setImage(Image image) {
+    public Category setImage(Image image) {
         this.image = image;
+        return this;
     }
 
     public Set<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(Set<Product> products) {
+    public Category setProducts(Set<Product> products) {
         this.products = products;
+        return this;
     }
 
     @Override

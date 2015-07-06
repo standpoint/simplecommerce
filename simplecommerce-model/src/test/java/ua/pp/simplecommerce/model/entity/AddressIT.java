@@ -60,7 +60,6 @@ public class AddressIT extends AbstractPersistentTest {
     @Test(expected = ConstraintViolationException.class)
     public void shouldRaiseConstraintViolationCauseWrongPostcode() {
         Address address = ObjectFactory.getDefaultAddress();
-        address.setPostcode("0xxxx");
-        em.persist(address);
+        em.persist(address.setPostcode("0xxxx"));
     }
 }
