@@ -18,6 +18,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * The entity 'Customer' has customer' details, such as name, address, email, status, orders etc.
@@ -26,7 +27,22 @@ import java.util.List;
  */
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = Customer.FIND_ALL, query = "SELECT c FROM Customer c"),
+        @NamedQuery(name = Customer.FIND_BY_ANY_NAME,
+                query = "SELECT c FROM Customer c JOIN c.customerDetails d " +
+                        "WHERE d.firstName LIKE :name " +
+                        "OR d.lastName LIKE :name " +
+                        "OR d.login LIKE :name"),
+        @NamedQuery(name = Customer.FIND_BY_EMAIL,
+                query = "SELECT c FROM Customer c JOIN c.customerDetails d " +
+                        "WHERE d.email = :email")
+})
 public class Customer {
+
+    public static final String FIND_ALL = "findAllCustomers";
+    public static final String FIND_BY_ANY_NAME = "findCustomesWithFirstNameOrLastNameOrLogin";
+    public static final String FIND_BY_EMAIL = "findCustomersByEmail";
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CUSTOMER_ID")
@@ -61,16 +77,44 @@ public class Customer {
         return customerId;
     }
 
-    public void setCustomerId(Long customerId) {
+    public Customer setCustomerId(Long customerId) {
         this.customerId = customerId;
+        return this;
+    }
+
+    public UserDetails getCustomerDetails() {
+        return customerDetails;
+    }
+
+    public Customer setCustomerDetails(UserDetails customerDetails) {
+        this.customerDetails = customerDetails;
+        return this;
     }
 
     public List<CustomerTransaction> getCustomerTransactions() {
         return customerTransactions;
     }
 
-    public void setCustomerTransactions(List<CustomerTransaction> customerTransactions) {
+    public Customer setCustomerTransactions(List<CustomerTransaction> customerTransactions) {
         this.customerTransactions = customerTransactions;
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Customer)) {
+            return false;
+        }
+        Customer customer = (Customer) o;
+        return Objects.equals(customerDetails, customer.customerDetails);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(customerDetails);
     }
 
     @Override

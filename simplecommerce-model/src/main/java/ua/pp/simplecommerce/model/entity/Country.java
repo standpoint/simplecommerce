@@ -59,16 +59,18 @@ public class Country implements Comparable<Country> {
         return countryId;
     }
 
-    public void setCountryId(Long countryId) {
+    public Country setCountryId(Long countryId) {
         this.countryId = countryId;
+        return this;
     }
 
     public String getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public Country setCountry(String country) {
         this.country = country;
+        return this;
     }
 
     @Override
