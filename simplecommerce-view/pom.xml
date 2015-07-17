@@ -35,6 +35,14 @@
         <module>simplecommerce-web-view</module>
     </modules>
 
+    <dependencies>
+        <dependency>
+            <groupId>javax.faces</groupId>
+            <artifactId>jsf-api</artifactId>
+            <version>2.1</version>
+        </dependency>
+    </dependencies>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <headerBaseDir>${basedir}/..</headerBaseDir>
