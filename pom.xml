@@ -175,11 +175,14 @@
               <exclude>**/*.txt</exclude>
               <exclude>**/*.sql</exclude>
               <exclude>**/*.css</exclude>
+              <exclude>**/*.xhtml</exclude>
+              <exclude>**/*.xml</exclude>
+              <exclude>**/*.html</exclude>
               <exclude>**/.*</exclude>
               <exclude>**/empty</exclude>
               <exclude>**/lib/**</exclude>
               <exclude>**/wro/**</exclude>
-              <exclude>**/META-INF/context.xml</exclude>
+              <exclude>**/META-INF/*-context.xml</exclude>
             </excludes>
             <useDefaultExcludes>true</useDefaultExcludes>
             <strictCheck>true</strictCheck>

@@ -12,7 +12,7 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
-package ua.pp.simplecommerce.controller;
+package ua.pp.simplecommerce.web.controller;
 
 import javax.faces.bean.RequestScoped;
 import javax.inject.Named;
