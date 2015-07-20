@@ -14,6 +14,9 @@
  */
 package ua.pp.simplecommerce.model.entity;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
@@ -127,6 +130,33 @@ public class Address {
     public Address setCountry(Country country) {
         this.country = country;
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Address)) {
+            return false;
+        }
+        Address address1 = (Address) o;
+        return new EqualsBuilder()
+                .append(address, address1.address)
+                .append(city, address1.city)
+                .append(country, address1.country)
+                .append(postcode, address1.postcode)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(address)
+                .append(city)
+                .append(country)
+                .append(postcode)
+                .toHashCode();
     }
 
     @Override

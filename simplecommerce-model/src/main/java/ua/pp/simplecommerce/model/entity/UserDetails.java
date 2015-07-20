@@ -14,6 +14,8 @@
  */
 package ua.pp.simplecommerce.model.entity;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.validator.constraints.Email;
 
@@ -30,7 +32,8 @@ import java.util.Calendar;
  * Created by Vladimir Kamenskiy on 30.06.2015.
  */
 @Entity
-@Table(name = "USER_DETAILS")
+@Table(name = "USER_DETAILS",
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"LOGIN"})})
 @NamedQueries({
         @NamedQuery(name = UserDetails.FIND_ALL, query = "SELECT d FROM UserDetails d"),
         @NamedQuery(name = UserDetails.FIND_BY_LOGIN, query = "SELECT d FROM UserDetails d WHERE d.login = :login"),
@@ -55,7 +58,6 @@ public class UserDetails {
 
     @NotNull
     @Size(max = 45)
-    @Column(unique = true)
     private String login;
 
     @NotNull @Size(max = 255)
@@ -217,6 +219,37 @@ public class UserDetails {
     public UserDetails setDateAdded(Calendar dateAdded) {
         this.dateAdded = dateAdded;
         return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof UserDetails)) {
+            return false;
+        }
+        UserDetails that = (UserDetails) o;
+        return new EqualsBuilder()
+                .append(login, that.login)
+                .append(firstName, that.firstName)
+                .append(lastName, that.lastName)
+                .append(email, that.email)
+                .append(phone, that.phone)
+                .append(address, that.address)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(login)
+                .append(firstName)
+                .append(lastName)
+                .append(email)
+                .append(phone)
+                .append(address)
+                .toHashCode();
     }
 
     @Override
