@@ -27,6 +27,8 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
 
 /**
+ * Integration test for Category entity
+ *
  * Created by Vladimir Kamenskiy on 05.07.2015.
  */
 public class CategoryIT extends AbstractPersistentTest {

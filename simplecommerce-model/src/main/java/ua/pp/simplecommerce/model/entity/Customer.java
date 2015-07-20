@@ -48,7 +48,7 @@ public class Customer {
     @Column(name = "CUSTOMER_ID")
     private Long customerId;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "CUSTOMER_DETAILS_FK")
     private UserDetails customerDetails;
 

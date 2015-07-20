@@ -31,7 +31,23 @@ import java.util.Calendar;
  */
 @Entity
 @Table(name = "USER_DETAILS")
+@NamedQueries({
+        @NamedQuery(name = UserDetails.FIND_ALL, query = "SELECT d FROM UserDetails d"),
+        @NamedQuery(name = UserDetails.FIND_BY_LOGIN, query = "SELECT d FROM UserDetails d WHERE d.login = :login"),
+        @NamedQuery(name = UserDetails.FIND_BY_LAST_NAME, query = "SELECT d FROM UserDetails d WHERE d.lastName = :lastName"),
+        @NamedQuery(name = UserDetails.FIND_BY_EMAIL, query = "SELECT d FROM UserDetails d WHERE d.email = :email"),
+        @NamedQuery(name = UserDetails.SORT_BY_DATE_ADDED, query = "SELECT d FROM UserDetails d ORDER BY d.dateAdded")
+})
 public class UserDetails {
+
+    public static final String FIND_ALL = "findAllUsersDetails";
+    public static final String FIND_BY_LOGIN = "findUserDetailsByLogin";
+    public static final String FIND_BY_LAST_NAME = "findUsersDetailsByLastNames";
+    public static final String FIND_BY_EMAIL = "findUsersDetailsByEmail";
+    public static final String SORT_BY_DATE_ADDED = "sortUsersDetailsByDateAdded";
+
+    private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+            + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "USER_DETAILS_ID")
@@ -54,13 +70,13 @@ public class UserDetails {
     @Size(max = 255)
     private String lastName;
 
-    @NotNull @Email
+    @NotNull @Email(regexp = EMAIL_PATTERN)
     private String email;
 
     @NotNull @Pattern(regexp = "\\+[\\d]{12}")
     private String phone;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "ADDRESS_FK")
     private Address address;
 
@@ -108,88 +124,99 @@ public class UserDetails {
         return userDetailsId;
     }
 
-    public void setUserDetailsId(Long userDetailsId) {
+    public UserDetails setUserDetailsId(Long userDetailsId) {
         this.userDetailsId = userDetailsId;
+        return this;
     }
 
     public String getLogin() {
         return login;
     }
 
-    public void setLogin(String login) {
+    public UserDetails setLogin(String login) {
         this.login = login;
+        return this;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public UserDetails setPassword(String password) {
         this.password = password;
+        return this;
     }
 
     public String getSalt() {
         return salt;
     }
 
-    public void setSalt(String salt) {
+    public UserDetails setSalt(String salt) {
         this.salt = salt;
+        return this;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public UserDetails setFirstName(String firstName) {
         this.firstName = firstName;
+        return this;
     }
 
     public String getLastName() {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public UserDetails setLastName(String lastName) {
         this.lastName = lastName;
+        return this;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail(String email) {
+    public UserDetails setEmail(String email) {
         this.email = email;
+        return this;
     }
 
     public String getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public UserDetails setPhone(String phone) {
         this.phone = phone;
+        return this;
     }
 
     public Address getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public UserDetails setAddress(Address address) {
         this.address = address;
+        return this;
     }
 
     public boolean isEnabled() {
         return enabled;
     }
 
-    public void setEnabled(boolean enabled) {
+    public UserDetails setEnabled(boolean enabled) {
         this.enabled = enabled;
+        return this;
     }
 
     public Calendar getDateAdded() {
         return dateAdded;
     }
 
-    public void setDateAdded(Calendar dateAdded) {
+    public UserDetails setDateAdded(Calendar dateAdded) {
         this.dateAdded = dateAdded;
+        return this;
     }
 
     @Override

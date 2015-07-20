@@ -36,12 +36,12 @@
         <class>ua.pp.simplecommerce.model.entity.Product</class>
         <class>ua.pp.simplecommerce.model.entity.Store</class>
         <class>ua.pp.simplecommerce.model.entity.User</class>
-        <class>ua.pp.simplecommerce.model.entity.UserGroup</class>
         <class>ua.pp.simplecommerce.model.entity.UserDetails</class>
+        <class>ua.pp.simplecommerce.model.entity.UserGroup</class>
         <properties>
             <property name="javax.persistence.schema-generation.database.action" value="create" />
-            <property name="javax.persistence.schema-generation.scripts.create-target" value="create.sql"/>
-            <property name="javax.persistence.schema-generation.scripts.drop-target" value="drop.sql"/>
+            <property name="javax.persistence.schema-generation.scripts.create-target" value="createInMemory.ddl"/>
+            <property name="javax.persistence.schema-generation.scripts.drop-target" value="dropInMemory.ddl"/>
             <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
             <property name="javax.persistence.jdbc.url" value="jdbc:derby:memory:ecommerceDB;create=true" />
             <property name="javax.persistence.sql-load-script-source" value="META-INF/sql/init.sql" />

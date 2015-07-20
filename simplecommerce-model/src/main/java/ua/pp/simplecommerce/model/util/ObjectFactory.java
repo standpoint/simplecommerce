@@ -111,7 +111,7 @@ public final class ObjectFactory {
     }
 
     public static UserDetails getDefaultUserDetails() {
-        return new UserDetails("customer", "customer", "", "Firstname", "Secondname", "customer@mail.com",
+        return new UserDetails("customer", "customer", "salt", "Firstname", "Secondname", "customer@mail.com",
                 DEFAULT_PHONE_NUMBER, getDefaultAddress(), true, getDefaultDate());
     }
 

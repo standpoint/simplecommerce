@@ -25,6 +25,8 @@ import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
 
 /**
+ * Integration test for Address entity
+ *
  * Created by Vladimir Kamenskiy on 05.07.2015.
  */
 public class AddressIT extends AbstractPersistentTest {

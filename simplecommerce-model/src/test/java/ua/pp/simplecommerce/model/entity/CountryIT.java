@@ -25,6 +25,8 @@ import java.util.List;
 import static junit.framework.TestCase.assertEquals;
 
 /**
+ * Integration test for Country entity
+ *
  * Created by Vladimir Kamenskiy on 06.07.2015.
  */
 public class CountryIT extends AbstractPersistentTest {
