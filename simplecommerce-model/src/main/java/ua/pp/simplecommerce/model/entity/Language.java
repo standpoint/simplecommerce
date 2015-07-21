@@ -29,7 +29,16 @@ import java.util.Objects;
  */
 
 @Entity
+@NamedQueries({
+        @NamedQuery(name = Language.FIND_ALL, query = "SELECT l FROM Language l"),
+        @NamedQuery(name = Language.FIND_BY_CODE, query = "SELECT l FROM Language l WHERE l.code = :code"),
+        @NamedQuery(name = Language.FIND_BY_NAME, query = "SELECT l FROM Language l WHERE l.name = :name")
+})
 public class Language {
+
+    public static final String FIND_ALL = "findAllLanguages";
+    public static final String FIND_BY_CODE = "findLanguagesWithCode";
+    public static final String FIND_BY_NAME = "findLanguagesWithName";
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "LANGUAGE_ID")
@@ -75,48 +84,54 @@ public class Language {
         return languageId;
     }
 
-    public void setLanguageId(Long languageId) {
+    public Language setLanguageId(Long languageId) {
         this.languageId = languageId;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public Language setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public Language setCode(String code) {
         this.code = code;
+        return this;
     }
 
     public String getLocale() {
         return locale;
     }
 
-    public void setLocale(String locale) {
+    public Language setLocale(String locale) {
         this.locale = locale;
+        return this;
     }
 
     public Image getImage() {
         return image;
     }
 
-    public void setImage(Image image) {
+    public Language setImage(Image image) {
         this.image = image;
+        return this;
     }
 
     public boolean getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public Language setStatus(boolean status) {
         this.status = status;
+        return this;
     }
 
     @Override
