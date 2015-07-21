@@ -31,7 +31,7 @@ public final class ObjectFactory {
     public static final BigDecimal DEFAULT_PRICE = BigDecimal.valueOf(1, 2);
     public static final BigDecimal DEFAULT_AMOUNT = BigDecimal.valueOf(100, 2);
     public static final String DEFAULT_PHONE_NUMBER = "+380123456789";
-    public static final String DEFAULT_INVOICE_NO = "INV-" + getDefaultDate().toString();
+    public static final String DEFAULT_INVOICE_NO = "INV-" + getDefaultDate().getTime().toString();
     public static final String DEFAULT_STORE_NAME = "SimpleCommerce";
     public static final String DEFAULT_STORE_URL = "http://simplecommerce.pp.ua";
     public static final String DEFAULT_STREET_ADDRESS = "I.Lepse av., 8";

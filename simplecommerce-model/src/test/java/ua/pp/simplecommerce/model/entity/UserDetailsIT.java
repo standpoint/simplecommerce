@@ -33,7 +33,7 @@ public class UserDetailsIT extends AbstractPersistentTest {
     @Test
     public void shouldCreateUserDetails() {
         UserDetails userDetails = ObjectFactory.getDefaultUserDetails()
-                .setLogin("Unique");
+                .setLogin(getUniqueLogin());
         tx.begin();
         em.persist(userDetails);
         tx.commit();
@@ -44,10 +44,10 @@ public class UserDetailsIT extends AbstractPersistentTest {
     @Test
     public void shouldFindUserDetailsByEmail() {
         UserDetails userDetailsFirst = ObjectFactory.getDefaultUserDetails()
-                .setLogin("first")
+                .setLogin(getUniqueLogin())
                 .setEmail("first@mail.com");
         UserDetails userDetailsSecond = ObjectFactory.getDefaultUserDetails()
-                .setLogin("second")
+                .setLogin(getUniqueLogin())
                 .setEmail("second@mail.com");
         tx.begin();
         em.persist(userDetailsFirst);
@@ -57,13 +57,13 @@ public class UserDetailsIT extends AbstractPersistentTest {
                 .setParameter("email", userDetailsSecond.getEmail())
                 .getSingleResult();
 
-        assertEquals("second", details.getLogin());
+        assertEquals(userDetailsSecond.getLogin(), details.getLogin());
     }
 
     @Test(expected = ConstraintViolationException.class)
     public void shouldRaiseConstraintViolationCauseWrongEmailSyntax() {
         UserDetails userDetails = ObjectFactory.getDefaultUserDetails()
-                .setLogin("some_user")
+                .setLogin(getUniqueLogin())
                 .setEmail("wrong email@mail.com");
         em.persist(userDetails);
     }

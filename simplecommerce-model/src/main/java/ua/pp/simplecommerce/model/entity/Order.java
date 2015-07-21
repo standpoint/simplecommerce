@@ -14,6 +14,8 @@
  */
 package ua.pp.simplecommerce.model.entity;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
@@ -39,7 +41,7 @@ public class Order {
     @JoinColumn(name = "ORDER_LINES_FK")
     private List<OrderLine> orderLines;
 
-    @NotNull @Size(max = 20)
+    @NotNull @Size(max = 40)
     @Column(name = "INVOICE_NUMBER")
     private String invoiceNumber;
 
@@ -107,16 +109,16 @@ public class Order {
 
         //TODO : there is need to find out the better concept, look and feel and implementation of the 'Order Summary'
 
-        StringBuilder summary = new StringBuilder("Order summary: \n");
-        List<OrderLine> orderLines = getOrderLines();
-        int pos = 0;
-        if(orderLines != null && !orderLines.isEmpty()) {
-            for (OrderLine orderLine : orderLines) {
-                summary.append(++pos + ".\t" + orderLine.toString() + "\n");
-            }
-            summary.append("Amount: " + getAmount());
-            return summary.toString();
-        }
+//        StringBuilder summary = new StringBuilder("Order summary: \n");
+//        List<OrderLine> orderLines = getOrderLines();
+//        int pos = 0;
+//        if(orderLines != null && !orderLines.isEmpty()) {
+//            for (OrderLine orderLine : orderLines) {
+//                summary.append(++pos + ".\t" + orderLine.toString() + "\n");
+//            }
+//            summary.append("Amount: " + getAmount());
+//            return summary.toString();
+//        }
         return "";
     }
 
@@ -124,80 +126,123 @@ public class Order {
         return orderId;
     }
 
-    public void setOrderId(Long orderId) {
+    public Order setOrderId(Long orderId) {
         this.orderId = orderId;
+        return this;
     }
 
     public List<OrderLine> getOrderLines() {
         return orderLines;
     }
 
-    public void setOrderLines(List<OrderLine> orderLines) {
+    public Order setOrderLines(List<OrderLine> orderLines) {
         this.orderLines = orderLines;
+        return this;
     }
 
     public String getInvoiceNumber() {
         return invoiceNumber;
     }
 
-    public void setInvoiceNumber(String invoiceNumber) {
+    public Order setInvoiceNumber(String invoiceNumber) {
         this.invoiceNumber = invoiceNumber;
+        return this;
     }
 
     public Address getBillTo() {
         return billTo;
     }
 
-    public void setBillTo(Address billTo) {
+    public Order setBillTo(Address billTo) {
         this.billTo = billTo;
+        return this;
     }
 
     public Address getShipTo() {
         return shipTo;
     }
 
-    public void setShipTo(Address shipTo) {
+    public Order setShipTo(Address shipTo) {
         this.shipTo = shipTo;
+        return this;
     }
 
     public ShippingMethod getShippingMethod() {
         return shippingMethod;
     }
 
-    public void setShippingMethod(ShippingMethod shippingMethod) {
+    public Order setShippingMethod(ShippingMethod shippingMethod) {
         this.shippingMethod = shippingMethod;
+        return this;
     }
 
     public String getComment() {
         return comment;
     }
 
-    public void setComment(String comment) {
+    public Order setComment(String comment) {
         this.comment = comment;
+        return this;
     }
 
     public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(BigDecimal amount) {
+    public Order setAmount(BigDecimal amount) {
         this.amount = amount;
+        return this;
     }
 
     public OrderStatus getOrderStatus() {
         return orderStatus;
     }
 
-    public void setOrderStatus(OrderStatus orderStatus) {
+    public Order setOrderStatus(OrderStatus orderStatus) {
         this.orderStatus = orderStatus;
+        return this;
     }
 
     public List<OrderHistory> getOrderHistoryList() {
         return orderHistoryList;
     }
 
-    public void setOrderHistoryList(List<OrderHistory> orderHistoryList) {
+    public Order setOrderHistoryList(List<OrderHistory> orderHistoryList) {
         this.orderHistoryList = orderHistoryList;
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Order)) return false;
+        Order order = (Order) o;
+        return new EqualsBuilder()
+                .append(orderLines, order.orderLines)
+                .append(invoiceNumber, order.invoiceNumber)
+                .append(billTo, order.billTo)
+                .append(shipTo, order.shipTo)
+                .append(shippingMethod, order.shippingMethod)
+                .append(comment, order.comment)
+                .append(amount, order.amount)
+                .append(orderStatus, order.orderStatus)
+                .append(orderHistoryList, order.orderHistoryList)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(orderLines)
+                .append(invoiceNumber)
+                .append(billTo)
+                .append(shipTo)
+                .append(shippingMethod)
+                .append(comment)
+                .append(amount)
+                .append(orderStatus)
+                .append(orderHistoryList)
+                .toHashCode();
     }
 
     @Override

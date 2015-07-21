@@ -21,8 +21,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import java.math.BigInteger;
+import java.security.SecureRandom;
 import java.sql.SQLException;
-import java.util.Random;
 
 /**
  * Declare @Before and @After methods for test where initialized and closed entity and transaction managers
@@ -48,7 +49,7 @@ public abstract class AbstractPersistentTest {
         }
     }
 
-    protected Long getRandomId() {
-        return Math.abs(new Random().nextLong());
+    protected String getUniqueLogin() {
+        return "login#" + new BigInteger(130, new SecureRandom()).toString(32);
     }
 }

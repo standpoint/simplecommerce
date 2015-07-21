@@ -31,7 +31,7 @@ public class CustomerIT extends AbstractPersistentTest {
     @Test
     public void shouldCreateCustomer() {
         UserDetails customerDetails = ObjectFactory.getDefaultUserDetails()
-                .setLogin("loginInCustomerITScope");
+                .setLogin(getUniqueLogin());
         Customer customer = ObjectFactory.getDefaultCustomer()
                 .setCustomerDetails(customerDetails);
         tx.begin();
@@ -44,15 +44,15 @@ public class CustomerIT extends AbstractPersistentTest {
         UserDetails firstCustomerDetails = ObjectFactory.getDefaultUserDetails()
                 .setFirstName("firstCustomer first name")
                 .setLastName("firstCustomer last name")
-                .setLogin("firstLoginInCustomerITScope");
+                .setLogin(getUniqueLogin());
         UserDetails secondCustomerDetails = ObjectFactory.getDefaultUserDetails()
                 .setFirstName("secondCustomer first name")
                 .setLastName("secondCustomer last name")
-                .setLogin("secondLoginInCustomerITScope");
+                .setLogin(getUniqueLogin());
         UserDetails thirdCustomerDetails = ObjectFactory.getDefaultUserDetails()
                 .setFirstName("thirdCustomer first name")
                 .setLastName("thirdCustomer last name")
-                .setLogin("thirdLoginInCustomerITScope");
+                .setLogin(getUniqueLogin());
         Customer firstCustomer = ObjectFactory.getDefaultCustomer()
                 .setCustomerDetails(firstCustomerDetails);
         Customer secondCustomer = ObjectFactory.getDefaultCustomer()

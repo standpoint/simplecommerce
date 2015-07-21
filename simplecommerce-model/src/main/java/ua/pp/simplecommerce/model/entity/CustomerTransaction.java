@@ -14,6 +14,8 @@
  */
 package ua.pp.simplecommerce.model.entity;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
@@ -30,7 +32,17 @@ import java.util.Calendar;
 
 @Entity
 @Table(name = "CUSTOMER_TRANSACTION")
+@NamedQueries({
+        @NamedQuery(name = CustomerTransaction.FIND_ALL, query = "SELECT ct FROM CustomerTransaction ct"),
+        @NamedQuery(name = CustomerTransaction.FIND_BY_CUSTOMER_EMAIL,
+                query = "SELECT ct FROM CustomerTransaction ct " +
+                        "INNER JOIN Customer c INNER JOIN UserDetails d " +
+                        "WHERE d.email = :email")
+})
 public class CustomerTransaction {
+
+    public static final String FIND_ALL = "findAllTransactions";
+    public static final String FIND_BY_CUSTOMER_EMAIL = "findCustomerTransactionsByEmail";
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CUSTOMER_TRANSACTION_ID")
@@ -44,7 +56,7 @@ public class CustomerTransaction {
     @JoinColumn(name = "CUSTOMER_TRANSACTION_ORDER_FK")
     private Order order;
 
-    @NotNull @Size(max = 2000)
+    @NotNull @Size(max = 5000)
     private String summary;
 
     @NotNull
@@ -89,40 +101,73 @@ public class CustomerTransaction {
         return order;
     }
 
-    public void setOrder(Order order) {
+    public CustomerTransaction setOrder(Order order) {
         this.order = order;
+        return this;
     }
 
     public Customer getCustomer() {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
+    public CustomerTransaction setCustomer(Customer customer) {
         this.customer = customer;
+        return this;
     }
 
     public String getSummary() {
         return summary;
     }
 
-    public void setSummary(String summary) {
+    public CustomerTransaction setSummary(String summary) {
         this.summary = summary;
+        return this;
     }
 
     public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(BigDecimal amount) {
+    public CustomerTransaction setAmount(BigDecimal amount) {
         this.amount = amount;
+        return this;
     }
 
     public Calendar getDateAdded() {
         return dateAdded;
     }
 
-    public void setDateAdded(Calendar dateAdded) {
+    public CustomerTransaction setDateAdded(Calendar dateAdded) {
         this.dateAdded = dateAdded;
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+
+        if (!(o instanceof CustomerTransaction)) return false;
+
+        CustomerTransaction that = (CustomerTransaction) o;
+
+        return new EqualsBuilder()
+                .append(customer, that.customer)
+                .append(order, that.order)
+                .append(summary, that.summary)
+                .append(amount, that.amount)
+                .append(dateAdded, that.dateAdded)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(customer)
+                .append(order)
+                .append(summary)
+                .append(amount)
+                .append(dateAdded)
+                .toHashCode();
     }
 
     @Override

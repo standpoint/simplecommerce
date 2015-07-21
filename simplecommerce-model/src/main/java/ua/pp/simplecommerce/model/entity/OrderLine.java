@@ -14,6 +14,8 @@
  */
 package ua.pp.simplecommerce.model.entity;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
@@ -68,32 +70,57 @@ public class OrderLine {
         return orderLineId;
     }
 
-    public void setOrderLineId(Long orderLineId) {
+    public OrderLine setOrderLineId(Long orderLineId) {
         this.orderLineId = orderLineId;
+        return this;
     }
 
     public Product getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public OrderLine setProduct(Product product) {
         this.product = product;
+        return this;
     }
 
     public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public OrderLine setQuantity(int quantity) {
         this.quantity = quantity;
+        return this;
     }
 
     public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(BigDecimal amount) {
+    public OrderLine setAmount(BigDecimal amount) {
         this.amount = amount;
+        return this;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof OrderLine)) return false;
+        OrderLine orderLine = (OrderLine) o;
+        return new EqualsBuilder()
+                .append(quantity, orderLine.quantity)
+                .append(product, orderLine.product)
+                .append(amount, orderLine.amount)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(product)
+                .append(quantity)
+                .append(amount)
+                .toHashCode();
     }
 
     @Override

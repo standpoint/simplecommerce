@@ -53,7 +53,7 @@ public class ProductIT extends AbstractPersistentTest {
         product.setPartnumber("New partnumber");
         product = em.createNamedQuery(Product.GET_BY_NAME, Product.class)
                 .setParameter("name", product.getName())
-                .getSingleResult();
+                .getResultList().get(0);
 
         assertEquals(ObjectFactory.DEFAULT_PARTNUMBER, product.getPartnumber());
     }

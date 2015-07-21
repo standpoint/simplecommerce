@@ -14,6 +14,8 @@
  */
 package ua.pp.simplecommerce.model.entity;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.*;
@@ -80,6 +82,25 @@ public class OrderHistory {
 
     public void setDataAdded(Calendar dataAdded) {
         this.dataAdded = dataAdded;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof OrderHistory)) return false;
+        OrderHistory that = (OrderHistory) o;
+        return new EqualsBuilder()
+                .append(content, that.content)
+                .append(dataAdded, that.dataAdded)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(content)
+                .append(dataAdded)
+                .toHashCode();
     }
 
     @Override
