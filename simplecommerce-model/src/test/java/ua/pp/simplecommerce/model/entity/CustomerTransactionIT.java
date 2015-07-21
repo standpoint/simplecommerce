@@ -68,7 +68,7 @@ public class CustomerTransactionIT extends AbstractPersistentTest {
     }
 
     @Test(expected = ConstraintViolationException.class)
-    public void shouldConstraintViolationExceptionCauseNegativeAmount() {
+    public void shouldRaiseConstraintViolationExceptionCauseNegativeAmount() {
         CustomerTransaction transaction = ObjectFactory.getCustomerTransaction()
                 .setOrder(createAndPersistOrder(createAndPersistProduct()))
                 .setCustomer(createAndPersistCustomer(getUniqueLogin()))

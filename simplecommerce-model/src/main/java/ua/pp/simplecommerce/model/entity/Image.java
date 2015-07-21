@@ -27,10 +27,13 @@ import javax.validation.constraints.*;
  */
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "getAllImages", query = "SELECT img FROM Image img"),
-        @NamedQuery(name = "getImageByFilename", query = "SELECT img FROM Image img WHERE img.url LIKE :filename")
+        @NamedQuery(name = Image.FIND_ALL, query = "SELECT img FROM Image img"),
+        @NamedQuery(name = Image.FIND_BY_FILENAME, query = "SELECT img FROM Image img WHERE img.url LIKE :filename")
 })
 public class Image {
+
+    public static final String FIND_ALL = "findAllImages";
+    public static final String FIND_BY_FILENAME = "findImageByFilename";
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IMAGE_ID")
@@ -57,16 +60,18 @@ public class Image {
         return imageId;
     }
 
-    public void setImageId(Long imageId) {
+    public Image setImageId(Long imageId) {
         this.imageId = imageId;
+        return this;
     }
 
     public String getUrl() {
         return url;
     }
 
-    public void setUrl(String url) {
+    public Image setUrl(String url) {
         this.url = url;
+        return this;
     }
 
     @Override

@@ -27,7 +27,7 @@ import static junit.framework.Assert.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
 
 /**
- * Integration test for Category entity
+ * Integration test for {@link ua.pp.simplecommerce.model.entity.Category} entity
  *
  * Created by Vladimir Kamenskiy on 05.07.2015.
  */

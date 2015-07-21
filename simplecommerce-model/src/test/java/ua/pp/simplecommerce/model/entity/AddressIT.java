@@ -25,7 +25,7 @@ import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
 
 /**
- * Integration test for Address entity
+ * Integration test for {@link ua.pp.simplecommerce.model.entity.Address} entity
  *
  * Created by Vladimir Kamenskiy on 05.07.2015.
  */

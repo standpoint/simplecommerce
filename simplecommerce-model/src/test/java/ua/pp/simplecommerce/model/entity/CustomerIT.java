@@ -22,7 +22,7 @@ import java.sql.SQLIntegrityConstraintViolationException;
 import static junit.framework.TestCase.assertEquals;
 
 /**
- * Integration test for Customer entity
+ * Integration test for {@link ua.pp.simplecommerce.model.entity.Customer} entity
  *
  * Created by Vladimir Kamenskiy on 20.07.2015.
  */

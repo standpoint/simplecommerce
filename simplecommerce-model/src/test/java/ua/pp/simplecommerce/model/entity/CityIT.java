@@ -23,7 +23,7 @@ import java.util.*;
 import static junit.framework.TestCase.assertEquals;
 
 /**
- * Integration test for City entity
+ * Integration test for {@link ua.pp.simplecommerce.model.entity.City} entity
  *
  * Created by Vladimir Kamenskiy on 06.07.2015.
  */

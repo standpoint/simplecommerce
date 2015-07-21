@@ -25,7 +25,7 @@ import java.util.List;
 import static junit.framework.TestCase.assertEquals;
 
 /**
- * Integration test for Country entity
+ * Integration test for {@link ua.pp.simplecommerce.model.entity.Country} entity
  *
  * Created by Vladimir Kamenskiy on 06.07.2015.
  */

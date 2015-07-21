@@ -25,7 +25,7 @@ import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
 
 /**
- * The integration test for the entity {@link ua.pp.simplecommerce.model.entity.Product}
+ * The integration test for the {@link ua.pp.simplecommerce.model.entity.Product} entity
  *
  * Created by Vladimir Kamenskiy on 14.06.2015.
  */
